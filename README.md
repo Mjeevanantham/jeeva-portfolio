@@ -1,2 +1,0 @@
-# jeeva-portfolio
-Personal portfolio
