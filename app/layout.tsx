@@ -32,13 +32,8 @@ export default function RootLayout({
         {/* Alfred Bot Widget */}
         <script 
           data-tenant-id="68e68ff44d3939b192d9e216" 
-          data-server-url="http://localhost:3000"
-          data-position="bottom-right"
-          data-theme="dark"
-          data-pulse="true"
-          data-auto-open="false"
-          src="/alfred-widget.js"
-        ></script>
+          src="https://alfred-portfolio-bot.vercel.app/alfred-widget.js">
+        </script>
       </body>
     </html>
   );
