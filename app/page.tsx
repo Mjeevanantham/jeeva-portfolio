@@ -39,7 +39,7 @@ export default function Home() {
               </Avatar>
             </div>
             <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Hi, I'm{" "}
+              Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Jeevanantham
               </span>
@@ -76,7 +76,7 @@ export default function Home() {
                 My Journey
               </h3>
               <p className="text-slate-600 dark:text-slate-300 mb-6">
-                I'm a dedicated full-stack developer with a passion for creating innovative solutions 
+                I&apos;m a dedicated full-stack developer with a passion for creating innovative solutions 
                 that bridge the gap between technology and user experience. With expertise in modern 
                 web frameworks and AI technologies, I love building applications that make a difference.
               </p>
@@ -198,10 +198,10 @@ export default function Home() {
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Let's Work Together
+            Let&apos;s Work Together
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 mb-12">
-            Have a project in mind? I'd love to hear about it. Send me a message and let's discuss how we can bring your ideas to life.
+            Have a project in mind? I&apos;d love to hear about it. Send me a message and let&apos;s discuss how we can bring your ideas to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">

@@ -3,10 +3,10 @@ import type { NextConfig } from "next";
 // Tight but pragmatic CSP for a static portfolio. Adjust if embedding third-parties.
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://alfred-portfolio-bot.vercel.app",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
-  "connect-src 'self' https://www.google-analytics.com",
+  "connect-src 'self' https://www.google-analytics.com https://alfred-portfolio-bot.vercel.app",
   "font-src 'self' data:",
   "frame-src 'self'",
 ].join('; ');

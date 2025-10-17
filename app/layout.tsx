@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,10 +31,11 @@ export default function RootLayout({
         {children}
         
         {/* Alfred Bot Widget */}
-        <script 
+        <Script 
           data-tenant-id="68e68ff44d3939b192d9e216" 
-          src="https://alfred-portfolio-bot.vercel.app/alfred-widget.js">
-        </script>
+          src="https://alfred-portfolio-bot.vercel.app/alfred-widget.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
