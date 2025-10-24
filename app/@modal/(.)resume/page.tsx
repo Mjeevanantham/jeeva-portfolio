@@ -29,7 +29,7 @@ export default function ResumeModal() {
             <Link
               href="/#contact"
               onClick={close}
-              className="inline-flex items-center rounded-md bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-white hover:from-blue-700 hover:to-purple-700"
+              className="inline-flex items-center rounded-md bg-brand-gradient px-6 py-3 text-white hover:opacity-90"
             >
               Contact Me
             </Link>

@@ -15,7 +15,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
       <GSAPAnimations />
       <Script id="home-structured-data" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify([
@@ -84,7 +84,7 @@ export default function Home() {
       {/* Navigation moved to RootLayout via <SiteNav /> */}
 
       {/* Hero Section */}
-      <section data-animate="hero" className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+      <section data-animate="hero" className="relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
         {/* 3D-like animated color orb */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 flex items-start justify-center">
           <div className="relative mt-[-6rem] md:mt-[-8rem]">
@@ -116,19 +116,19 @@ export default function Home() {
           </div>
         </div>
         <div className="relative max-w-4xl mx-auto text-center">
-          <Avatar className="w-32 h-32 mx-auto mb-6">
-            <AvatarImage src="" alt="Jeevanantham" />
-            <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-3xl">JM</AvatarFallback>
+          <Avatar className="w-32 h-32 mx-auto mb-6 ring-2 ring-white/40 shadow-xl">
+            <AvatarImage src="/file.svg" alt="Jeevanantham" />
+            <AvatarFallback className="bg-brand-gradient text-white text-3xl">JM</AvatarFallback>
           </Avatar>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Full‑Stack Developer building scalable, high‑performance products
+          <h1 className="text-5xl md:text-6xl font-bold mb-3">
+            Building scalable, user‑focused digital experiences
           </h1>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6">
-            I architect robust backends with Node.js/NestJS/GraphQL and craft responsive frontends with Next.js/React. Based in Coimbatore, I deliver reliable, growth‑ready solutions.
+          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto">
+            I’m Jeevanantham Mahalingam — Full‑Stack Developer and AI enthusiast. I design, build, and ship reliable web apps with Next.js, Node.js, and Tailwind.
           </p>
           <RotatingSpecialties />
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600">
+            <Button asChild size="lg" className="bg-brand-gradient">
               <a href="#projects">View My Work</a>
             </Button>
             <Button asChild size="lg" variant="outline">
@@ -137,21 +137,21 @@ export default function Home() {
           </div>
           
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div data-animate="stat" className="p-4">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">50+</div>
+              <div className="text-4xl font-bold text-brand-gradient">50+</div>
               <div className="text-sm text-slate-600 dark:text-slate-300">APIs Built</div>
             </div>
             <div data-animate="stat" className="p-4">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">6</div>
+              <div className="text-4xl font-bold text-brand-gradient">6</div>
               <div className="text-sm text-slate-600 dark:text-slate-300">Modules Deployed</div>
             </div>
             <div data-animate="stat" className="p-4">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">500+</div>
+              <div className="text-4xl font-bold text-brand-gradient">500+</div>
               <div className="text-sm text-slate-600 dark:text-slate-300">Users Served</div>
             </div>
             <div data-animate="stat" className="p-4">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">2+</div>
+              <div className="text-4xl font-bold text-brand-gradient">2+</div>
               <div className="text-sm text-slate-600 dark:text-slate-300">Years Experience</div>
             </div>
           </div>
@@ -165,7 +165,7 @@ export default function Home() {
       </section>
 
       {/* Quote Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-16 px-4 bg-brand-gradient">
         <div className="max-w-4xl mx-auto text-center">
           <div className="relative">
             <svg className="absolute top-0 left-0 transform -translate-x-6 -translate-y-8 h-16 w-16 text-white/20" fill="currentColor" viewBox="0 0 32 32">
@@ -190,9 +190,8 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-8">About Me</h2>
           <div className="space-y-6">
-            <p className="text-lg text-slate-600 dark:text-slate-300 text-center">
-              I craft performant, accessible web experiences with modern stacks like Next.js, Node.js, and Tailwind.
-              I love solving real problems and shipping reliable, maintainable software.
+            <p className="text-lg text-slate-600 dark:text-slate-300 text-center max-w-3xl mx-auto">
+              I build end‑to‑end products that balance engineering and design. From API architecture to delightful UIs, I care about clarity, reliability, and speed. My mantra: small details compound into great experiences.
             </p>
           </div>
         </div>

@@ -214,7 +214,7 @@ export default function ContactForm() {
               <p className="text-xs text-slate-500 dark:text-slate-400">
                 I usually reply within 24 hours.
               </p>
-              <Button type="submit" disabled={isSubmitting} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              <Button type="submit" disabled={isSubmitting} className="bg-brand-gradient hover:opacity-90">
                 {isSubmitting ? (
                   <>
                     <svg
