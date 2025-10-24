@@ -135,6 +135,64 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-4">Projects</h2>
+          <p className="text-center text-slate-600 dark:text-slate-300 mb-12">Company projects (NDA protected)</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
+              <CardHeader>
+                <CardTitle>HRMS System</CardTitle>
+                <CardDescription>HR management with employee tracking</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
+              <CardHeader>
+                <CardTitle>Static Website</CardTitle>
+                <CardDescription>Marketing site with SEO optimization</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
+              <CardHeader>
+                <CardTitle>Ticketing Tool</CardTitle>
+                <CardDescription>Support ticket management system</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
+              <CardHeader>
+                <CardTitle>Customer Food Delivery App</CardTitle>
+                <CardDescription>Online ordering platform</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
+              <CardHeader>
+                <CardTitle>Recruitment Platform</CardTitle>
+                <CardDescription>Applicant tracking system</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
+              <CardHeader>
+                <CardTitle>eSim Platform</CardTitle>
+                <CardDescription>Digital SIM card management</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
+              <CardHeader>
+                <CardTitle>CRM System</CardTitle>
+                <CardDescription>Customer relationship management</CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
       <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-6xl mx-auto">
@@ -148,9 +206,9 @@ export default function Home() {
                 <div className="flex flex-wrap gap-2">
                   <Badge>Node.js</Badge>
                   <Badge>NestJS</Badge>
-                  <Badge>Express</Badge>
-                  <Badge>GraphQL</Badge>
-                  <Badge>REST API</Badge>
+                  <Badge>Express.js</Badge>
+                  <Badge>TypeScript</Badge>
+                  <Badge>JavaScript</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -162,9 +220,9 @@ export default function Home() {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   <Badge>Next.js</Badge>
-                  <Badge>React</Badge>
-                  <Badge>TypeScript</Badge>
-                  <Badge>Redux</Badge>
+                  <Badge>React.js</Badge>
+                  <Badge>HTML5</Badge>
+                  <Badge>CSS3</Badge>
                   <Badge>Tailwind CSS</Badge>
                 </div>
               </CardContent>
@@ -172,15 +230,41 @@ export default function Home() {
 
             <Card data-animate="about-card">
               <CardHeader>
-                <CardTitle>Database & Cloud</CardTitle>
+                <CardTitle>Database</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   <Badge>MongoDB</Badge>
                   <Badge>PostgreSQL</Badge>
                   <Badge>Prisma ORM</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card data-animate="about-card">
+              <CardHeader>
+                <CardTitle>DevOps</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
                   <Badge>Docker</Badge>
-                  <Badge>AWS</Badge>
+                  <Badge>Git</Badge>
+                  <Badge>RESTful APIs</Badge>
+                  <Badge>GraphQL</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card data-animate="about-card">
+              <CardHeader>
+                <CardTitle>Tools</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>Postman</Badge>
+                  <Badge>VS Code</Badge>
+                  <Badge>npm</Badge>
+                  <Badge>Microservices</Badge>
                 </div>
               </CardContent>
             </Card>
