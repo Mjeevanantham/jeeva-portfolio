@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ContactForm from "@/components/contact-form";
+import ProjectsGrid from "@/components/projects-grid";
 import GSAPAnimations from "@/components/gsap-animations";
 
 export default function Home() {
@@ -18,16 +20,37 @@ export default function Home() {
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg"></div>
               <span className="text-xl font-bold">Jeeva</span>
             </div>
-            <div className="hidden md:flex space-x-8">
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-8">
               <a href="#about" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">About</a>
               <a href="#experience" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">Experience</a>
               <a href="#projects" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">Projects</a>
               <a href="#skills" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">Skills</a>
               <a href="#contact" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">Contact</a>
+              <Button asChild variant="outline" size="sm">
+                <Link href="/resume">Resume</Link>
+              </Button>
             </div>
-            <Button variant="outline" size="sm">
-              Resume
-            </Button>
+            {/* Mobile menu */}
+            <details className="md:hidden relative">
+              <summary className="list-none p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer" aria-label="Open menu">
+                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+              </summary>
+              <div className="absolute right-0 mt-2 w-56 rounded-md border border-slate-200 bg-white p-2 shadow-lg dark:border-slate-700 dark:bg-slate-900">
+                <nav className="flex flex-col gap-1">
+                  <a href="#about" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">About</a>
+                  <a href="#experience" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Experience</a>
+                  <a href="#projects" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Projects</a>
+                  <a href="#skills" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Skills</a>
+                  <a href="#contact" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Contact</a>
+                  <Link href="/resume" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Resume</Link>
+                </nav>
+              </div>
+            </details>
           </div>
         </div>
       </nav>
@@ -45,8 +68,12 @@ export default function Home() {
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">Creative Full-Stack Developer building fast, user-friendly web and mobile applications. Trusted problem-solver known for boosting performance and delivering reliable, growth-ready solutions.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600">View My Work</Button>
-            <Button size="lg" variant="outline">Get In Touch</Button>
+            <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600">
+              <a href="#projects">View My Work</a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <a href="#contact">Get In Touch</a>
+            </Button>
           </div>
           
           {/* Stats */}
@@ -92,8 +119,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-8">About Me</h2>
+          <div className="space-y-6">
+            <p className="text-lg text-slate-600 dark:text-slate-300 text-center">
+              I craft performant, accessible web experiences with modern stacks like Next.js, Node.js, and Tailwind.
+              I love solving real problems and shipping reliable, maintainable software.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="experience" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Professional Experience</h2>
           <div className="space-y-8">
@@ -136,65 +176,16 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="projects" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-4">Projects</h2>
           <p className="text-center text-slate-600 dark:text-slate-300 mb-12">Company projects (NDA protected)</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <CardTitle>HRMS System</CardTitle>
-                <CardDescription>HR management with employee tracking</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <CardTitle>Static Website</CardTitle>
-                <CardDescription>Marketing site with SEO optimization</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <CardTitle>Ticketing Tool</CardTitle>
-                <CardDescription>Support ticket management system</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <CardTitle>Customer Food Delivery App</CardTitle>
-                <CardDescription>Online ordering platform</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <CardTitle>Recruitment Platform</CardTitle>
-                <CardDescription>Applicant tracking system</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <CardTitle>eSim Platform</CardTitle>
-                <CardDescription>Digital SIM card management</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card data-animate="project-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <CardTitle>CRM System</CardTitle>
-                <CardDescription>Customer relationship management</CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
+          <ProjectsGrid />
         </div>
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900">
+      <section id="skills" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Technical Skills</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -273,7 +264,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-4">Get In Touch</h2>
           <p className="text-center text-slate-600 dark:text-slate-300 mb-12">Have a project in mind? Let&apos;s build something amazing together!</p>
@@ -286,10 +277,10 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-slate-400">© 2024 Jeevanantham Mahalingam. Built with Next.js & ❤️</p>
+          <p className="text-slate-400">© 2025 Jeevanantham Mahalingam.</p>
           <div className="flex justify-center gap-4 mt-4">
-            <a href="https://github.com/Mjeevanantham" className="hover:text-blue-400 transition-colors">GitHub</a>
-            <a href="https://linkedin.com/in/jeevanantham-m" className="hover:text-blue-400 transition-colors">LinkedIn</a>
+            <a href="https://github.com/Mjeevanantham" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">GitHub</a>
+            <a href="https://linkedin.com/in/jeevanantham-m" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">LinkedIn</a>
           </div>
         </div>
       </footer>
