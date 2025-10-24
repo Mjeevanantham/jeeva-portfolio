@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import SiteNav from "@/components/site-nav";
+import BackToTop from "@/components/back-to-top";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -106,6 +108,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <SiteNav />
         {children}
         {modal}
         
@@ -200,6 +203,7 @@ export default function RootLayout({
             })();
           `}
         </Script>
+        <BackToTop />
       </body>
     </html>
   );
