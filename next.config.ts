@@ -1,14 +1,18 @@
 import type { NextConfig } from "next";
 
-// Tight but pragmatic CSP for a static portfolio. Adjust if embedding third-parties.
+// CSP tuned for this portfolio and the embedded Alfred widget
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://alfred-portfolio-bot.vercel.app",
+  // Allow GTM, Alfred widget, and socket.io CDN
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://alfred-portfolio-bot.vercel.app https://cdn.socket.io",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
-  "connect-src 'self' https://www.google-analytics.com https://alfred-portfolio-bot.vercel.app",
-  "font-src 'self' data:",
-  "frame-src 'self'",
+  // Allow HTTPS and WSS connections (widget/socket, analytics)
+  "connect-src 'self' https: wss:",
+  // Allow web fonts over HTTPS (e.g., r2cdn.perplexity.ai)
+  "font-src 'self' data: https:",
+  // Allow Alfred widget if it uses iframes
+  "frame-src 'self' https://alfred-portfolio-bot.vercel.app",
 ].join('; ');
 
 const nextConfig: NextConfig = {
