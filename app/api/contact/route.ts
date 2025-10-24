@@ -8,7 +8,10 @@ export const dynamic = "force-dynamic";
 const ContactSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid email required"),
-  subject: z.string().min(2, "Subject is required"),
+  subject: z.enum(["Project Inquiry", "Job Opportunity", "Collaboration", "General"], {
+    required_error: "Subject is required",
+    invalid_type_error: "Subject is required",
+  }),
   message: z.string().min(10, "Message should be at least 10 characters"),
 });
 

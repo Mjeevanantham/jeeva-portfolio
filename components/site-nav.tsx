@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function SiteNav() {
   return (
@@ -21,6 +22,7 @@ export default function SiteNav() {
             <Button asChild variant="outline" size="sm">
               <Link href="/resume">Resume</Link>
             </Button>
+            <ThemeToggle />
           </div>
           {/* Mobile menu */}
           <details className="md:hidden relative">
@@ -40,6 +42,9 @@ export default function SiteNav() {
                 <Link href="/#contact" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Contact</Link>
                 <Link href="/blog" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Blog</Link>
                 <Link href="/resume" className="rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Resume</Link>
+                <div className="px-1 py-2">
+                  <ThemeToggle />
+                </div>
               </nav>
             </div>
           </details>

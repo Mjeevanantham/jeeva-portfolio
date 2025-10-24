@@ -12,7 +12,15 @@ import { Textarea } from "@/components/ui/textarea";
 const ContactFormSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid email required"),
-  subject: z.string().min(2, "Subject is required"),
+  subject: z.enum([
+    "Project Inquiry",
+    "Job Opportunity",
+    "Collaboration",
+    "General",
+  ], {
+    required_error: "Subject is required",
+    invalid_type_error: "Subject is required",
+  }),
   message: z.string().min(10, "Message should be at least 10 characters"),
 });
 
@@ -24,7 +32,7 @@ export default function ContactForm() {
   const [values, setValues] = React.useState<ContactFormValues>({
     name: "",
     email: "",
-    subject: "",
+    subject: "Project Inquiry",
     message: "",
   });
   const [errors, setErrors] = React.useState<FieldErrors>({});
@@ -168,20 +176,24 @@ export default function ContactForm() {
               </div>
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
-                Subject
-              </label>
-              <Input
-                value={values.subject}
-                onChange={(e) => handleChange("subject", e.target.value)}
-                placeholder="What is this about?"
-                aria-invalid={Boolean(errors.subject) || undefined}
-                aria-describedby={errors.subject ? "subject-error" : undefined}
-              />
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">Subject</label>
+              <div className="relative">
+                <select
+                  value={values.subject}
+                  onChange={(e) => handleChange("subject", e.target.value as ContactFormValues["subject"])}
+                  className="w-full appearance-none rounded-md border bg-white px-3 py-2 text-sm dark:bg-slate-900"
+                  aria-invalid={Boolean(errors.subject) || undefined}
+                  aria-describedby={errors.subject ? "subject-error" : undefined}
+                >
+                  <option>Project Inquiry</option>
+                  <option>Job Opportunity</option>
+                  <option>Collaboration</option>
+                  <option>General</option>
+                </select>
+                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">▾</span>
+              </div>
               {errors.subject && (
-                <p id="subject-error" className="mt-2 text-xs text-red-600 dark:text-red-400">
-                  {errors.subject}
-                </p>
+                <p id="subject-error" className="mt-2 text-xs text-red-600 dark:text-red-400">{errors.subject}</p>
               )}
             </div>
             <div>
@@ -240,6 +252,22 @@ export default function ContactForm() {
           </form>
         </CardContent>
       </Card>
+
+      {/* Alternative contact methods */}
+      <div className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-600 dark:text-slate-300">
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <a href="mailto:mjeevanantham04@gmail.com" className="hover:text-blue-600">Email</a>
+          <span className="opacity-40">•</span>
+          <a href="tel:+918807825309" className="hover:text-blue-600">+91 88078 25309</a>
+          <span className="opacity-40">•</span>
+          <span>Coimbatore, Tamil Nadu</span>
+          <span className="opacity-40">•</span>
+          <a href="https://linkedin.com/in/jeevanantham-m" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">LinkedIn</a>
+          <span className="opacity-40">•</span>
+          <a href="https://github.com/Mjeevanantham" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">GitHub</a>
+        </div>
+        <div className="mt-2 opacity-75">I typically respond within 24 hours.</div>
+      </div>
 
       {/* Success modal */}
       <AnimatePresence>

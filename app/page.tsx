@@ -7,6 +7,7 @@ import ContactForm from "@/components/contact-form";
 import ProjectsGrid from "@/components/projects-grid";
 import GSAPAnimations from "@/components/gsap-animations";
 import Script from "next/script";
+import RotatingSpecialties from "@/components/rotating-specialties";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -120,10 +121,12 @@ export default function Home() {
             <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-3xl">JM</AvatarFallback>
           </Avatar>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Hi, I&apos;m <span className="bg-clip-text text-transparent bg-[length:200%_100%] bg-gradient-to-r from-blue-600 via-fuchsia-500 to-purple-600 animate-[shine_3s_linear_infinite]">Jeevanantham</span>
+            Full‑Stack Developer building scalable, high‑performance products
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">Creative Full-Stack Developer building fast, user-friendly web and mobile applications. Trusted problem-solver known for boosting performance and delivering reliable, growth-ready solutions.
+          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6">
+            I architect robust backends with Node.js/NestJS/GraphQL and craft responsive frontends with Next.js/React. Based in Coimbatore, I deliver reliable, growth‑ready solutions.
           </p>
+          <RotatingSpecialties />
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600">
               <a href="#projects">View My Work</a>

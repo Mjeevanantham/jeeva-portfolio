@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import SiteNav from "@/components/site-nav";
+import { ThemeProvider } from "@/components/theme-provider";
 import BackToTop from "@/components/back-to-top";
 import "./globals.css";
 
@@ -104,10 +105,9 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -223,6 +223,7 @@ export default function RootLayout({
           `}
         </Script>
         <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );
