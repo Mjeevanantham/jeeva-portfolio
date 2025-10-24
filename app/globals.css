@@ -121,3 +121,73 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* === Alfred widget overrides (host-side) === */
+/* Ensure our rules outrank the widget's injected styles */
+html body .alfred-widget-panel { overflow: hidden !important; }
+html body .alfred-widget-content { overflow: hidden !important; }
+html body .alfred-widget-chat { overflow-y: auto !important; }
+
+/* Fallback icons when Font Awesome isn't available */
+html body .alfred-widget .fas { display: none !important; }
+html body .alfred-widget-toggle { position: relative; }
+html body .alfred-widget-toggle::before {
+  content: "🤖";
+  font-size: 26px;
+  line-height: 1;
+}
+html body .alfred-widget-avatar { position: relative; }
+html body .alfred-widget-avatar::before {
+  content: "🤖";
+  font-size: 16px;
+}
+html body .alfred-widget-message-avatar { position: relative; }
+html body .alfred-widget-message.alfred .alfred-widget-message-avatar::before { content: "🤖"; }
+html body .alfred-widget-message.user .alfred-widget-message-avatar::before { content: "👤"; }
+
+/* Close button visible */
+html body .alfred-widget-close {
+  color: #fff !important;
+}
+html body .alfred-widget-close::before {
+  content: "✕";
+  font-size: 18px;
+}
+
+/* Send button icon */
+html body .alfred-widget-send::before {
+  content: "➤";
+  font-size: 14px;
+}
+
+/* Quick suggestion chips with icons */
+html body .alfred-widget-suggestion { display: inline-flex; align-items: center; gap: 6px; }
+html body .alfred-widget-suggestion::before { content: "🔹"; font-size: 0.95em; }
+
+/* Center the placeholder text horizontally */
+html body .alfred-widget-input::placeholder { text-align: center; }
+
+/* Clamp styling for long bot messages */
+html body .alfred-message-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+html body .alfred-show-toggle {
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.85;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  html body .alfred-widget-panel { width: 100% !important; right: -100%; }
+  html body .alfred-widget-toggle { width: 54px !important; height: 54px !important; }
+}
