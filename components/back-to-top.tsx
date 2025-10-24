@@ -24,7 +24,7 @@ export default function BackToTop() {
     <button
       onClick={scrollTop}
       aria-label="Back to top"
-      className="fixed bottom-24 right-24 md:bottom-6 md:right-6 z-50 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 p-3 text-white shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      className="fixed bottom-24 right-24 md:bottom-6 md:right-6 z-50 rounded-full bg-brand-gradient p-3 text-white shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="18 15 12 9 6 15" />

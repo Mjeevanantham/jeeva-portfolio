@@ -4,12 +4,12 @@ import ThemeToggle from "@/components/theme-toggle";
 
 export default function SiteNav() {
   return (
-    <nav className="border-b bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
+    <nav className="border-b bg-white/70 dark:bg-slate-900/70 backdrop-blur-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg"></div>
-            <span className="text-xl font-bold">Jeeva</span>
+            <div className="w-8 h-8 rounded-lg bg-brand-gradient"></div>
+            <span className="text-xl font-bold tracking-tight">Jeeva</span>
           </div>
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">

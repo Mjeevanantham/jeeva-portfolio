@@ -11,6 +11,8 @@ type Project = {
   short: string;
   details: string;
   icon: string;
+  stack?: string[];
+  links?: { demo?: string; source?: string };
 };
 
 const PROJECTS: Project[] = [
@@ -21,6 +23,8 @@ const PROJECTS: Project[] = [
     details:
       "A full-featured HR management platform with attendance, leave workflows, and payroll integrations. Built APIs and optimized queries for scalability.",
     icon: "/file.svg",
+    stack: ["NestJS", "PostgreSQL", "RBAC"],
+    links: { demo: "#", source: "#" },
   },
   {
     id: "static-site",
@@ -29,6 +33,8 @@ const PROJECTS: Project[] = [
     details:
       "Marketing website optimized for Core Web Vitals with accessible components and structured metadata for search indexing.",
     icon: "/window.svg",
+    stack: ["Next.js", "Tailwind", "SEO"],
+    links: { demo: "#", source: "#" },
   },
   {
     id: "ticketing",
@@ -37,6 +43,8 @@ const PROJECTS: Project[] = [
     details:
       "End-to-end ticket lifecycle with SLA tracking, role-based permissions, and analytics dashboards for support teams.",
     icon: "/file.svg",
+    stack: ["NestJS", "PostgreSQL", "RBAC"],
+    links: { demo: "#", source: "#" },
   },
   {
     id: "food-app",
@@ -45,6 +53,8 @@ const PROJECTS: Project[] = [
     details:
       "Multi-restaurant ordering app with real-time status updates, secure checkout, and responsive UI for mobile users.",
     icon: "/globe.svg",
+    stack: ["Next.js", "Node.js", "Stripe"],
+    links: { demo: "#", source: "#" },
   },
   {
     id: "recruitment",
@@ -53,6 +63,8 @@ const PROJECTS: Project[] = [
     details:
       "ATS with candidate pipeline, interview scheduling, and collaborative reviews to streamline hiring processes.",
     icon: "/file.svg",
+    stack: ["Next.js", "Node.js", "MongoDB"],
+    links: { demo: "#", source: "#" },
   },
   {
     id: "esim",
@@ -61,6 +73,8 @@ const PROJECTS: Project[] = [
     details:
       "Digital eSIM provisioning with secure activation flows, vendor integrations, and activity auditing.",
     icon: "/globe.svg",
+    stack: ["NestJS", "Microservices", "Kafka"],
+    links: { demo: "#", source: "#" },
   },
   {
     id: "crm",
@@ -69,6 +83,8 @@ const PROJECTS: Project[] = [
     details:
       "CRM with contact management, pipeline tracking, and reporting to improve sales efficiency and insight.",
     icon: "/window.svg",
+    stack: ["Next.js", "Node.js", "PostgreSQL"],
+    links: { demo: "#", source: "#" },
   },
 ];
 
@@ -202,6 +218,13 @@ export default function ProjectsGrid() {
               </div>
               <CardTitle>{p.title}</CardTitle>
               <CardDescription>{p.short}</CardDescription>
+              {p.stack && (
+                <div className="mt-3 flex flex-wrap gap-1.5 text-[11px] text-slate-600 dark:text-slate-300">
+                  {p.stack.map((s) => (
+                    <span key={s} className="rounded-full bg-slate-100 px-2 py-0.5 dark:bg-slate-800">{s}</span>
+                  ))}
+                </div>
+              )}
             </CardHeader>
           </Card>
         ))}
@@ -238,7 +261,29 @@ export default function ProjectsGrid() {
                   {selected.details}
                 </CardContent>
               </Card>
-              <div className="flex justify-end gap-3">
+              <div className="flex justify-between gap-3">
+                <div className="flex gap-2">
+                  {selected.links?.demo && (
+                    <a
+                      href={selected.links.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center rounded-md bg-brand-gradient px-3 py-2 text-xs font-medium text-white"
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                  {selected.links?.source && (
+                    <a
+                      href={selected.links.source}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center rounded-md border px-3 py-2 text-xs font-medium"
+                    >
+                      Source Code
+                    </a>
+                  )}
+                </div>
                 <Button variant="outline" onClick={() => setSelected(null)}>Close</Button>
               </div>
             </motion.div>

@@ -18,7 +18,7 @@ export default function ResumePage() {
         <div className="flex items-center justify-center gap-4">
           <Link
             href="/#contact"
-            className="inline-flex items-center rounded-md bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-white transition-colors hover:from-blue-700 hover:to-purple-700"
+            className="inline-flex items-center rounded-md bg-brand-gradient px-6 py-3 text-white transition-opacity hover:opacity-90"
           >
             Contact Me
           </Link>
