@@ -3,10 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ContactForm from "@/components/contact-form";
+import GSAPAnimations from "@/components/gsap-animations";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+      <GSAPAnimations />
       {/* Navigation */}
       <nav className="border-b bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,27 +30,34 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="hero" data-hero className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Parallax background layer */}
+        <div
+          data-hero-bg
+          className="pointer-events-none absolute inset-0 -z-10 opacity-60 dark:opacity-40"
+        >
+          <div className="absolute left-1/2 top-[-20%] h-[60vh] w-[90vw] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/40 via-purple-500/30 to-transparent blur-3xl" />
+        </div>
         <div className="max-w-6xl mx-auto">
           <div className="text-center">
-            <div className="flex justify-center mb-8">
-              <Avatar className="w-32 h-32">
+            <div className="flex justify-center mb-8 [will-change:transform]">
+              <Avatar data-avatar className="w-32 h-32">
                 <AvatarImage src="/placeholder-avatar.jpg" alt="Jeevanantham Mahalingam" />
                 <AvatarFallback className="text-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white">
                   JM
                 </AvatarFallback>
               </Avatar>
             </div>
-            <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            <h1 data-hero-title className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 [will-change:transform]">
               Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Jeevanantham
               </span>
             </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
+            <p data-hero-subtitle className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto [will-change:transform]">
               Full-Stack Developer & AI Enthusiast crafting digital experiences that matter
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div data-hero-ctas className="flex flex-col sm:flex-row gap-4 justify-center [will-change:transform]">
               <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                 View My Work
               </Button>
@@ -61,7 +70,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800">
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 scroll-mt-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
@@ -93,25 +102,33 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4">
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl text-blue-600">50+</CardTitle>
+                  <CardTitle className="text-2xl text-blue-600">
+                    <span data-counter data-target="50" data-suffix="+">0</span>
+                  </CardTitle>
                   <CardDescription>Projects Completed</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl text-purple-600">3+</CardTitle>
+                  <CardTitle className="text-2xl text-purple-600">
+                    <span data-counter data-target="3" data-suffix="+">0</span>
+                  </CardTitle>
                   <CardDescription>Years Experience</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl text-green-600">100%</CardTitle>
+                  <CardTitle className="text-2xl text-green-600">
+                    <span data-counter data-target="100" data-suffix="%">0</span>
+                  </CardTitle>
                   <CardDescription>Client Satisfaction</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl text-orange-600">24/7</CardTitle>
+                  <CardTitle className="text-2xl text-orange-600">
+                    <span data-counter data-target="24" data-suffix="/7">0</span>
+                  </CardTitle>
                   <CardDescription>Support Available</CardDescription>
                 </CardHeader>
               </Card>
@@ -121,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 scroll-mt-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
@@ -132,7 +149,7 @@ export default function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="group hover:shadow-lg transition-shadow">
+            <Card data-project-card className="group hover:shadow-lg transition-shadow [will-change:transform]">
               <CardHeader>
                 <div className="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mb-4"></div>
                 <CardTitle>E-Commerce Platform</CardTitle>
@@ -152,7 +169,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-lg transition-shadow">
+            <Card data-project-card className="group hover:shadow-lg transition-shadow [will-change:transform]">
               <CardHeader>
                 <div className="w-full h-48 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg mb-4"></div>
                 <CardTitle>AI Chat Application</CardTitle>
@@ -172,7 +189,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-lg transition-shadow">
+            <Card data-project-card className="group hover:shadow-lg transition-shadow [will-change:transform]">
               <CardHeader>
                 <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg mb-4"></div>
                 <CardTitle>Portfolio Website</CardTitle>
@@ -196,7 +213,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800">
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 scroll-mt-24">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Let&apos;s Work Together
@@ -204,7 +221,9 @@ export default function Home() {
           <p className="text-lg text-slate-600 dark:text-slate-300 mb-12">
             Have a project in mind? I&apos;d love to hear about it. Send me a message and let&apos;s discuss how we can bring your ideas to life.
           </p>
-          <ContactForm />
+          <div data-contact-form className="[will-change:transform]">
+            <ContactForm />
+          </div>
         </div>
       </section>
 
