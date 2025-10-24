@@ -13,9 +13,85 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site";
+
 export const metadata: Metadata = {
-  title: "Jeevanantham Mahalingam - Full-Stack Developer & AI Enthusiast",
-  description: "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Jeevanantham Mahalingam - Full-Stack Developer & AI Enthusiast",
+    template: "%s | Jeevanantham Mahalingam",
+  },
+  description:
+    "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
+  applicationName: "Jeevanantham Portfolio",
+  authors: [{ name: "Jeevanantham Mahalingam", url: siteUrl }],
+  creator: "Jeevanantham Mahalingam",
+  publisher: "Jeevanantham Mahalingam",
+  keywords: [
+    "Jeevanantham",
+    "Jeevanantham Mahalingam",
+    "Full-Stack Developer",
+    "Next.js",
+    "React",
+    "Node.js",
+    "TypeScript",
+    "Portfolio",
+    "Web Performance",
+    "SEO",
+    "AEO",
+    "GEO",
+  ],
+  category: "technology",
+  alternates: {
+    canonical: siteUrl,
+    languages: {
+      en: siteUrl,
+    },
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Jeevanantham Mahalingam",
+    title: "Jeevanantham Mahalingam - Full-Stack Developer & AI Enthusiast",
+    description:
+      "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
+    images: [
+      {
+        url: `${siteUrl}/diagonal-gradient-bg.svg`,
+        width: 1200,
+        height: 630,
+        alt: "Jeevanantham Portfolio Preview",
+      },
+    ],
+    locale: "en",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jeevanantham Mahalingam - Full-Stack Developer & AI Enthusiast",
+    description:
+      "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
+    images: [`${siteUrl}/diagonal-gradient-bg.svg`],
+    creator: "@",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  referrer: "strict-origin-when-cross-origin",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
