@@ -34,26 +34,55 @@ function createTransporter() {
 
 function adminEmailHtml(data: z.infer<typeof ContactSchema>) {
   return `
-  <div style="font-family: Inter, ui-sans-serif, system-ui; line-height:1.6; color:#0f172a;">
-    <h2 style="margin:0 0 16px;">New portfolio contact submission</h2>
-    <table cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%; max-width:640px;">
-      <tbody>
-        <tr><td style="background:#f1f5f9; width:140px;">Name</td><td>${escapeHtml(
-          data.name
-        )}</td></tr>
-        <tr><td style="background:#f1f5f9;">Email</td><td>${escapeHtml(
-          data.email
-        )}</td></tr>
-        <tr><td style="background:#f1f5f9;">Subject</td><td>${escapeHtml(
-          data.subject
-        )}</td></tr>
-        <tr><td style="background:#f1f5f9;">Message</td><td><pre style="white-space:pre-wrap; font: inherit; margin:0">${escapeHtml(
-          data.message
-        )}</pre></td></tr>
-      </tbody>
+  <!doctype html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charSet="utf-8" />
+    <title>New portfolio contact</title>
+  </head>
+  <body style="margin:0; padding:0; background:#0b1220; color:#e2e8f0; font-family: Inter, ui-sans-serif, system-ui;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#0b1220 0%,#111827 100%); padding:32px 0;">
+      <tr>
+        <td align="center">
+          <table width="640" cellpadding="0" cellspacing="0" style="max-width:640px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px;">
+            <tr>
+              <td style="padding:24px 24px 8px; text-align:center;">
+                <div style="display:inline-block; padding:10px 14px; border-radius:9999px; background:linear-gradient(90deg,#2563eb,#7c3aed); color:#fff; font-weight:600;">New contact</div>
+                <h1 style="margin:16px 0 4px; font-size:22px; color:#fff;">Portfolio contact submission</h1>
+                <p style="margin:0; color:#cbd5e1; font-size:14px;">You received a new message via the website form.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:16px 24px 24px;">
+                <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:0 8px;">
+                  <tr>
+                    <td style="width:140px; background:#0f172a; color:#94a3b8; padding:10px 12px; border-radius:8px 0 0 8px;">Name</td>
+                    <td style="background:#0b1220; color:#e2e8f0; padding:10px 12px; border-radius:0 8px 8px 0;">${escapeHtml(data.name)}</td>
+                  </tr>
+                  <tr>
+                    <td style="width:140px; background:#0f172a; color:#94a3b8; padding:10px 12px; border-radius:8px 0 0 8px;">Email</td>
+                    <td style="background:#0b1220; color:#e2e8f0; padding:10px 12px; border-radius:0 8px 8px 0;">${escapeHtml(data.email)}</td>
+                  </tr>
+                  <tr>
+                    <td style="width:140px; background:#0f172a; color:#94a3b8; padding:10px 12px; border-radius:8px 0 0 8px;">Subject</td>
+                    <td style="background:#0b1220; color:#e2e8f0; padding:10px 12px; border-radius:0 8px 8px 0;">${escapeHtml(data.subject)}</td>
+                  </tr>
+                  <tr>
+                    <td style="width:140px; background:#0f172a; color:#94a3b8; padding:10px 12px; border-radius:8px 0 0 8px; vertical-align:top;">Message</td>
+                    <td style="background:#0b1220; color:#e2e8f0; padding:10px 12px; border-radius:0 8px 8px 0;"><pre style="white-space:pre-wrap; font: inherit; margin:0">${escapeHtml(data.message)}</pre></td>
+                  </tr>
+                </table>
+                <div style="height:1px; background:linear-gradient(90deg, rgba(37,99,235,0), rgba(37,99,235,0.5), rgba(124,58,237,0)); margin:20px 0;"></div>
+                <p style="margin:0; color:#94a3b8; font-size:12px;">Tip: reply directly to this email to respond to the sender.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
     </table>
-    <p style="margin-top:24px; font-size:12px; color:#64748b;">Sent from portfolio contact form.</p>
-  </div>`;
+  </body>
+  </html>`;
 }
 
 function userConfirmationHtml(name: string) {

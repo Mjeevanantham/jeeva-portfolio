@@ -68,6 +68,13 @@ export default function ProjectsGrid() {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const glowRef = React.useRef<HTMLDivElement | null>(null);
   const [selected, setSelected] = React.useState<Project | null>(null);
+  const pairs = React.useMemo(() => {
+    const grouped: Array<[Project, Project | null]> = [];
+    for (let i = 0; i < PROJECTS.length; i += 2) {
+      grouped.push([PROJECTS[i], PROJECTS[i + 1] ?? null]);
+    }
+    return grouped;
+  }, []);
 
   // Smooth, light cursor-follow glow
   React.useEffect(() => {
@@ -120,21 +127,42 @@ export default function ProjectsGrid() {
         }}
       />
 
-      {/* Mobile: horizontal scroll list */}
-      <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" style={{ WebkitOverflowScrolling: "touch" }}>
+      {/* Mobile: horizontal scroll with 2 cards per view (row) */}
+      <div
+        className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]"
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
         <div className="flex gap-4">
-          {PROJECTS.map((p) => (
-            <Card
-              key={p.id}
-              data-animate="project-card"
-              className="min-w-[260px] snap-start hover:shadow-xl transition-shadow cursor-pointer"
-              onClick={() => setSelected(p)}
+          {pairs.map(([a, b], idx) => (
+            <div
+              key={a.id + (b?.id ? `-${b.id}` : "")}
+              className="min-w-[min(560px,calc(100vw-2rem))] snap-start"
             >
-              <CardHeader>
-                <CardTitle>{p.title}</CardTitle>
-                <CardDescription>{p.short}</CardDescription>
-              </CardHeader>
-            </Card>
+              <div className="grid grid-cols-2 gap-4">
+                <Card
+                  data-animate="project-card"
+                  className="hover:shadow-xl transition-shadow cursor-pointer"
+                  onClick={() => setSelected(a)}
+                >
+                  <CardHeader>
+                    <CardTitle>{a.title}</CardTitle>
+                    <CardDescription>{a.short}</CardDescription>
+                  </CardHeader>
+                </Card>
+                {b && (
+                  <Card
+                    data-animate="project-card"
+                    className="hover:shadow-xl transition-shadow cursor-pointer"
+                    onClick={() => setSelected(b)}
+                  >
+                    <CardHeader>
+                      <CardTitle>{b.title}</CardTitle>
+                      <CardDescription>{b.short}</CardDescription>
+                    </CardHeader>
+                  </Card>
+                )}
+              </div>
+            </div>
           ))}
         </div>
       </div>

@@ -90,7 +90,7 @@ export default function Home() {
             <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-3xl">JM</AvatarFallback>
           </Avatar>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Hi, I&apos;m <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Jeevanantham</span>
+            Hi, I&apos;m <span className="bg-clip-text text-transparent bg-[length:200%_100%] bg-gradient-to-r from-blue-600 via-fuchsia-500 to-purple-600 animate-[shine_3s_linear_infinite]">Jeevanantham</span>
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">Creative Full-Stack Developer building fast, user-friendly web and mobile applications. Trusted problem-solver known for boosting performance and delivering reliable, growth-ready solutions.
           </p>

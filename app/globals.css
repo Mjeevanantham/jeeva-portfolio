@@ -122,11 +122,22 @@
   }
 }
 
+@layer utilities {
+  @keyframes shine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+}
+
 /* === Alfred widget overrides (host-side) === */
 /* Ensure our rules outrank the widget's injected styles */
 html body .alfred-widget-panel { overflow: hidden !important; }
 html body .alfred-widget-content { overflow: hidden !important; }
 html body .alfred-widget-chat { overflow-y: auto !important; }
+/* Ensure back-to-top sits above the widget's toggle/fab while avoiding overlap */
+html body .alfred-widget-toggle { z-index: 60 !important; }
+html body .alfred-widget { z-index: 60 !important; }
+/* Our back-to-top uses z-50. Keep widget above; we offset button position on mobile. */
 
 /* Fallback icons when Font Awesome isn't available */
 html body .alfred-widget .fas { display: none !important; }
