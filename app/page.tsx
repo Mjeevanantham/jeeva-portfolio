@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <GSAPAnimations />
+      
       {/* Navigation */}
       <nav className="border-b bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,7 +20,9 @@ export default function Home() {
             </div>
             <div className="hidden md:flex space-x-8">
               <a href="#about" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">About</a>
+              <a href="#experience" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">Experience</a>
               <a href="#projects" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">Projects</a>
+              <a href="#skills" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">Skills</a>
               <a href="#contact" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">Contact</a>
             </div>
             <Button variant="outline" size="sm">
@@ -30,182 +33,155 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" data-hero className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Parallax background layer */}
-        <div
-          data-hero-bg
-          className="pointer-events-none absolute inset-0 -z-10 opacity-60 dark:opacity-40"
-        >
-          <div className="absolute left-1/2 top-[-20%] h-[60vh] w-[90vw] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/40 via-purple-500/30 to-transparent blur-3xl" />
-        </div>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            <div className="flex justify-center mb-8 [will-change:transform]">
-              <Avatar data-avatar className="w-32 h-32">
-                <AvatarImage src="/placeholder-avatar.jpg" alt="Jeevanantham Mahalingam" />
-                <AvatarFallback className="text-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-                  JM
-                </AvatarFallback>
-              </Avatar>
-            </div>
-            <h1 data-hero-title className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 [will-change:transform]">
-              Hi, I&apos;m{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Jeevanantham
-              </span>
-            </h1>
-            <p data-hero-subtitle className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto [will-change:transform]">
-              Full-Stack Developer & AI Enthusiast crafting digital experiences that matter
-            </p>
-            <div data-hero-ctas className="flex flex-col sm:flex-row gap-4 justify-center [will-change:transform]">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                View My Work
-              </Button>
-              <Button variant="outline" size="lg">
-                Get In Touch
-              </Button>
-            </div>
+      <section data-animate="hero" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <Avatar className="w-32 h-32 mx-auto mb-6">
+            <AvatarImage src="" alt="Jeevanantham" />
+            <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-3xl">JM</AvatarFallback>
+          </Avatar>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Jeevanantham</span>
+          </h1>
+          <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">Creative Full-Stack Developer building fast, user-friendly web and mobile applications. Trusted problem-solver known for boosting performance and delivering reliable, growth-ready solutions.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600">View My Work</Button>
+            <Button size="lg" variant="outline">Get In Touch</Button>
           </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 scroll-mt-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              About Me
-            </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              Passionate developer with expertise in modern web technologies and AI integration
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6">
-                My Journey
-              </h3>
-              <p className="text-slate-600 dark:text-slate-300 mb-6">
-                I&apos;m a dedicated full-stack developer with a passion for creating innovative solutions 
-                that bridge the gap between technology and user experience. With expertise in modern 
-                web frameworks and AI technologies, I love building applications that make a difference.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary">React</Badge>
-                <Badge variant="secondary">Next.js</Badge>
-                <Badge variant="secondary">TypeScript</Badge>
-                <Badge variant="secondary">Node.js</Badge>
-                <Badge variant="secondary">Python</Badge>
-                <Badge variant="secondary">AI/ML</Badge>
-              </div>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+            <div data-animate="stat" className="p-4">
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">50+</div>
+              <div className="text-sm text-slate-600 dark:text-slate-300">APIs Built</div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl text-blue-600">
-                    <span data-counter data-target="50" data-suffix="+">0</span>
-                  </CardTitle>
-                  <CardDescription>Projects Completed</CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl text-purple-600">
-                    <span data-counter data-target="3" data-suffix="+">0</span>
-                  </CardTitle>
-                  <CardDescription>Years Experience</CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl text-green-600">
-                    <span data-counter data-target="100" data-suffix="%">0</span>
-                  </CardTitle>
-                  <CardDescription>Client Satisfaction</CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-2xl text-orange-600">
-                    <span data-counter data-target="24" data-suffix="/7">0</span>
-                  </CardTitle>
-                  <CardDescription>Support Available</CardDescription>
-                </CardHeader>
-              </Card>
+            <div data-animate="stat" className="p-4">
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">6</div>
+              <div className="text-sm text-slate-600 dark:text-slate-300">Modules Deployed</div>
+            </div>
+            <div data-animate="stat" className="p-4">
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">500+</div>
+              <div className="text-sm text-slate-600 dark:text-slate-300">Users Served</div>
+            </div>
+            <div data-animate="stat" className="p-4">
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">2+</div>
+              <div className="text-sm text-slate-600 dark:text-slate-300">Years Experience</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Featured Projects
-            </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              A showcase of my recent work and side projects
+      {/* Quote Section */}
+      <section className="py-16 px-4 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="relative">
+            <svg className="absolute top-0 left-0 transform -translate-x-6 -translate-y-8 h-16 w-16 text-white/20" fill="currentColor" viewBox="0 0 32 32">
+              <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+            </svg>
+            <p className="text-3xl md:text-5xl font-bold text-white mb-4">
+              DO what you <span className="italic">love</span>,
             </p>
+            <p className="text-3xl md:text-5xl font-bold text-white">
+              LOVE what you <span className="italic">do</span>
+            </p>
+            <svg className="absolute bottom-0 right-0 transform translate-x-6 translate-y-8 h-16 w-16 text-white/20 rotate-180" fill="currentColor" viewBox="0 0 32 32">
+              <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+            </svg>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card data-project-card className="group hover:shadow-lg transition-shadow [will-change:transform]">
+          <p className="text-white/90 text-lg mt-8">My philosophy in building exceptional digital experiences</p>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">Professional Experience</h2>
+          <div className="space-y-8">
+            <Card data-animate="about-card" className="hover:shadow-xl transition-shadow">
               <CardHeader>
-                <div className="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mb-4"></div>
-                <CardTitle>E-Commerce Platform</CardTitle>
-                <CardDescription>
-                  Full-stack e-commerce solution with modern UI and payment integration
-                </CardDescription>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="text-2xl">Junior Software Engineer</CardTitle>
+                    <CardDescription className="text-lg">Aaludra Technology Solutions • Aug 2024 - Present</CardDescription>
+                  </div>
+                  <Badge variant="default" className="bg-green-500">Current</Badge>
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">Next.js</Badge>
-                  <Badge variant="outline">Stripe</Badge>
-                  <Badge variant="outline">PostgreSQL</Badge>
-                </div>
-                <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
-                  View Project
-                </Button>
+                <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+                  <li>• Built 50+ APIs powering CRM systems for 500+ users in production</li>
+                  <li>• Deployed 6 modules successfully with 100% uptime</li>
+                  <li>• Optimized database queries reducing response times by 30%</li>
+                  <li>• Led Dockerization and deployment initiatives</li>
+                </ul>
               </CardContent>
             </Card>
 
-            <Card data-project-card className="group hover:shadow-lg transition-shadow [will-change:transform]">
+            <Card data-animate="about-card" className="hover:shadow-xl transition-shadow">
               <CardHeader>
-                <div className="w-full h-48 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg mb-4"></div>
-                <CardTitle>AI Chat Application</CardTitle>
-                <CardDescription>
-                  Intelligent chat application powered by modern AI technologies
-                </CardDescription>
+                <CardTitle className="text-2xl">Software Engineer Intern</CardTitle>
+                <CardDescription className="text-lg">Aaludra Technology Solutions • Oct 2023 - Aug 2024</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">React</Badge>
-                  <Badge variant="outline">OpenAI</Badge>
-                  <Badge variant="outline">Socket.io</Badge>
+                <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+                  <li>• Mastered full-stack development with Node.js, Next.js, and NestJS</li>
+                  <li>• Designed and implemented Role-Based Access Control (RBAC) system</li>
+                  <li>• Built robust REST APIs and GraphQL endpoints</li>
+                  <li>• Gained expertise in Docker and cloud deployment</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">Technical Skills</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card data-animate="about-card">
+              <CardHeader>
+                <CardTitle>Backend</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>Node.js</Badge>
+                  <Badge>NestJS</Badge>
+                  <Badge>Express</Badge>
+                  <Badge>GraphQL</Badge>
+                  <Badge>REST API</Badge>
                 </div>
-                <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
-                  View Project
-                </Button>
               </CardContent>
             </Card>
 
-            <Card data-project-card className="group hover:shadow-lg transition-shadow [will-change:transform]">
+            <Card data-animate="about-card">
               <CardHeader>
-                <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg mb-4"></div>
-                <CardTitle>Portfolio Website</CardTitle>
-                <CardDescription>
-                  Modern, responsive portfolio built with Next.js and Tailwind CSS
-                </CardDescription>
+                <CardTitle>Frontend</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">Next.js</Badge>
-                  <Badge variant="outline">Tailwind</Badge>
-                  <Badge variant="outline">Framer Motion</Badge>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>Next.js</Badge>
+                  <Badge>React</Badge>
+                  <Badge>TypeScript</Badge>
+                  <Badge>Redux</Badge>
+                  <Badge>Tailwind CSS</Badge>
                 </div>
-                <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
-                  View Project
-                </Button>
+              </CardContent>
+            </Card>
+
+            <Card data-animate="about-card">
+              <CardHeader>
+                <CardTitle>Database & Cloud</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>MongoDB</Badge>
+                  <Badge>PostgreSQL</Badge>
+                  <Badge>Prisma ORM</Badge>
+                  <Badge>Docker</Badge>
+                  <Badge>AWS</Badge>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -213,42 +189,23 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 scroll-mt-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Let&apos;s Work Together
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300 mb-12">
-            Have a project in mind? I&apos;d love to hear about it. Send me a message and let&apos;s discuss how we can bring your ideas to life.
-          </p>
-          <div data-contact-form className="[will-change:transform]">
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-4">Get In Touch</h2>
+          <p className="text-center text-slate-600 dark:text-slate-300 mb-12">Have a project in mind? Let's build something amazing together!</p>
+          <div data-animate="project-card">
             <ContactForm />
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t bg-slate-50 dark:bg-slate-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded"></div>
-              <span className="text-lg font-semibold">Jeevanantham Mahalingam</span>
-            </div>
-            <div className="flex space-x-6">
-              <a href="#" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">
-                GitHub
-              </a>
-              <a href="#" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">
-                LinkedIn
-              </a>
-              <a href="#" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">
-                Twitter
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t text-center text-slate-500 dark:text-slate-400">
-            <p>&copy; 2024 Jeevanantham Mahalingam. All rights reserved.</p>
+      <footer className="bg-slate-900 text-white py-8 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-slate-400">© 2024 Jeevanantham Mahalingam. Built with Next.js & ❤️</p>
+          <div className="flex justify-center gap-4 mt-4">
+            <a href="https://github.com/Mjeevanantham" className="hover:text-blue-400 transition-colors">GitHub</a>
+            <a href="https://linkedin.com/in/jeevanantham-m" className="hover:text-blue-400 transition-colors">LinkedIn</a>
           </div>
         </div>
       </footer>
