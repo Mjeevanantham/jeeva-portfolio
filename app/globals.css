@@ -127,6 +127,15 @@
     0% { background-position: 0% 50%; }
     100% { background-position: 200% 50%; }
   }
+
+  /* smooth spin with subtle 3D wobble using rotate3d */
+  @keyframes spin {
+    0% { transform: rotate(0deg) rotate3d(1, 1, 0, 0deg); }
+    25% { transform: rotate(90deg) rotate3d(1, 1, 0, 6deg); }
+    50% { transform: rotate(180deg) rotate3d(1, 1, 0, 0deg); }
+    75% { transform: rotate(270deg) rotate3d(1, 1, 0, -6deg); }
+    100% { transform: rotate(360deg) rotate3d(1, 1, 0, 0deg); }
+  }
 }
 
 /* === Alfred widget overrides (host-side) === */

@@ -83,8 +83,38 @@ export default function Home() {
       {/* Navigation moved to RootLayout via <SiteNav /> */}
 
       {/* Hero Section */}
-      <section data-animate="hero" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+      <section data-animate="hero" className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+        {/* 3D-like animated color orb */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 flex items-start justify-center">
+          <div className="relative mt-[-6rem] md:mt-[-8rem]">
+            <div
+              className="rounded-full opacity-40 blur-3xl animate-[spin_18s_linear_infinite]"
+              style={{
+                width: "56vw",
+                maxWidth: "680px",
+                height: "56vw",
+                maxHeight: "680px",
+                background:
+                  "conic-gradient(from 0deg, rgba(59,130,246,0.9), rgba(217,70,239,0.9), rgba(124,58,237,0.9), rgba(59,130,246,0.9))",
+                willChange: "transform",
+              }}
+            />
+            {/* subtle radial highlight for 3D feel */}
+            <div
+              className="pointer-events-none absolute inset-0 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              style={{
+                width: "36vw",
+                maxWidth: "440px",
+                height: "36vw",
+                maxHeight: "440px",
+                background:
+                  "radial-gradient(closest-side, rgba(255,255,255,0.28), rgba(255,255,255,0.12) 45%, transparent 70%)",
+                mixBlendMode: "overlay",
+              }}
+            />
+          </div>
+        </div>
+        <div className="relative max-w-4xl mx-auto text-center">
           <Avatar className="w-32 h-32 mx-auto mb-6">
             <AvatarImage src="" alt="Jeevanantham" />
             <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-3xl">JM</AvatarFallback>
