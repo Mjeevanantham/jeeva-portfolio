@@ -120,7 +120,27 @@ export default function ProjectsGrid() {
         }}
       />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Mobile: horizontal scroll list */}
+      <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" style={{ WebkitOverflowScrolling: "touch" }}>
+        <div className="flex gap-4">
+          {PROJECTS.map((p) => (
+            <Card
+              key={p.id}
+              data-animate="project-card"
+              className="min-w-[260px] snap-start hover:shadow-xl transition-shadow cursor-pointer"
+              onClick={() => setSelected(p)}
+            >
+              <CardHeader>
+                <CardTitle>{p.title}</CardTitle>
+                <CardDescription>{p.short}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Tablet/Desktop: grid */}
+      <div className="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((p) => (
           <Card
             key={p.id}
@@ -144,20 +164,22 @@ export default function ProjectsGrid() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+            className="fixed inset-0 z-50 flex items-end md:items-center justify-stretch md:justify-center bg-black/50 p-0 md:p-4"
             role="dialog"
             aria-modal="true"
             aria-label={`${selected.title} details`}
             onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ scale: 0.96, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.96, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="w-full max-w-md rounded-2xl border border-white/20 bg-white/70 p-6 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 35 }}
+              className="w-full md:max-w-md rounded-t-2xl md:rounded-2xl border border-white/20 bg-white/70 p-6 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5 max-h-[85vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* drag handle on mobile */}
+              <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-slate-300/70 dark:bg-white/20 md:hidden" />
               <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">{selected.title}</h3>
               <p className="text-slate-600 dark:text-slate-300 mb-4">{selected.short}</p>
               <Card className="mb-4 bg-white/50 dark:bg-white/[0.06]">
