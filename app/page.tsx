@@ -40,7 +40,7 @@ export default function Home() {
             <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-3xl">JM</AvatarFallback>
           </Avatar>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Jeevanantham</span>
+            Hi, I&apos;m <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Jeevanantham</span>
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">Creative Full-Stack Developer building fast, user-friendly web and mobile applications. Trusted problem-solver known for boosting performance and delivering reliable, growth-ready solutions.
           </p>
@@ -192,7 +192,7 @@ export default function Home() {
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-4">Get In Touch</h2>
-          <p className="text-center text-slate-600 dark:text-slate-300 mb-12">Have a project in mind? Let's build something amazing together!</p>
+          <p className="text-center text-slate-600 dark:text-slate-300 mb-12">Have a project in mind? Let&apos;s build something amazing together!</p>
           <div data-animate="project-card">
             <ContactForm />
           </div>
