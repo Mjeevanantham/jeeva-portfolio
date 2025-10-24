@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ContactForm from "@/components/contact-form";
 
 export default function Home() {
   return (
@@ -203,14 +204,7 @@ export default function Home() {
           <p className="text-lg text-slate-600 dark:text-slate-300 mb-12">
             Have a project in mind? I&apos;d love to hear about it. Send me a message and let&apos;s discuss how we can bring your ideas to life.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-              Get In Touch
-            </Button>
-            <Button variant="outline" size="lg">
-              Download Resume
-            </Button>
-          </div>
+          <ContactForm />
         </div>
       </section>
 
