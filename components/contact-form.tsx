@@ -296,7 +296,7 @@ export default function ContactForm() {
                 Message sent!
               </h3>
               <p className="mb-6 text-sm text-slate-600 dark:text-slate-300">
-                Thanks for reaching out. I\'ll get back to you shortly.
+                Thanks for reaching out. I&amp;apos;ll get back to you shortly.
               </p>
               <Button onClick={() => setSuccessOpen(false)} variant="outline">
                 Close
