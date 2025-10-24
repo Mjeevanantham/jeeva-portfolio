@@ -1,3 +1,7 @@
-export default function GSAPAnimations() {
+"use client";
+
+export function GSAPAnimations() {
   return null;
 }
+
+export default GSAPAnimations;
