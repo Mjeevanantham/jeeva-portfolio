@@ -10,6 +10,7 @@ type Project = {
   title: string;
   short: string;
   details: string;
+  icon: string;
 };
 
 const PROJECTS: Project[] = [
@@ -19,6 +20,7 @@ const PROJECTS: Project[] = [
     short: "HR management with employee tracking",
     details:
       "A full-featured HR management platform with attendance, leave workflows, and payroll integrations. Built APIs and optimized queries for scalability.",
+    icon: "/file.svg",
   },
   {
     id: "static-site",
@@ -26,6 +28,7 @@ const PROJECTS: Project[] = [
     short: "Marketing site with SEO optimization",
     details:
       "Marketing website optimized for Core Web Vitals with accessible components and structured metadata for search indexing.",
+    icon: "/window.svg",
   },
   {
     id: "ticketing",
@@ -33,6 +36,7 @@ const PROJECTS: Project[] = [
     short: "Support ticket management system",
     details:
       "End-to-end ticket lifecycle with SLA tracking, role-based permissions, and analytics dashboards for support teams.",
+    icon: "/file.svg",
   },
   {
     id: "food-app",
@@ -40,6 +44,7 @@ const PROJECTS: Project[] = [
     short: "Online ordering platform",
     details:
       "Multi-restaurant ordering app with real-time status updates, secure checkout, and responsive UI for mobile users.",
+    icon: "/globe.svg",
   },
   {
     id: "recruitment",
@@ -47,6 +52,7 @@ const PROJECTS: Project[] = [
     short: "Applicant tracking system",
     details:
       "ATS with candidate pipeline, interview scheduling, and collaborative reviews to streamline hiring processes.",
+    icon: "/file.svg",
   },
   {
     id: "esim",
@@ -54,6 +60,7 @@ const PROJECTS: Project[] = [
     short: "Digital SIM card management",
     details:
       "Digital eSIM provisioning with secure activation flows, vendor integrations, and activity auditing.",
+    icon: "/globe.svg",
   },
   {
     id: "crm",
@@ -61,6 +68,7 @@ const PROJECTS: Project[] = [
     short: "Customer relationship management",
     details:
       "CRM with contact management, pipeline tracking, and reporting to improve sales efficiency and insight.",
+    icon: "/window.svg",
   },
 ];
 
@@ -141,10 +149,15 @@ export default function ProjectsGrid() {
               <div className="grid grid-cols-2 gap-4">
                 <Card
                   data-animate="project-card"
-                  className="hover:shadow-xl transition-shadow cursor-pointer"
+                  className="hover:shadow-xl transition-shadow cursor-pointer h-48 overflow-hidden"
                   onClick={() => setSelected(a)}
                 >
                   <CardHeader>
+                    <div className="mb-2">
+                      <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
+                        <img src={a.icon} alt="" className="h-6 w-6" />
+                      </div>
+                    </div>
                     <CardTitle>{a.title}</CardTitle>
                     <CardDescription>{a.short}</CardDescription>
                   </CardHeader>
@@ -152,10 +165,15 @@ export default function ProjectsGrid() {
                 {b && (
                   <Card
                     data-animate="project-card"
-                    className="hover:shadow-xl transition-shadow cursor-pointer"
+                    className="hover:shadow-xl transition-shadow cursor-pointer h-48 overflow-hidden"
                     onClick={() => setSelected(b)}
                   >
                     <CardHeader>
+                      <div className="mb-2">
+                        <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
+                          <img src={b.icon} alt="" className="h-6 w-6" />
+                        </div>
+                      </div>
                       <CardTitle>{b.title}</CardTitle>
                       <CardDescription>{b.short}</CardDescription>
                     </CardHeader>
@@ -167,16 +185,21 @@ export default function ProjectsGrid() {
         </div>
       </div>
 
-      {/* Tablet/Desktop: grid */}
+      {/* Tablet/Desktop: grid (2x3) */}
       <div className="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.map((p) => (
+        {PROJECTS.slice(0, 6).map((p) => (
           <Card
             key={p.id}
             data-animate="project-card"
-            className="hover:shadow-xl transition-shadow cursor-pointer"
+            className="hover:shadow-xl transition-shadow cursor-pointer h-48 overflow-hidden"
             onClick={() => setSelected(p)}
           >
             <CardHeader>
+              <div className="mb-2">
+                <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
+                  <img src={p.icon} alt="" className="h-6 w-6" />
+                </div>
+              </div>
               <CardTitle>{p.title}</CardTitle>
               <CardDescription>{p.short}</CardDescription>
             </CardHeader>
