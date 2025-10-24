@@ -1,130 +1,78 @@
-"use client";
+'use client';
 
-import { useEffect, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Use layout effect on client to avoid flicker, fall back to effect on server
-const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+gsap.registerPlugin(ScrollTrigger);
 
 export default function GSAPAnimations() {
-  useIsomorphicLayoutEffect(() => {
-    if (typeof window === "undefined") return;
-
-    // Respect reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Hero fade-in timeline
-      const heroSection = document.querySelector<HTMLElement>("[data-hero]");
-      if (heroSection) {
-        const heroTl = gsap.timeline({
-          defaults: { ease: "power3.out", duration: 0.6 },
-          scrollTrigger: {
-            trigger: heroSection,
-            start: "top 80%",
-            once: true,
-          },
-        });
-
-        const avatar = heroSection.querySelector("[data-avatar]");
-        const title = heroSection.querySelector("[data-hero-title]");
-        const subtitle = heroSection.querySelector("[data-hero-subtitle]");
-        const ctas = heroSection.querySelector("[data-hero-ctas]");
-
-        if (avatar) {
-          gsap.set(avatar, { autoAlpha: 0, y: 20 });
-          heroTl.to(avatar, { autoAlpha: 1, y: 0 });
-        }
-        if (title) {
-          gsap.set(title, { autoAlpha: 0, y: 16 });
-          heroTl.to(title, { autoAlpha: 1, y: 0 }, "-=0.25");
-        }
-        if (subtitle) {
-          gsap.set(subtitle, { autoAlpha: 0, y: 16 });
-          heroTl.to(subtitle, { autoAlpha: 1, y: 0 }, "-=0.25");
-        }
-        if (ctas) {
-          gsap.set(ctas, { autoAlpha: 0, y: 12 });
-          heroTl.to(ctas, { autoAlpha: 1, y: 0 }, "-=0.2");
-        }
-      }
-
-      // About section cards: scale-up on enter
-      const aboutCards = Array.from(
-        document.querySelectorAll<HTMLElement>(
-          "#about .grid.grid-cols-2 > *"
-        )
-      );
-      if (aboutCards.length) {
-        gsap.set(aboutCards, { autoAlpha: 0, y: 20, scale: 0.98 });
-        ScrollTrigger.batch(aboutCards, {
-          start: "top 85%",
-          onEnter: (batch) =>
-            gsap.to(batch, {
-              autoAlpha: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.6,
-              ease: "power3.out",
-              stagger: { each: 0.08, from: "start" },
-            }),
-          onLeaveBack: (batch) =>
-            gsap.to(batch, {
-              autoAlpha: 0,
-              y: 20,
-              scale: 0.98,
-              duration: 0.4,
-              ease: "power2.inOut",
-              stagger: { each: 0.06, from: "end" },
-            }),
-        });
-      }
-
-      // Project cards: slide-in from below
-      const projectCards = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-project-card]")
-      );
-      if (projectCards.length) {
-        gsap.set(projectCards, { autoAlpha: 0, y: 32 });
-        ScrollTrigger.batch(projectCards, {
-          start: "top 85%",
-          onEnter: (batch) =>
-            gsap.to(batch, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power3.out",
-              stagger: { each: 0.1 },
-            }),
-          onLeaveBack: (batch) =>
-            gsap.to(batch, {
-              autoAlpha: 0,
-              y: 24,
-              duration: 0.45,
-              ease: "power2.inOut",
-              stagger: { each: 0.08 },
-            }),
-        });
-      }
+  useEffect(() => {
+    // Hero section fade-in animation
+    gsap.from('[data-animate="hero"]', {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: 'power3.out',
+      delay: 0.2,
     });
 
-    // Recalculate after setup for accurate positions
-    ScrollTrigger.refresh();
+    // About section cards scale-up
+    gsap.from('[data-animate="about-card"]', {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'back.out(1.7)',
+      scrollTrigger: {
+        trigger: '[data-animate="about-card"]',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    // Project cards slide-in
+    gsap.from('[data-animate="project-card"]', {
+      opacity: 0,
+      x: -100,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '[data-animate="project-card"]',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    // Stats counter animation
+    gsap.from('[data-animate="stat"]', {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: '[data-animate="stat"]',
+        start: 'top 90%',
+      },
+    });
+
+    // Parallax effect for background elements
+    gsap.to('[data-parallax]', {
+      y: (i, el) => (1 - parseFloat(el.getAttribute('data-speed') || '0.5')) * ScrollTrigger.maxScroll(window),
+      ease: 'none',
+      scrollTrigger: {
+        start: 0,
+        end: 'max',
+        invalidateOnRefresh: true,
+        scrub: 0,
+      },
+    });
 
     return () => {
-      ctx.revert();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
-  return null;
-}
-export default function GSAPAnimations() {
   return null;
 }
