@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+export const revalidate = 604800; // Revalidate every 7 days
+
 export const metadata = {
   title: "Resume - Jeevanantham Mahalingam",
   description: "View the resume of Jeevanantham Mahalingam.",

@@ -6,11 +6,79 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ContactForm from "@/components/contact-form";
 import ProjectsGrid from "@/components/projects-grid";
 import GSAPAnimations from "@/components/gsap-animations";
+import Script from "next/script";
+
+export const revalidate = 86400; // Revalidate every 24 hours
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <GSAPAnimations />
+      <Script id="home-structured-data" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify([
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Jeevanantham Mahalingam",
+            url: SITE_URL,
+            jobTitle: "Full-Stack Developer",
+            sameAs: [
+              "https://github.com/Mjeevanantham",
+              "https://linkedin.com/in/jeevanantham-m"
+            ],
+            worksFor: { "@type": "Organization", name: "Aaludra Technology Solutions" },
+            address: { "@type": "PostalAddress", addressCountry: "IN" },
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "business",
+              email: "contact@jeevanantham.site"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            url: SITE_URL,
+            name: "Jeevanantham Portfolio",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${SITE_URL}/?q={search_term_string}`,
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What technologies does Jeeva use?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Next.js, React, Node.js, TypeScript, NestJS, PostgreSQL and MongoDB."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "Is Jeeva available for freelance or full-time roles?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Open to impactful opportunities. Use the contact form to reach out."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "How to contact Jeeva?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Use the contact section on the homepage or connect on LinkedIn."
+                }
+              }
+            ]
+          }
+        ])}
+      </Script>
       
       {/* Navigation */}
       <nav className="border-b bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
