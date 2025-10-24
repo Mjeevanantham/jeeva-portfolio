@@ -12,15 +12,10 @@ import { Textarea } from "@/components/ui/textarea";
 const ContactFormSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid email required"),
-  subject: z.enum([
-    "Project Inquiry",
-    "Job Opportunity",
-    "Collaboration",
-    "General",
-  ], {
-    required_error: "Subject is required",
-    invalid_type_error: "Subject is required",
-  }),
+  subject: z.enum(
+    ["Project Inquiry", "Job Opportunity", "Collaboration", "General"],
+    { message: "Subject is required" }
+  ),
   message: z.string().min(10, "Message should be at least 10 characters"),
 });
 
@@ -86,7 +81,7 @@ export default function ContactForm() {
         throw new Error(json?.error || "Failed to send message");
       }
 
-      setValues({ name: "", email: "", subject: "", message: "" });
+      setValues({ name: "", email: "", subject: "Project Inquiry", message: "" });
       setSuccessOpen(true);
     } catch (err) {
       setToast(err instanceof Error ? err.message : "Something went wrong");
