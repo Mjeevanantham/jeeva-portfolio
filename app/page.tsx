@@ -8,6 +8,9 @@ import ProjectsGrid from "@/components/projects-grid";
 import GSAPAnimations from "@/components/gsap-animations";
 import Script from "next/script";
 import RotatingSpecialties from "@/components/rotating-specialties";
+import ExperienceTimeline from "@/components/experience-timeline";
+import SkillsBars from "@/components/skills-bars";
+import GithubActivity from "@/components/github-activity";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -201,42 +204,7 @@ export default function Home() {
       <section id="experience" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Professional Experience</h2>
-          <div className="space-y-8">
-            <Card data-animate="about-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle className="text-2xl">Junior Software Engineer</CardTitle>
-                    <CardDescription className="text-lg">Aaludra Technology Solutions • Aug 2024 - Present</CardDescription>
-                  </div>
-                  <Badge variant="default" className="bg-green-500">Current</Badge>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-slate-600 dark:text-slate-300">
-                  <li>• Built 50+ APIs powering CRM systems for 500+ users in production</li>
-                  <li>• Deployed 6 modules successfully with 100% uptime</li>
-                  <li>• Optimized database queries reducing response times by 30%</li>
-                  <li>• Led Dockerization and deployment initiatives</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card data-animate="about-card" className="hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-2xl">Software Engineer Intern</CardTitle>
-                <CardDescription className="text-lg">Aaludra Technology Solutions • Oct 2023 - Aug 2024</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-slate-600 dark:text-slate-300">
-                  <li>• Mastered full-stack development with Node.js, Next.js, and NestJS</li>
-                  <li>• Designed and implemented Role-Based Access Control (RBAC) system</li>
-                  <li>• Built robust REST APIs and GraphQL endpoints</li>
-                  <li>• Gained expertise in Docker and cloud deployment</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
+          <ExperienceTimeline />
         </div>
       </section>
 
@@ -253,78 +221,24 @@ export default function Home() {
       <section id="skills" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Technical Skills</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card data-animate="about-card">
-              <CardHeader>
-                <CardTitle>Backend</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Node.js</Badge>
-                  <Badge>NestJS</Badge>
-                  <Badge>Express.js</Badge>
-                  <Badge>TypeScript</Badge>
-                  <Badge>JavaScript</Badge>
-                </div>
-              </CardContent>
-            </Card>
+          <SkillsBars />
+        </div>
+      </section>
 
-            <Card data-animate="about-card">
-              <CardHeader>
-                <CardTitle>Frontend</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Next.js</Badge>
-                  <Badge>React.js</Badge>
-                  <Badge>HTML5</Badge>
-                  <Badge>CSS3</Badge>
-                  <Badge>Tailwind CSS</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card data-animate="about-card">
-              <CardHeader>
-                <CardTitle>Database</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>MongoDB</Badge>
-                  <Badge>PostgreSQL</Badge>
-                  <Badge>Prisma ORM</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card data-animate="about-card">
-              <CardHeader>
-                <CardTitle>DevOps</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Docker</Badge>
-                  <Badge>Git</Badge>
-                  <Badge>RESTful APIs</Badge>
-                  <Badge>GraphQL</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card data-animate="about-card">
-              <CardHeader>
-                <CardTitle>Tools</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Postman</Badge>
-                  <Badge>VS Code</Badge>
-                  <Badge>npm</Badge>
-                  <Badge>Microservices</Badge>
-                </div>
-              </CardContent>
-            </Card>
+      {/* Now + Activity Section */}
+      <section id="now" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto grid gap-6 md:grid-cols-2">
+          <div className="rounded-xl border bg-white/60 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+            <h3 className="text-lg font-semibold">Now</h3>
+            <ul className="mt-3 space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+              <li>• Exploring AI tooling and agents to speed up delivery</li>
+              <li>• Learning advanced NestJS patterns and clean architecture</li>
+              <li>• Building small utilities and polishing portfolio UX</li>
+            </ul>
           </div>
+          {/* Server component */}
+          {/* @ts-expect-error Async Server Component */}
+          <GithubActivity />
         </div>
       </section>
 
