@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Briefcase, Users, Sparkles } from "lucide-react";
  
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ContactForm from "@/components/contact-form";
@@ -25,7 +26,7 @@ export default function Home() {
             "@type": "Person",
             name: "Jeevanantham Mahalingam",
             url: SITE_URL,
-            jobTitle: "Full-Stack Developer",
+            jobTitle: "Full-Stack and Flutter Lead",
             sameAs: [
               "https://github.com/Mjeevanantham",
               "https://linkedin.com/in/jeevanantham-m"
@@ -58,7 +59,7 @@ export default function Home() {
                 name: "What technologies does Jeeva use?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Next.js, React, Node.js, TypeScript, NestJS, PostgreSQL and MongoDB."
+                  text: "Next.js, React, Node.js, TypeScript, Flutter, NestJS, PostgreSQL and MongoDB."
                 }
               },
               {
@@ -125,7 +126,7 @@ export default function Home() {
             Building scalable, user‑focused digital experiences
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto">
-            I’m Jeevanantham Mahalingam — Full‑Stack Developer and AI enthusiast. I design, build, and ship reliable web apps with Next.js, Node.js, and Tailwind.
+            I’m Jeevanantham Mahalingam — Full‑Stack and Flutter developer leading the app division. Currently building an HRMS app used by 50+ employees, from API design to polished UIs.
           </p>
           <RotatingSpecialties />
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -185,15 +186,66 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-8">About Me</h2>
-          <div className="space-y-6">
-            <p className="text-lg text-slate-600 dark:text-slate-300 text-center max-w-3xl mx-auto">
-              I build end‑to‑end products that balance engineering and design. From API architecture to delightful UIs, I care about clarity, reliability, and speed.
-            </p>
-            <p className="text-lg text-slate-600 dark:text-slate-300 text-center max-w-3xl mx-auto">
-              I’m responsible, loyal, and kind — the type of teammate who keeps promises, owns outcomes, and treats people with respect. Small details compound into exceptional experiences.
-            </p>
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">About Me</h2>
+          <div className="grid gap-8 md:grid-cols-2 items-start">
+            {/* Intro */}
+            <div className="space-y-5">
+              <p className="text-lg text-slate-700 dark:text-slate-300">
+                I’m a <span className="font-semibold">Full‑Stack and Flutter developer</span> and the
+                <span className="font-semibold"> lead for the app division</span> at Aaludra Technology Solutions. I design, build, and ship HRMS modules end‑to‑end — from clean APIs to fast, polished UIs.
+              </p>
+              <p className="text-lg text-slate-700 dark:text-slate-300">
+                I work directly with our <span className="font-semibold">CEO</span>,
+                <span className="font-semibold"> solution architect</span>, and
+                <span className="font-semibold"> clients</span> to align on goals, de‑risk decisions, and deliver outcomes that matter.
+              </p>
+              {/* Tech chips */}
+              <ul className="flex flex-wrap gap-2 mt-2">
+                {["Next.js", "Node.js", "Flutter", "TypeScript", "NestJS", "PostgreSQL", "Clean Architecture"].map((item) => (
+                  <li key={item} className="rounded-full border border-slate-200/60 dark:border-white/10 bg-white/60 dark:bg-white/5 px-3 py-1 text-sm text-slate-700 dark:text-slate-300">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Highlights */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-xl border bg-white/60 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-lg bg-brand-gradient p-2 text-white">
+                    <Briefcase className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">App Division Lead</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Architecture, delivery, and mentoring</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-xl border bg-white/60 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-lg bg-brand-gradient p-2 text-white">
+                    <Users className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">HRMS in Production</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Powering daily work for 50+ employees</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-xl border bg-white/60 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 sm:col-span-2">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-lg bg-brand-gradient p-2 text-white">
+                    <Sparkles className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">Partner to Leadership & Clients</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Working closely with the CEO, solution architect, and stakeholders</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
