@@ -126,6 +126,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4 {
@@ -169,7 +170,7 @@ html body .alfred-widget-chat { overflow-y: auto !important; }
 /* Ensure back-to-top sits above the widget's toggle/fab while avoiding overlap */
 html body .alfred-widget-toggle { z-index: 60 !important; }
 html body .alfred-widget { z-index: 60 !important; }
-/* Our back-to-top uses z-50. Keep widget above; we offset button position on mobile. */
+/* Our back-to-top uses z-50. Keep widget above; we offset button position on both breakpoints. */
 
 /* Fallback icons when Font Awesome isn't available */
 html body .alfred-widget .fas { display: none !important; }
