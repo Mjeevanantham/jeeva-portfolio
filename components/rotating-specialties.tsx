@@ -4,14 +4,16 @@ import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const ITEMS = [
-  "Node.js",
-  "NestJS",
-  "GraphQL",
-  "Next.js",
-  "React",
-  "TypeScript",
+  "Full‑Stack",
   "Flutter",
+  "Clean Architecture",
+  "API Design",
+  "Next.js",
+  "Node.js",
+  "TypeScript",
+  "NestJS",
   "PostgreSQL",
+  "GraphQL",
 ];
 
 export default function RotatingSpecialties() {
@@ -28,7 +30,7 @@ export default function RotatingSpecialties() {
 
   return (
     <div aria-live="polite" className="mb-6 text-base md:text-lg text-slate-700 dark:text-slate-300">
-      <span className="opacity-80">Specialties: </span>
+      <span className="opacity-80">Focus areas: </span>
       <span className="relative inline-flex min-w-[10ch] items-baseline">
         <span className="relative h-[1.4em] overflow-hidden">
           <AnimatePresence initial={false} custom={direction}>
