@@ -179,20 +179,20 @@ export default function RootLayout({
                     if (greeting) {
                       const title = greeting.querySelector('h3');
                       const p = greeting.querySelector('p');
-                      if (title) title.textContent = "Hi, I’m JIA";
-                      if (p) p.textContent = "Ask me about Jeeva's skills, projects, or experience.";
+                      if (title) title.textContent = "Hi, I&apos;m JIA";
+                      if (p) p.textContent = "Ask me about Jeeva&apos;s skills, projects, or experience.";
                     }
 
                     // Center input placeholder (in addition to CSS) and rebrand to JIA
-                    if (input) input.setAttribute('placeholder', "Ask JIA about Jeeva's work…");
+                    if (input) input.setAttribute('placeholder', "Ask JIA about Jeeva&apos;s work…");
 
                     // Iconize suggestion chips
                     suggestions.forEach((el) => {
                       const text = el.textContent?.trim() || '';
-                      const icon = text.startsWith('Skills') ? '🛠️' : text.startsWith('Projects') ? '📁' : text.startsWith('Experience') ? '📜' : text.startsWith('Contact') ? '✉️' : '🔹';
+                      const icon = text.startsWith(&apos;Skills&apos;) ? &apos;🛠️&apos; : text.startsWith(&apos;Projects&apos;) ? &apos;📁&apos; : text.startsWith(&apos;Experience&apos;) ? &apos;📜&apos; : text.startsWith(&apos;Contact&apos;) ? &apos;✉️&apos; : &apos;🔹&apos;;
                       if (!el.dataset.iconized) {
-                        el.dataset.iconized = '1';
-                        el.innerHTML = '<span style="margin-right:6px">' + icon + '</span>' + text;
+                        el.dataset.iconized = &apos;1&apos;;
+                        el.innerHTML = &apos;<span style="margin-right:6px">&apos; + icon + &apos;</span>&apos; + text;
                       }
                     });
 
@@ -201,21 +201,21 @@ export default function RootLayout({
                       mutations.forEach(function (m) {
                         m.addedNodes.forEach(function (n) {
                           if (!(n instanceof HTMLElement)) return;
-                          if (n.classList.contains('alfred-widget-message') && n.classList.contains('alfred')) {
-                            const bubble = n.querySelector('.alfred-widget-message-bubble');
+                          if (n.classList.contains(&apos;alfred-widget-message&apos;) && n.classList.contains(&apos;alfred&apos;)) {
+                            const bubble = n.querySelector(&apos;.alfred-widget-message-bubble&apos;);
                             if (bubble && !bubble.dataset.clamped) {
-                              bubble.dataset.clamped = '1';
+                              bubble.dataset.clamped = &apos;1&apos;;
                               const originalHTML = bubble.innerHTML;
                               const textLength = bubble.textContent ? bubble.textContent.trim().length : 0;
                               if (textLength > 320) {
-                                bubble.classList.add('alfred-message-clamped');
-                                const toggle = document.createElement('button');
-                                toggle.type = 'button';
-                                toggle.className = 'alfred-show-toggle';
-                                toggle.textContent = 'Show more';
-                                toggle.addEventListener('click', function () {
-                                  const isClamped = bubble.classList.toggle('alfred-message-clamped');
-                                  toggle.textContent = isClamped ? 'Show more' : 'Show less';
+                                bubble.classList.add(&apos;alfred-message-clamped&apos;);
+                                const toggle = document.createElement(&apos;button&apos;);
+                                toggle.type = &apos;button&apos;;
+                                toggle.className = &apos;alfred-show-toggle&apos;;
+                                toggle.textContent = &apos;Show more&apos;;
+                                toggle.addEventListener(&apos;click&apos;, function () {
+                                  const isClamped = bubble.classList.toggle(&apos;alfred-message-clamped&apos;);
+                                  toggle.textContent = isClamped ? &apos;Show more&apos; : &apos;Show less&apos;;
                                   bubble.innerHTML = originalHTML; // restore links formatting
                                 });
                                 bubble.after(toggle);

@@ -126,7 +126,7 @@ export default function Home() {
             Building scalable, user‑focused digital experiences
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto">
-            I'm Jeevanantham Mahalingam — Full‑Stack and Flutter developer, leading the app track on my current project. Currently building an HRMS mobile app used by 60+ employees, from API design to polished UIs.
+            I&apos;m Jeevanantham Mahalingam — Full‑Stack and Flutter developer, leading the app track on my current project. Currently building an HRMS mobile app used by 60+ employees, from API design to polished UIs.
           </p>
           <RotatingSpecialties />
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -192,7 +192,7 @@ export default function Home() {
             {/* Intro */}
             <div className="space-y-5">
               <p className="text-lg text-slate-700 dark:text-slate-300">
-                I’m a <span className="font-semibold">Full‑Stack and Flutter developer</span> and currently the
+                I&apos;m a <span className="font-semibold">Full‑Stack and Flutter developer</span> and currently the
                 <span className="font-semibold"> app track lead</span> for my project at Aaludra Technology Solutions. I design, build, and ship HRMS modules end‑to‑end — from clean APIs to fast, polished UIs.
               </p>
               <p className="text-lg text-slate-700 dark:text-slate-300">

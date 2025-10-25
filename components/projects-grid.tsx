@@ -27,7 +27,7 @@ const PROJECTS: Project[] = [
     title: "HRMS Mobile App",
     short: "Enterprise HR management mobile application",
     details:
-      "Leading the development of a comprehensive HRMS mobile application currently serving 60+ employees in my company. As the app project lead, I oversee end-to-end development from architecture to deployment, continuously rolling out new modules and features. The app includes attendance tracking, leave management, payroll integration, and employee self-service portals. I've optimized performance, implemented robust security measures, and established CI/CD pipelines for seamless version releases.",
+      "Leading the development of a comprehensive HRMS mobile application currently serving 60+ employees in my company. As the app project lead, I oversee end-to-end development from architecture to deployment, continuously rolling out new modules and features. The app includes attendance tracking, leave management, payroll integration, and employee self-service portals. I&apos;ve optimized performance, implemented robust security measures, and established CI/CD pipelines for seamless version releases.",
     icon: "/globe.svg",
     stack: ["Flutter", "NestJS", "PostgreSQL", "Firebase"],
     role: "App Project Lead",
