@@ -73,10 +73,10 @@ export const metadata: Metadata = {
       "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
     images: [
       {
-        url: `${siteUrl}/diagonal-gradient-bg.svg`,
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Jeevanantham Portfolio Preview",
+        alt: "Jeevanantham Mahalingam - Full-Stack & Flutter Developer",
       },
     ],
     locale: "en",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "Jeevanantham Mahalingam - Full-Stack Developer & AI Enthusiast",
     description:
       "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
-    images: [`${siteUrl}/diagonal-gradient-bg.svg`],
+    images: [`${siteUrl}/og-image.png`],
     creator: "@",
   },
   robots: {
