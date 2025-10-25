@@ -24,19 +24,21 @@ type Project = {
 const PROJECTS: Project[] = [
   {
     id: "hrms",
-    title: "HRMS System",
-    short: "HR management with employee tracking",
+    title: "HRMS Mobile App",
+    short: "Enterprise HR management mobile application",
     details:
-      "A full‑featured HR platform with attendance, leave workflows and payroll. I built APIs, tuned queries and implemented RBAC for scalable, secure access.",
-    icon: "/file.svg",
-    stack: ["NestJS", "PostgreSQL", "RBAC"],
-    role: "Backend Engineer",
+      "Leading the development of a comprehensive HRMS mobile application currently serving 60+ employees in my company. As the app project lead, I oversee end-to-end development from architecture to deployment, continuously rolling out new modules and features. The app includes attendance tracking, leave management, payroll integration, and employee self-service portals. I've optimized performance, implemented robust security measures, and established CI/CD pipelines for seamless version releases.",
+    icon: "/globe.svg",
+    stack: ["Flutter", "NestJS", "PostgreSQL", "Firebase"],
+    role: "App Project Lead",
     status: "ongoing",
     priority: 1,
     achievements: [
-      "Shipped 20+ endpoints with strict validation",
-      "Optimized critical queries, cutting latency ~30%",
-      "Implemented tenant‑aware RBAC and audit trails",
+      "Leading app development for 60+ active employees",
+      "Architected and deployed 8+ core HR modules",
+      "Optimized app performance and reduced load times by 40%",
+      "Established automated CI/CD pipeline for version releases",
+      "Implemented real-time notifications and offline capabilities",
     ],
     links: { demo: "#" },
   },
@@ -290,7 +292,7 @@ export default function ProjectsGrid() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 40, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 35 }}
-              className="w-full md:max-w-md rounded-t-2xl md:rounded-2xl border border-white/20 bg-white/70 p-6 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5 max-h-[85vh] overflow-y-auto max-w-[100vw] md:max-w-[640px]"
+              className="w-full max-w-[100vw] md:max-w-[640px] rounded-t-2xl md:rounded-2xl border border-white/20 bg-white/70 p-6 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5 max-h-[85vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* drag handle on mobile */}
@@ -300,7 +302,7 @@ export default function ProjectsGrid() {
                 <div className="mb-3">
                   <Badge className="bg-emerald-600/90 text-white">
                     <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-white/90" />
-                    Currently building · 50+ employees
+                    Currently building · 60+ employees
                   </Badge>
                 </div>
               )}

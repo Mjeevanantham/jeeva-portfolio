@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Briefcase, Users, Sparkles } from "lucide-react";
- 
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ContactForm from "@/components/contact-form";
 import ProjectsGrid from "@/components/projects-grid";
@@ -82,7 +82,7 @@ export default function Home() {
           }
         ])}
       </Script>
-      
+
       {/* Navigation moved to RootLayout via <SiteNav /> */}
 
       {/* Hero Section */}
@@ -126,7 +126,7 @@ export default function Home() {
             Building scalable, user‑focused digital experiences
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto">
-            I’m Jeevanantham Mahalingam — Full‑Stack and Flutter developer, leading the app track on my current project. Currently building an HRMS app used by 50+ employees, from API design to polished UIs.
+            I'm Jeevanantham Mahalingam — Full‑Stack and Flutter developer, leading the app track on my current project. Currently building an HRMS mobile app used by 60+ employees, from API design to polished UIs.
           </p>
           <RotatingSpecialties />
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -137,7 +137,7 @@ export default function Home() {
               <a href="#contact">Get In Touch</a>
             </Button>
           </div>
-          
+
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div data-animate="stat" className="p-4">
@@ -230,7 +230,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-semibold">HRMS in Production</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Powering daily work for 50+ employees</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Powering daily work for 60+ employees</p>
                   </div>
                 </div>
               </div>
