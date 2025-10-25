@@ -47,17 +47,6 @@ export default function RotatingSpecialties() {
             </motion.span>
           </AnimatePresence>
         </span>
-        <motion.span
-          aria-hidden
-          className="ml-2 inline-block h-[0.9em] w-[0.9em] rounded-full"
-          animate={{
-            background: [
-              "linear-gradient(90deg, var(--brand-start), var(--brand-end))",
-              "linear-gradient(90deg, var(--brand-end), var(--brand-start))",
-            ],
-          }}
-          transition={{ duration: 1.2, repeat: Infinity, repeatType: "reverse" }}
-        />
       </span>
     </div>
   );
