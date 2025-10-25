@@ -136,13 +136,7 @@ export default function ProjectsGrid() {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const glowRef = React.useRef<HTMLDivElement | null>(null);
   const [selected, setSelected] = React.useState<Project | null>(null);
-  const pairs = React.useMemo(() => {
-    const grouped: Array<[Project, Project | null]> = [];
-    for (let i = 0; i < PROJECTS.length; i += 2) {
-      grouped.push([PROJECTS[i], PROJECTS[i + 1] ?? null]);
-    }
-    return grouped;
-  }, []);
+  // Note: previous horizontal-scroll layout grouped items into pairs; no longer used
 
   // Smooth, light cursor-follow glow
   React.useEffect(() => {
