@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+ 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ContactForm from "@/components/contact-form";
 import ProjectsGrid from "@/components/projects-grid";
@@ -237,7 +235,6 @@ export default function Home() {
             </ul>
           </div>
           {/* Server component */}
-          {/* @ts-expect-error Async Server Component */}
           <GithubActivity />
         </div>
       </section>

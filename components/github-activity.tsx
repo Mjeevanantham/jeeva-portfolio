@@ -1,11 +1,17 @@
 import React from "react";
 
+type GithubEventPayload = {
+  commits?: unknown[];
+  ref_type?: string;
+  action?: string;
+};
+
 type GithubEvent = {
   id: string;
   type: string;
   repo: { name: string; url?: string };
   created_at: string;
-  payload?: any;
+  payload?: GithubEventPayload;
 };
 
 async function fetchEvents(): Promise<GithubEvent[] | null> {
