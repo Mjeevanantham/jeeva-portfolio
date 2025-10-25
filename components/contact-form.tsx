@@ -272,7 +272,7 @@ export default function ContactForm() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/60 p-6"
             onClick={() => setSuccessOpen(false)}
             role="dialog"
             aria-modal="true"
@@ -283,7 +283,7 @@ export default function ContactForm() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="w-full max-w-md rounded-2xl border border-white/20 bg-white/70 p-8 text-center shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/5"
+              className="w-[min(720px,92vw)] rounded-2xl border border-white/20 bg-white/80 p-10 text-center shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               <motion.svg
@@ -315,13 +315,13 @@ export default function ContactForm() {
                   transition={{ delay: 0.2, duration: 0.6 }}
                 />
               </motion.svg>
-              <h3 className="mb-2 text-xl font-semibold text-slate-900 dark:text-white">
+              <h3 className="mb-2 text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white">
                 Message sent!
               </h3>
-              <p className="mb-6 text-sm text-slate-600 dark:text-slate-300">
-                Thanks for reaching out. I&amp;apos;ll get back to you shortly.
+              <p className="mb-8 text-base md:text-lg text-slate-700 dark:text-slate-200">
+                Thanks for reaching out. I&apos;ll get back to you shortly.
               </p>
-              <Button onClick={() => setSuccessOpen(false)} variant="outline">
+              <Button onClick={() => setSuccessOpen(false)} variant="outline" className="px-6">
                 Close
               </Button>
             </motion.div>
