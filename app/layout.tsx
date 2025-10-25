@@ -144,7 +144,7 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-NNP3L8JS');`}
         </Script>
 
-        {/* Alfred Bot Widget */}
+        {/* JIA Bot Widget (hosted by Alfred service) */}
         <Script 
           data-tenant-id="68e68ff44d3939b192d9e216" 
           src="https://alfred-portfolio-bot.vercel.app/alfred-widget.js"
@@ -175,16 +175,16 @@ export default function RootLayout({
                   if (widget && chat) {
                     clearInterval(timer);
 
-                    // Replace long greeting with concise version
+                    // Replace long greeting with concise version and JIA branding
                     if (greeting) {
                       const title = greeting.querySelector('h3');
                       const p = greeting.querySelector('p');
-                      if (title) title.textContent = 'Hello! 👋';
+                      if (title) title.textContent = "Hi, I’m JIA";
                       if (p) p.textContent = "Ask me about Jeeva's skills, projects, or experience.";
                     }
 
-                    // Center input placeholder (in addition to CSS)
-                    if (input) input.setAttribute('placeholder', "Ask Alfred about Jeeva's work…");
+                    // Center input placeholder (in addition to CSS) and rebrand to JIA
+                    if (input) input.setAttribute('placeholder', "Ask JIA about Jeeva's work…");
 
                     // Iconize suggestion chips
                     suggestions.forEach((el) => {

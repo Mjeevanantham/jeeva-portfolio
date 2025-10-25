@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { createPortal } from "react-dom";
 import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -34,12 +35,32 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successOpen, setSuccessOpen] = React.useState(false);
   const [toast, setToast] = React.useState<string | null>(null);
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
     if (!toast) return;
     const id = setTimeout(() => setToast(null), 4000);
     return () => clearTimeout(id);
   }, [toast]);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent background scroll when success dialog is open
+  React.useEffect(() => {
+    if (!mounted) return;
+    if (successOpen) {
+      const prevHtmlOverflow = document.documentElement.style.overflow;
+      const prevBodyOverflow = document.body.style.overflow;
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.documentElement.style.overflow = prevHtmlOverflow;
+        document.body.style.overflow = prevBodyOverflow;
+      };
+    }
+  }, [successOpen, mounted]);
 
   function handleChange<K extends keyof ContactFormValues>(
     key: K,
@@ -264,70 +285,73 @@ export default function ContactForm() {
         <div className="mt-2 opacity-75">I typically respond within 24 hours.</div>
       </div>
 
-      {/* Success modal */}
-      <AnimatePresence>
-        {successOpen && (
-          <motion.div
-            key="success-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/60 p-6"
-            onClick={() => setSuccessOpen(false)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Message sent successfully"
-          >
+      {/* Success modal rendered in a portal to ensure true full-screen */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {successOpen && (
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="w-[min(720px,92vw)] rounded-2xl border border-white/20 bg-white/80 p-10 text-center shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10"
-              onClick={(e) => e.stopPropagation()}
+              key="success-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[120] flex items-center justify-center bg-black/60 p-6"
+              onClick={() => setSuccessOpen(false)}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Message sent successfully"
             >
-              <motion.svg
-                width="80"
-                height="80"
-                viewBox="0 0 120 120"
-                className="mx-auto mb-6 text-emerald-500"
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="w-[min(720px,92vw)] rounded-2xl border border-white/20 bg-white/80 p-10 text-center shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10"
+                onClick={(e) => e.stopPropagation()}
               >
-                <motion.circle
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="8"
-                  initial={{ pathLength: 0, opacity: 0.3 }}
-                  animate={{ pathLength: 1, opacity: 0.3 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <motion.path
-                  d="M38 62 L54 78 L84 46"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                />
-              </motion.svg>
-              <h3 className="mb-2 text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white">
-                Message sent!
-              </h3>
-              <p className="mb-8 text-base md:text-lg text-slate-700 dark:text-slate-200">
-                Thanks for reaching out. I&apos;ll get back to you shortly.
-              </p>
-              <Button onClick={() => setSuccessOpen(false)} variant="outline" className="px-6">
-                Close
-              </Button>
+                <motion.svg
+                  width="80"
+                  height="80"
+                  viewBox="0 0 120 120"
+                  className="mx-auto mb-6 text-emerald-500"
+                >
+                  <motion.circle
+                    cx="60"
+                    cy="60"
+                    r="50"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    initial={{ pathLength: 0, opacity: 0.3 }}
+                    animate={{ pathLength: 1, opacity: 0.3 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <motion.path
+                    d="M38 62 L54 78 L84 46"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                  />
+                </motion.svg>
+                <h3 className="mb-2 text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white">
+                  Message sent!
+                </h3>
+                <p className="mb-8 text-base md:text-lg text-slate-700 dark:text-slate-200">
+                  Thanks for reaching out. I&apos;ll get back to you shortly.
+                </p>
+                <Button onClick={() => setSuccessOpen(false)} variant="outline" className="px-6">
+                  Close
+                </Button>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }
