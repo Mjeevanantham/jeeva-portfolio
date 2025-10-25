@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -157,7 +158,7 @@ export default function ProjectsGrid() {
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         <div className="flex gap-4">
-          {pairs.map(([a, b], idx) => (
+          {pairs.map(([a, b]) => (
             <div
               key={a.id + (b?.id ? `-${b.id}` : "")}
               className="min-w-[min(560px,calc(100vw-2rem))] snap-start"
@@ -171,7 +172,7 @@ export default function ProjectsGrid() {
                   <CardHeader>
                     <div className="mb-2">
                       <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
-                        <img src={a.icon} alt="" className="h-6 w-6" />
+                        <Image src={a.icon} alt="" width={24} height={24} className="h-6 w-6" />
                       </div>
                     </div>
                     <CardTitle>{a.title}</CardTitle>
@@ -187,7 +188,7 @@ export default function ProjectsGrid() {
                     <CardHeader>
                       <div className="mb-2">
                         <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
-                          <img src={b.icon} alt="" className="h-6 w-6" />
+                          <Image src={b.icon} alt="" width={24} height={24} className="h-6 w-6" />
                         </div>
                       </div>
                       <CardTitle>{b.title}</CardTitle>
@@ -213,7 +214,7 @@ export default function ProjectsGrid() {
             <CardHeader>
               <div className="mb-2">
                 <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
-                  <img src={p.icon} alt="" className="h-6 w-6" />
+                  <Image src={p.icon} alt="" width={24} height={24} className="h-6 w-6" />
                 </div>
               </div>
               <CardTitle>{p.title}</CardTitle>
