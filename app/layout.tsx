@@ -106,7 +106,7 @@ export const metadata: Metadata = {
     initialScale: 1,
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.png",
   },
 };
 
@@ -121,39 +121,39 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${sora.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-NNP3L8JS"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-        <SiteNav />
-        {children}
-        {modal}
-        
-        {/* Google Tag Manager */}
-        <Script id="gtm" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({
+          {/* Google Tag Manager (noscript) */}
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-NNP3L8JS"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+          <SiteNav />
+          {children}
+          {modal}
+
+          {/* Google Tag Manager */}
+          <Script id="gtm" strategy="afterInteractive">
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({
             'gtm.start': new Date().getTime(),event:'gtm.js'
           });var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-NNP3L8JS');`}
-        </Script>
+          </Script>
 
-        {/* JIA Bot Widget (hosted by Alfred service) */}
-        <Script 
-          data-tenant-id="68e68ff44d3939b192d9e216" 
-          src="https://alfred-portfolio-bot.vercel.app/alfred-widget.js"
-          strategy="afterInteractive"
-        />
+          {/* JIA Bot Widget (hosted by Alfred service) */}
+          <Script
+            data-tenant-id="68e68ff44d3939b192d9e216"
+            src="https://alfred-portfolio-bot.vercel.app/alfred-widget.js"
+            strategy="afterInteractive"
+          />
 
-        {/* Alfred host-side enhancements: shorten greeting, clamp long replies, add icons, ensure scroll behavior */}
-        <Script id="alfred-host-enhancements" strategy="afterInteractive">
-          {`
+          {/* Alfred host-side enhancements: shorten greeting, clamp long replies, add icons, ensure scroll behavior */}
+          <Script id="alfred-host-enhancements" strategy="afterInteractive">
+            {`
             (function () {
               function onceReady(fn) {
                 if (document.readyState === 'complete' || document.readyState === 'interactive') {
@@ -234,8 +234,8 @@ export default function RootLayout({
               });
             })();
           `}
-        </Script>
-        <BackToTop />
+          </Script>
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>

@@ -17,7 +17,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 overflow-x-hidden">
       <GSAPAnimations />
       <Script id="home-structured-data" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify([
@@ -126,7 +126,7 @@ export default function Home() {
             Building scalable, user‑focused digital experiences
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto">
-            I’m Jeevanantham Mahalingam — Full‑Stack and Flutter developer leading the app division. Currently building an HRMS app used by 50+ employees, from API design to polished UIs.
+            I’m Jeevanantham Mahalingam — Full‑Stack and Flutter developer, leading the app track on my current project. Currently building an HRMS app used by 50+ employees, from API design to polished UIs.
           </p>
           <RotatingSpecialties />
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -192,8 +192,8 @@ export default function Home() {
             {/* Intro */}
             <div className="space-y-5">
               <p className="text-lg text-slate-700 dark:text-slate-300">
-                I’m a <span className="font-semibold">Full‑Stack and Flutter developer</span> and the
-                <span className="font-semibold"> lead for the app division</span> at Aaludra Technology Solutions. I design, build, and ship HRMS modules end‑to‑end — from clean APIs to fast, polished UIs.
+                I’m a <span className="font-semibold">Full‑Stack and Flutter developer</span> and currently the
+                <span className="font-semibold"> app track lead</span> for my project at Aaludra Technology Solutions. I design, build, and ship HRMS modules end‑to‑end — from clean APIs to fast, polished UIs.
               </p>
               <p className="text-lg text-slate-700 dark:text-slate-300">
                 I work directly with our <span className="font-semibold">CEO</span>,
@@ -218,7 +218,7 @@ export default function Home() {
                     <Briefcase className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-semibold">App Division Lead</p>
+                    <p className="font-semibold">App Track Lead</p>
                     <p className="text-sm text-slate-600 dark:text-slate-400">Architecture, delivery, and mentoring</p>
                   </div>
                 </div>
