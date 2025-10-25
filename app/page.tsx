@@ -29,7 +29,7 @@ export default function Home() {
             jobTitle: "Full-Stack and Flutter Lead",
             sameAs: [
               "https://github.com/Mjeevanantham",
-              "https://linkedin.com/in/jeevanantham-m"
+              "https://www.linkedin.com/in/"
             ],
             worksFor: { "@type": "Organization", name: "Aaludra Technology Solutions" },
             address: { "@type": "PostalAddress", addressCountry: "IN" },
@@ -308,7 +308,7 @@ export default function Home() {
           <p className="text-slate-400">© 2025 Jeevanantham Mahalingam.</p>
           <div className="flex justify-center gap-4 mt-4">
             <a href="https://github.com/Mjeevanantham" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">GitHub</a>
-            <a href="https://linkedin.com/in/jeevanantham-m" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">LinkedIn</a>
           </div>
         </div>
       </footer>

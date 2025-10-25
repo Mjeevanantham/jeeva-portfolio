@@ -278,7 +278,7 @@ export default function ContactForm() {
           <span className="opacity-40">•</span>
           <span>Coimbatore, Tamil Nadu</span>
           <span className="opacity-40">•</span>
-          <a href="https://linkedin.com/in/jeevanantham-m" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">LinkedIn</a>
           <span className="opacity-40">•</span>
           <a href="https://github.com/Mjeevanantham" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">GitHub</a>
         </div>
