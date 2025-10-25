@@ -164,6 +164,7 @@ export default function RootLayout({
               }
 
               onceReady(function () {
+                try {
                 // Poll for widget root since it loads async
                 const start = Date.now();
                 const timer = setInterval(function () {
@@ -225,12 +226,17 @@ export default function RootLayout({
                         });
                       });
                     });
-                    chatObserver.observe(chat, { childList: true });
+                    chatObserver.observe(chat, { childList: true, subtree: true });
                   }
 
                   // Stop polling after 10 seconds as a safety
                   if (Date.now() - start > 10000) clearInterval(timer);
                 }, 200);
+                } catch (e) {
+                  // Swallow errors to avoid interfering with widget initialization
+                  // eslint-disable-next-line no-console
+                  console.warn('Alfred host enhancements disabled due to error:', e);
+                }
               });
             })();
           `}
