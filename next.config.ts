@@ -4,15 +4,17 @@ import type { NextConfig } from "next";
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   // Allow GTM, Alfred widget, and socket.io CDN
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://alfred-portfolio-bot.vercel.app https://cdn.socket.io",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://www.googletagmanager.com https://alfred-portfolio-bot.vercel.app https://cdn.socket.io",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https:",
+  "img-src 'self' data: blob: https:",
   // Allow HTTPS and WSS connections (widget/socket, analytics)
-  "connect-src 'self' https: wss:",
+  "connect-src 'self' https: http: wss: ws:",
   // Allow web fonts over HTTPS (e.g., r2cdn.perplexity.ai)
   "font-src 'self' data: https:",
   // Allow Alfred widget if it uses iframes
   "frame-src 'self' https://alfred-portfolio-bot.vercel.app",
+  // Allow web workers from blob URLs
+  "worker-src 'self' blob:",
 ].join('; ');
 
 const SECURITY_HEADERS = [
