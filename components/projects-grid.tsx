@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 type Project = {
   id: string;
@@ -13,6 +14,8 @@ type Project = {
   details: string;
   icon: string;
   stack?: string[];
+  role?: string; // e.g., "Lead", "Frontend", "Backend"
+  achievements?: string[];
   links?: { demo?: string; source?: string };
 };
 
@@ -22,70 +25,110 @@ const PROJECTS: Project[] = [
     title: "HRMS System",
     short: "HR management with employee tracking",
     details:
-      "A full-featured HR management platform with attendance, leave workflows, and payroll integrations. Built APIs and optimized queries for scalability.",
+      "A full‑featured HR platform with attendance, leave workflows and payroll. I built APIs, tuned queries and implemented RBAC for scalable, secure access.",
     icon: "/file.svg",
     stack: ["NestJS", "PostgreSQL", "RBAC"],
-    links: { demo: "#", source: "#" },
+    role: "Backend Engineer",
+    achievements: [
+      "Shipped 20+ endpoints with strict validation",
+      "Optimized critical queries, cutting latency ~30%",
+      "Implemented tenant‑aware RBAC and audit trails",
+    ],
+    links: { demo: "#" },
   },
   {
     id: "static-site",
     title: "Static Website",
     short: "Marketing site with SEO optimization",
     details:
-      "Marketing website optimized for Core Web Vitals with accessible components and structured metadata for search indexing.",
+      "Ultra‑fast marketing site achieving a 100 Lighthouse SEO score. Delivered responsive UI, semantic HTML and structured data for discoverability.",
     icon: "/window.svg",
     stack: ["Next.js", "Tailwind", "SEO"],
-    links: { demo: "#", source: "#" },
+    role: "Lead",
+    achievements: [
+      "100/100 SEO and excellent CWV",
+      "Delivered in under 15 days",
+      "Pixel‑perfect, cross‑device responsive design",
+    ],
+    links: { demo: "#" },
   },
   {
     id: "ticketing",
     title: "Ticketing Tool",
     short: "Support ticket management system",
     details:
-      "End-to-end ticket lifecycle with SLA tracking, role-based permissions, and analytics dashboards for support teams.",
+      "End‑to‑end ticket lifecycle with SLA tracking and analytics. Built responsive UI and improved performance with lazy loading and dynamic imports.",
     icon: "/file.svg",
-    stack: ["NestJS", "PostgreSQL", "RBAC"],
-    links: { demo: "#", source: "#" },
+    stack: ["Next.js", "Tailwind", "RBAC"],
+    role: "Frontend Engineer",
+    achievements: [
+      "Shipped pixel‑perfect responsive pages",
+      "Reduced bundle by code‑splitting and lazy loading",
+      "Implemented role‑aware screens and guards",
+    ],
+    links: { demo: "#" },
   },
   {
     id: "food-app",
     title: "Customer Food Delivery App",
     short: "Online ordering platform",
     details:
-      "Multi-restaurant ordering app with real-time status updates, secure checkout, and responsive UI for mobile users.",
+      "SaaS ordering with OTP login, wallet payments and live order tracking. Hardened APIs with rate limiting and query optimizations.",
     icon: "/globe.svg",
-    stack: ["Next.js", "Node.js", "Stripe"],
-    links: { demo: "#", source: "#" },
+    stack: ["Flutter", "Dart", "Node.js"],
+    role: "Full‑Stack Engineer",
+    achievements: [
+      "Implemented OTP auth and wallet flows",
+      "Improved security with rate limiting",
+      "Real‑time order status updates",
+    ],
+    links: { demo: "#" },
   },
   {
     id: "recruitment",
     title: "Recruitment Platform",
     short: "Applicant tracking system",
     details:
-      "ATS with candidate pipeline, interview scheduling, and collaborative reviews to streamline hiring processes.",
+      "Robust REST API enabling candidate‑employer workflows with efficient data flow and clean architecture.",
     icon: "/file.svg",
-    stack: ["Next.js", "Node.js", "MongoDB"],
-    links: { demo: "#", source: "#" },
+    stack: ["Node.js", "Express", "MongoDB"],
+    role: "Backend Developer",
+    achievements: [
+      "Primary Node.js developer coordinating with client",
+      "Delivered scalable API for pipeline and interviews",
+    ],
+    links: { demo: "#" },
   },
   {
     id: "esim",
     title: "eSim Platform",
     short: "Digital SIM card management",
     details:
-      "Digital eSIM provisioning with secure activation flows, vendor integrations, and activity auditing.",
+      "Global eSIM purchasing with secure activation and multi‑tenant features. Optimized database performance to reduce response times.",
     icon: "/globe.svg",
     stack: ["NestJS", "Microservices", "Kafka"],
-    links: { demo: "#", source: "#" },
+    role: "Backend Engineer",
+    achievements: [
+      "Cut API response times by ~30%",
+      "Added package recommendations and tenant‑aware time formatting",
+      "Implemented tenant‑specific transactional email",
+    ],
+    links: { demo: "#" },
   },
   {
     id: "crm",
     title: "CRM System",
     short: "Customer relationship management",
     details:
-      "CRM with contact management, pipeline tracking, and reporting to improve sales efficiency and insight.",
+      "Real‑time employee and opportunity management via GraphQL API. Dockerized and deployed with production‑grade workflows.",
     icon: "/window.svg",
-    stack: ["Next.js", "Node.js", "PostgreSQL"],
-    links: { demo: "#", source: "#" },
+    stack: ["NestJS", "GraphQL", "Docker"],
+    role: "Backend Engineer",
+    achievements: [
+      "Designed and implemented RBAC across the application",
+      "Owned Dockerization and server management",
+    ],
+    links: { demo: "#" },
   },
 ];
 
@@ -152,54 +195,26 @@ export default function ProjectsGrid() {
         }}
       />
 
-      {/* Mobile: horizontal scroll with 2 cards per view (row) */}
-      <div
-        className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]"
-        style={{ WebkitOverflowScrolling: "touch" }}
-      >
-        <div className="flex gap-4">
-          {pairs.map(([a, b]) => (
-            <div
-              key={a.id + (b?.id ? `-${b.id}` : "")}
-              className="min-w-[min(560px,calc(100vw-2rem))] snap-start"
-            >
-              <div className="grid grid-cols-2 gap-4">
-                <Card
-                  data-animate="project-card"
-                  className="hover:shadow-xl transition-shadow cursor-pointer h-48 overflow-hidden"
-                  onClick={() => setSelected(a)}
-                >
-                  <CardHeader>
-                    <div className="mb-2">
-                      <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
-                        <Image src={a.icon} alt="" width={24} height={24} className="h-6 w-6" />
-                      </div>
-                    </div>
-                    <CardTitle>{a.title}</CardTitle>
-                    <CardDescription>{a.short}</CardDescription>
-                  </CardHeader>
-                </Card>
-                {b && (
-                  <Card
-                    data-animate="project-card"
-                    className="hover:shadow-xl transition-shadow cursor-pointer h-48 overflow-hidden"
-                    onClick={() => setSelected(b)}
-                  >
-                    <CardHeader>
-                      <div className="mb-2">
-                        <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
-                          <Image src={b.icon} alt="" width={24} height={24} className="h-6 w-6" />
-                        </div>
-                      </div>
-                      <CardTitle>{b.title}</CardTitle>
-                      <CardDescription>{b.short}</CardDescription>
-                    </CardHeader>
-                  </Card>
-                )}
+      {/* Mobile/Tablet: stacked grid, no horizontal scroll */}
+      <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {PROJECTS.slice(0, 6).map((p) => (
+          <Card
+            key={p.id}
+            data-animate="project-card"
+            className="hover:shadow-xl transition-shadow cursor-pointer h-48 overflow-hidden"
+            onClick={() => setSelected(p)}
+          >
+            <CardHeader>
+              <div className="mb-2">
+                <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
+                  <Image src={p.icon} alt="" width={24} height={24} className="h-6 w-6" />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+              <CardTitle>{p.title}</CardTitle>
+              <CardDescription>{p.short}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))}
       </div>
 
       {/* Tablet/Desktop: grid (2x3) */}
@@ -256,34 +271,46 @@ export default function ProjectsGrid() {
               {/* drag handle on mobile */}
               <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-slate-300/70 dark:bg-white/20 md:hidden" />
               <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">{selected.title}</h3>
+              {selected.role && (
+                <div className="mb-3">
+                  <Badge variant="secondary" className="bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200">
+                    Role: {selected.role}
+                  </Badge>
+                </div>
+              )}
               <p className="text-slate-600 dark:text-slate-300 mb-4">{selected.short}</p>
               <Card className="mb-4 bg-white/50 dark:bg-white/[0.06]">
                 <CardContent className="py-4 text-sm text-slate-700 dark:text-slate-300">
                   {selected.details}
                 </CardContent>
               </Card>
+              {selected.achievements?.length ? (
+                <div className="mb-5">
+                  <h4 className="text-sm font-semibold mb-2 text-slate-800 dark:text-slate-200">Key achievements</h4>
+                  <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700 dark:text-slate-300">
+                    {selected.achievements.map((a) => (
+                      <li key={a}>{a}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
               <div className="flex justify-between gap-3">
                 <div className="flex gap-2">
-                  {selected.links?.demo && (
-                    <a
-                      href={selected.links.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center rounded-md bg-brand-gradient px-3 py-2 text-xs font-medium text-white"
+                  {/* NDA: disable demo and hide source code */}
+                  <div className="relative group">
+                    <button
+                      type="button"
+                      disabled
+                      aria-disabled
+                      title="NDA protected: live demo not publicly accessible"
+                      className="inline-flex cursor-not-allowed items-center rounded-md bg-brand-gradient/70 px-3 py-2 text-xs font-medium text-white opacity-70"
                     >
-                      Live Demo
-                    </a>
-                  )}
-                  {selected.links?.source && (
-                    <a
-                      href={selected.links.source}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center rounded-md border px-3 py-2 text-xs font-medium"
-                    >
-                      Source Code
-                    </a>
-                  )}
+                      Live Demo (NDA)
+                    </button>
+                    <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-[10px] font-medium text-white opacity-0 transition-opacity group-hover:opacity-100">
+                      NDA protected
+                    </span>
+                  </div>
                 </div>
                 <Button variant="outline" onClick={() => setSelected(null)}>Close</Button>
               </div>
