@@ -17,6 +17,8 @@ type Project = {
   role?: string; // e.g., "Lead", "Frontend", "Backend"
   achievements?: string[];
   links?: { demo?: string; source?: string };
+  status?: "ongoing" | "completed" | "archived";
+  priority?: number; // lower number = higher priority
 };
 
 const PROJECTS: Project[] = [
@@ -29,6 +31,8 @@ const PROJECTS: Project[] = [
     icon: "/file.svg",
     stack: ["NestJS", "PostgreSQL", "RBAC"],
     role: "Backend Engineer",
+    status: "ongoing",
+    priority: 1,
     achievements: [
       "Shipped 20+ endpoints with strict validation",
       "Optimized critical queries, cutting latency ~30%",
@@ -45,6 +49,7 @@ const PROJECTS: Project[] = [
     icon: "/window.svg",
     stack: ["Next.js", "Tailwind", "SEO"],
     role: "Lead",
+    priority: 6,
     achievements: [
       "100/100 SEO and excellent CWV",
       "Delivered in under 15 days",
@@ -61,6 +66,7 @@ const PROJECTS: Project[] = [
     icon: "/file.svg",
     stack: ["Next.js", "Tailwind", "RBAC"],
     role: "Frontend Engineer",
+    priority: 4,
     achievements: [
       "Shipped pixel‑perfect responsive pages",
       "Reduced bundle by code‑splitting and lazy loading",
@@ -77,6 +83,7 @@ const PROJECTS: Project[] = [
     icon: "/globe.svg",
     stack: ["Flutter", "Dart", "Node.js"],
     role: "Full‑Stack Engineer",
+    priority: 7,
     achievements: [
       "Implemented OTP auth and wallet flows",
       "Improved security with rate limiting",
@@ -93,6 +100,7 @@ const PROJECTS: Project[] = [
     icon: "/file.svg",
     stack: ["Node.js", "Express", "MongoDB"],
     role: "Backend Developer",
+    priority: 5,
     achievements: [
       "Primary Node.js developer coordinating with client",
       "Delivered scalable API for pipeline and interviews",
@@ -108,6 +116,7 @@ const PROJECTS: Project[] = [
     icon: "/globe.svg",
     stack: ["NestJS", "Microservices", "Kafka"],
     role: "Backend Engineer",
+    priority: 3,
     achievements: [
       "Cut API response times by ~30%",
       "Added package recommendations and tenant‑aware time formatting",
@@ -124,6 +133,7 @@ const PROJECTS: Project[] = [
     icon: "/window.svg",
     stack: ["NestJS", "GraphQL", "Docker"],
     role: "Backend Engineer",
+    priority: 2,
     achievements: [
       "Designed and implemented RBAC across the application",
       "Owned Dockerization and server management",
@@ -173,6 +183,11 @@ export default function ProjectsGrid() {
     };
   }, []);
 
+  // Sort projects by explicit market priority when present
+  const projectsSorted = React.useMemo(() => {
+    return PROJECTS.slice().sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99));
+  }, []);
+
   return (
     <div ref={containerRef} className="relative">
       {/* Glow follows cursor, subtle and light */}
@@ -191,7 +206,7 @@ export default function ProjectsGrid() {
 
       {/* Mobile/Tablet: stacked grid, no horizontal scroll */}
       <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {PROJECTS.slice(0, 6).map((p) => (
+        {projectsSorted.slice(0, 6).map((p) => (
           <Card
             key={p.id}
             data-animate="project-card"
@@ -206,6 +221,14 @@ export default function ProjectsGrid() {
               </div>
               <CardTitle>{p.title}</CardTitle>
               <CardDescription>{p.short}</CardDescription>
+              {p.status === "ongoing" && (
+                <div className="mt-2">
+                  <Badge className="bg-emerald-600/90 text-white">
+                    <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-white/90" />
+                    Currently building
+                  </Badge>
+                </div>
+              )}
             </CardHeader>
           </Card>
         ))}
@@ -213,7 +236,7 @@ export default function ProjectsGrid() {
 
       {/* Tablet/Desktop: grid (2x3) */}
       <div className="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.slice(0, 6).map((p) => (
+        {projectsSorted.slice(0, 6).map((p) => (
           <Card
             key={p.id}
             data-animate="project-card"
@@ -228,6 +251,14 @@ export default function ProjectsGrid() {
               </div>
               <CardTitle>{p.title}</CardTitle>
               <CardDescription>{p.short}</CardDescription>
+              {p.status === "ongoing" && (
+                <div className="mt-2">
+                  <Badge className="bg-emerald-600/90 text-white">
+                    <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-white/90" />
+                    Currently building
+                  </Badge>
+                </div>
+              )}
               {p.stack && (
                 <div className="mt-3 flex flex-wrap gap-1.5 text-[11px] text-slate-600 dark:text-slate-300">
                   {p.stack.map((s) => (
@@ -259,12 +290,20 @@ export default function ProjectsGrid() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 40, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 35 }}
-              className="w-full md:max-w-md rounded-t-2xl md:rounded-2xl border border-white/20 bg-white/70 p-6 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5 max-h-[85vh] overflow-y-auto"
+              className="w-full md:max-w-md rounded-t-2xl md:rounded-2xl border border-white/20 bg-white/70 p-6 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5 max-h-[85vh] overflow-y-auto max-w-[100vw] md:max-w-[640px]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* drag handle on mobile */}
               <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-slate-300/70 dark:bg-white/20 md:hidden" />
               <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">{selected.title}</h3>
+              {selected.status === "ongoing" && (
+                <div className="mb-3">
+                  <Badge className="bg-emerald-600/90 text-white">
+                    <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-white/90" />
+                    Currently building · 50+ employees
+                  </Badge>
+                </div>
+              )}
               {selected.role && (
                 <div className="mb-3">
                   <Badge variant="secondary" className="bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200">

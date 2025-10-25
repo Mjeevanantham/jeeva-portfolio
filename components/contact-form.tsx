@@ -282,7 +282,7 @@ export default function ContactForm() {
           <span className="opacity-40">•</span>
           <a href="https://github.com/Mjeevanantham" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">GitHub</a>
         </div>
-        <div className="mt-2 opacity-75">I typically respond within 24 hours.</div>
+        {/** Duplicate removed; the note is shown above near the submit button */}
       </div>
 
       {/* Success modal rendered in a portal to ensure true full-screen */}

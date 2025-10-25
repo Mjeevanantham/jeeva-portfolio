@@ -31,17 +31,17 @@ export default function RotatingSpecialties() {
   return (
     <div aria-live="polite" className="mb-6 text-base md:text-lg text-slate-700 dark:text-slate-300">
       <span className="opacity-80">Focus areas: </span>
-      <span className="relative inline-flex min-w-[10ch] items-baseline">
-        <span className="relative h-[1.4em] overflow-hidden">
-          <AnimatePresence initial={false} custom={direction}>
+      <span className="inline-flex min-w-[18ch] items-baseline align-baseline">
+        <span className="inline-block h-[1.4em] align-baseline">
+          <AnimatePresence initial={false} mode="wait" custom={direction}>
             <motion.span
               key={index}
               custom={direction}
-              initial={{ y: direction * 20, opacity: 0, filter: "blur(4px)" }}
-              animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-              exit={{ y: -direction * 20, opacity: 0, filter: "blur(4px)" }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="absolute left-0 top-0 inline-block font-semibold text-brand-gradient"
+              initial={{ y: direction * 6, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -direction * 6, opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="inline-block font-semibold text-brand-gradient"
             >
               {ITEMS[index]}
             </motion.span>
