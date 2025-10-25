@@ -189,7 +189,10 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-center mb-8">About Me</h2>
           <div className="space-y-6">
             <p className="text-lg text-slate-600 dark:text-slate-300 text-center max-w-3xl mx-auto">
-              I build end‑to‑end products that balance engineering and design. From API architecture to delightful UIs, I care about clarity, reliability, and speed. My mantra: small details compound into great experiences.
+              I build end‑to‑end products that balance engineering and design. From API architecture to delightful UIs, I care about clarity, reliability, and speed.
+            </p>
+            <p className="text-lg text-slate-600 dark:text-slate-300 text-center max-w-3xl mx-auto">
+              I’m responsible, loyal, and kind — the type of teammate who keeps promises, owns outcomes, and treats people with respect. Small details compound into exceptional experiences.
             </p>
           </div>
         </div>
