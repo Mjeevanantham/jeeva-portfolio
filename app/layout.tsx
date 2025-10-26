@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     template: "%s | Jeevanantham Mahalingam",
   },
   description:
-    "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
+    "Full-Stack Developer & Flutter Engineer specializing in NestJS and Next.js applications for enterprise HR and CRM systems.",
   applicationName: "Jeevanantham Portfolio",
   authors: [{ name: "Jeevanantham Mahalingam", url: siteUrl }],
   creator: "Jeevanantham Mahalingam",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     siteName: "Jeevanantham Mahalingam",
     title: "Jeevanantham Mahalingam - Full-Stack Developer & AI Enthusiast",
     description:
-      "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
+      "Full-Stack Developer & Flutter Engineer specializing in NestJS and Next.js applications for enterprise HR and CRM systems.",
     images: [
       {
         url: `${siteUrl}/og-image.png`,
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jeevanantham Mahalingam - Full-Stack Developer & AI Enthusiast",
     description:
-      "Portfolio of Jeevanantham Mahalingam - Full-Stack Developer specializing in modern web technologies, AI integration, and digital experiences.",
+      "Full-Stack Developer & Flutter Engineer specializing in NestJS and Next.js applications for enterprise HR and CRM systems.",
     images: [`${siteUrl}/og-image.png`],
     creator: "@",
   },
@@ -180,12 +180,46 @@ export default function RootLayout({
                     if (greeting) {
                       const title = greeting.querySelector('h3');
                       const p = greeting.querySelector('p');
-                      if (title) title.textContent = "Hi, I&apos;m JIA";
-                      if (p) p.textContent = "Ask me about Jeeva&apos;s skills, projects, or experience.";
+                      if (title) title.textContent = "👋 Hey! I’m JIA";
+                      if (p) p.textContent = "Ask me about Jeeva’s projects, skills, or experience.";
                     }
 
                     // Center input placeholder (in addition to CSS) and rebrand to JIA
-                    if (input) input.setAttribute('placeholder', "Ask JIA about Jeeva&apos;s work…");
+                    if (input) input.setAttribute('placeholder', "💬 Ask JIA about Jeeva’s work…");
+                    
+                    // Add prompt suggestions under the input if missing
+                    (function () {
+                      if (!input) return;
+                      var parent = input.parentElement;
+                      if (!parent) return;
+                      var tray = document.querySelector('.alfred-widget-suggestions');
+                      if (!tray) {
+                        tray = document.createElement('div');
+                        tray.className = 'alfred-widget-suggestions';
+                        tray.style.marginTop = '8px';
+                        tray.style.display = 'flex';
+                        tray.style.flexWrap = 'wrap';
+                        tray.style.gap = '8px';
+                        parent.appendChild(tray);
+                      }
+                      if (tray && tray.children.length < 1) {
+                        ['Show me Jeeva\'s HRMS app','What skills does he use most?','Tell me about his latest project.'].forEach(function (t) {
+                          var b = document.createElement('button');
+                          b.type = 'button';
+                          b.className = 'alfred-widget-suggestion';
+                          b.textContent = t;
+                          b.style.padding = '6px 10px';
+                          b.style.borderRadius = '9999px';
+                          b.style.border = '1px solid rgba(148,163,184,0.3)';
+                          b.style.fontSize = '12px';
+                          b.style.background = 'rgba(255,255,255,0.6)';
+                          b.addEventListener('click', function () {
+                            try { input.value = t; input.focus(); } catch(_) {}
+                          });
+                          tray.appendChild(b);
+                        });
+                      }
+                    })();
 
                     // Iconize suggestion chips
                     suggestions.forEach((el) => {
