@@ -25,7 +25,7 @@ const PROJECTS: Project[] = [
   {
     id: "hrms",
     title: "HRMS Mobile App",
-    short: "Enterprise HR management mobile application",
+    short: "Flutter + NestJS platform streamlining attendance and leave management",
     details:
       "Leading the development of a comprehensive HRMS mobile application currently serving 60+ employees in my company. As the app project lead, I oversee end-to-end development from architecture to deployment, continuously rolling out new modules and features. The app includes attendance tracking, leave management, payroll integration, and employee self-service portals. I&apos;ve optimized performance, implemented robust security measures, and established CI/CD pipelines for seamless version releases.",
     icon: "/globe.svg",
@@ -44,8 +44,8 @@ const PROJECTS: Project[] = [
   },
   {
     id: "landing-fine-tuned",
-    title: "Fine‑Tuned Landing Website",
-    short: "High‑converting landing site with SEO optimization",
+    title: "Landing Website",
+    short: "SEO‑optimized marketing page achieving high conversion rate",
     details:
       "Ultra‑fast marketing site achieving a 100 Lighthouse SEO score. Delivered responsive UI, semantic HTML and structured data for discoverability.",
     icon: "/window.svg",
@@ -62,7 +62,7 @@ const PROJECTS: Project[] = [
   {
     id: "ticketing",
     title: "Ticketing Tool",
-    short: "Support ticket management system",
+    short: "Next.js + RBAC dashboard for internal support tracking",
     details:
       "End‑to‑end ticket lifecycle with SLA tracking and analytics. Built responsive UI and improved performance with lazy loading and dynamic imports.",
     icon: "/file.svg",
@@ -79,7 +79,7 @@ const PROJECTS: Project[] = [
   {
     id: "food-app",
     title: "Customer Food Delivery App",
-    short: "Online ordering platform",
+    short: "Online ordering with OTP login, wallet payments, and live tracking",
     details:
       "SaaS ordering with OTP login, wallet payments and live order tracking. Hardened APIs with rate limiting and query optimizations.",
     icon: "/globe.svg",
@@ -96,7 +96,7 @@ const PROJECTS: Project[] = [
   {
     id: "recruitment",
     title: "Recruitment Platform",
-    short: "Applicant tracking system",
+    short: "Express.js + MongoDB ATS for candidate pipeline management",
     details:
       "Robust REST API enabling candidate‑employer workflows with efficient data flow and clean architecture.",
     icon: "/file.svg",
@@ -112,7 +112,7 @@ const PROJECTS: Project[] = [
   {
     id: "esim",
     title: "eSim Platform",
-    short: "Digital SIM card management",
+    short: "Microservice platform for managing digital SIM provisioning",
     details:
       "Global eSIM purchasing with secure activation and multi‑tenant features. Optimized database performance to reduce response times.",
     icon: "/globe.svg",
@@ -129,7 +129,7 @@ const PROJECTS: Project[] = [
   {
     id: "crm",
     title: "CRM System",
-    short: "Customer relationship management",
+    short: "GraphQL‑powered NestJS backend for customer data management",
     details:
       "Real‑time employee and opportunity management via GraphQL API. Dockerized and deployed with production‑grade workflows.",
     icon: "/window.svg",
@@ -218,7 +218,7 @@ export default function ProjectsGrid() {
             <CardHeader>
               <div className="mb-2">
                 <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
-                  <Image src={p.icon} alt="" width={24} height={24} className="h-6 w-6" />
+                  <Image src={p.icon} alt={`${p.title} icon`} width={24} height={24} className="h-6 w-6" />
                 </div>
               </div>
               <CardTitle>{p.title}</CardTitle>
@@ -248,7 +248,7 @@ export default function ProjectsGrid() {
             <CardHeader>
               <div className="mb-2">
                 <div className="h-10 w-10 rounded-lg bg-slate-100 dark:bg-white/10 flex items-center justify-center">
-                  <Image src={p.icon} alt="" width={24} height={24} className="h-6 w-6" />
+                  <Image src={p.icon} alt={`${p.title} icon`} width={24} height={24} className="h-6 w-6" />
                 </div>
               </div>
               <CardTitle>{p.title}</CardTitle>

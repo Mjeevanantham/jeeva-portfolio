@@ -47,19 +47,19 @@ export default function ThemeToggle() {
 
   return (
     <details className="group relative">
-      <summary className="list-none rounded-md p-2 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer flex items-center gap-2" aria-label="Theme menu">
-        {current === "dark" ? <MoonIcon /> : current === "light" ? <SunIcon /> : <LaptopIcon />}
-        <span className="text-sm text-slate-600 dark:text-slate-300 hidden sm:inline">{current === "dark" ? "Dark" : current === "light" ? "Light" : "System"}</span>
+      <summary className="list-none rounded-md p-2 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer flex items-center" aria-label="Theme menu">
+        {current === "dark" ? <MoonIcon aria-hidden /> : current === "light" ? <SunIcon aria-hidden /> : <LaptopIcon aria-hidden />}
+        <span className="sr-only">{current === "dark" ? "Dark theme" : current === "light" ? "Light theme" : "System theme"}</span>
       </summary>
       <div className="absolute right-0 mt-2 w-40 rounded-md border border-slate-200 bg-white p-1 shadow-lg dark:border-slate-700 dark:bg-slate-900 z-50">
         <button onClick={() => setTheme("light")} className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm hover:bg-slate-100 dark:hover:bg-slate-800">
-          <SunIcon /> Light
+          <SunIcon aria-hidden /> Light
         </button>
         <button onClick={() => setTheme("dark")} className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm hover:bg-slate-100 dark:hover:bg-slate-800">
-          <MoonIcon /> Dark
+          <MoonIcon aria-hidden /> Dark
         </button>
         <button onClick={() => setTheme("system")} className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm hover:bg-slate-100 dark:hover:bg-slate-800">
-          <LaptopIcon /> System
+          <LaptopIcon aria-hidden /> System
         </button>
       </div>
     </details>

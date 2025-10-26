@@ -123,10 +123,13 @@ export default function Home() {
             <AvatarFallback className="bg-brand-gradient text-white text-3xl">JM</AvatarFallback>
           </Avatar>
           <h1 className="text-5xl md:text-6xl font-bold mb-3">
-            Building scalable, user‑focused digital experiences
+            Crafting fast, reliable, and human‑centered applications that scale with purpose.
           </h1>
+          <p className="mt-1 text-sm md:text-base text-slate-500 dark:text-slate-400">
+            Full‑Stack Developer (Next.js / NestJS / Flutter) — 2+ years building enterprise apps.
+          </p>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto">
-            I&apos;m Jeevanantham Mahalingam — Full‑Stack and Flutter developer, leading the app track on my current project. Currently building an HRMS mobile app used by 60+ employees, from API design to polished UIs.
+            I’m Jeevanantham Mahalingam, a Full‑Stack and Flutter Developer leading mobile development at Aaludra Technology Solutions. I build production‑grade systems end‑to‑end — from scalable APIs in NestJS to smooth Flutter UIs. Currently delivering an HRMS app that supports 60+ employees daily.
           </p>
           <RotatingSpecialties />
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -135,6 +138,9 @@ export default function Home() {
             </Button>
             <Button asChild size="lg" variant="outline">
               <a href="#contact">Get In Touch</a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <a href="/resume">Download Resume</a>
             </Button>
           </div>
 
@@ -174,7 +180,7 @@ export default function Home() {
               <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
             </svg>
             <p className="text-3xl md:text-5xl font-bold text-white">
-              Do what you <span className="line-through decoration-white/60">love</span> what you do
+              Do what you love, and love what you do
             </p>
             <svg className="absolute bottom-0 right-0 transform translate-x-6 translate-y-8 h-16 w-16 text-white/20 rotate-180" fill="currentColor" viewBox="0 0 32 32">
               <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
@@ -192,13 +198,13 @@ export default function Home() {
             {/* Intro */}
             <div className="space-y-5">
               <p className="text-lg text-slate-700 dark:text-slate-300">
-                I&apos;m a <span className="font-semibold">Full‑Stack and Flutter developer</span> and currently the
-                <span className="font-semibold"> app track lead</span> for my project at Aaludra Technology Solutions. I design, build, and ship HRMS modules end‑to‑end — from clean APIs to fast, polished UIs.
+                I’m a developer who enjoys translating complex business workflows into clean, scalable code. At Aaludra Technology Solutions, I lead the HRMS mobile track, designing and delivering complete modules — from structured NestJS backends to performant Flutter interfaces.
               </p>
               <p className="text-lg text-slate-700 dark:text-slate-300">
-                I work directly with our <span className="font-semibold">CEO</span>,
-                <span className="font-semibold"> solution architect</span>, and
-                <span className="font-semibold"> clients</span> to align on goals, de‑risk decisions, and deliver outcomes that matter.
+                I collaborate closely with our <span className="font-semibold">CEO</span>, <span className="font-semibold">solution architect</span>, and <span className="font-semibold">clients</span> to align on goals, de‑risk key decisions, and deliver measurable outcomes.
+              </p>
+              <p className="text-lg text-slate-700 dark:text-slate-300">
+                I believe thoughtful architecture and attention to detail make software truly scalable.
               </p>
               {/* Tech chips */}
               <ul className="flex flex-wrap gap-2 mt-2">
@@ -230,7 +236,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-semibold">HRMS in Production</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Powering daily work for 60+ employees</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Supports daily workflows for 60+ employees</p>
                   </div>
                 </div>
               </div>
@@ -295,7 +301,8 @@ export default function Home() {
       <section id="contact" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-4">Get In Touch</h2>
-          <p className="text-center text-slate-600 dark:text-slate-300 mb-12">Have a project in mind? Let&apos;s build something amazing together!</p>
+          <p className="text-center text-slate-600 dark:text-slate-300">Have an idea or opportunity? Let’s discuss how I can help bring it to life.</p>
+          <p className="text-center text-slate-500 dark:text-slate-400 mb-12">I typically respond within one business day. Open to full‑time roles and freelance collaborations.</p>
           <div data-animate="project-card">
             <ContactForm />
           </div>
