@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-type Skill = { name: string; level: number };
+type Skill = { name: string; level?: number; note?: string };
 
 type Category = {
   title: string;
@@ -14,36 +14,36 @@ const CATEGORIES: Category[] = [
   {
     title: "Frontend",
     skills: [
-      { name: "Next.js", level: 85 },
-      { name: "React", level: 85 },
-      { name: "TypeScript", level: 80 },
-      { name: "Tailwind CSS", level: 90 },
+      { name: "Next.js", note: "Production ready" },
+      { name: "React", note: "Advanced" },
+      { name: "TypeScript", note: "Strong" },
+      { name: "Tailwind CSS", note: "Expert" },
     ],
   },
   {
     title: "Backend",
     skills: [
-      { name: "Node.js", level: 85 },
-      { name: "NestJS", level: 80 },
-      { name: "GraphQL", level: 70 },
-      { name: "REST APIs", level: 90 },
+      { name: "Node.js", note: "Advanced" },
+      { name: "NestJS", note: "Production use" },
+      { name: "GraphQL", note: "Intermediate" },
+      { name: "REST APIs", note: "Expert" },
     ],
   },
   {
     title: "Database",
     skills: [
-      { name: "PostgreSQL", level: 75 },
-      { name: "MongoDB", level: 80 },
-      { name: "Prisma ORM", level: 70 },
+      { name: "PostgreSQL", note: "Practical" },
+      { name: "MongoDB", note: "Advanced" },
+      { name: "Prisma ORM", note: "Intermediate" },
     ],
   },
   {
     title: "DevOps & Tools",
     skills: [
-      { name: "Docker", level: 75 },
-      { name: "Git", level: 85 },
-      { name: "CI/CD", level: 65 },
-      { name: "Linux", level: 70 },
+      { name: "Docker", note: "Practical" },
+      { name: "Git", note: "Advanced" },
+      { name: "CI/CD", note: "Working" },
+      { name: "Linux", note: "Intermediate" },
     ],
   },
 ];
@@ -59,13 +59,13 @@ export default function SkillsBars() {
               <li key={s.name} className="group">
                 <div className="mb-1 flex items-center justify-between text-sm">
                   <span className="text-slate-700 dark:text-slate-200">{s.name}</span>
-                  <span className="text-slate-500 dark:text-slate-400">{s.level}%</span>
+                  <span className="text-slate-500 dark:text-slate-400">{s.note}</span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-slate-200/70 dark:bg-slate-800">
                   <motion.div
                     className="h-2 rounded-full bg-brand-gradient"
                     initial={{ width: 0 }}
-                    whileInView={{ width: `${s.level}%` }}
+                    whileInView={{ width: "100%" }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                   />

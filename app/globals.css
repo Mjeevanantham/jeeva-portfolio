@@ -168,8 +168,8 @@ html body .alfred-widget-panel { overflow: hidden !important; }
 html body .alfred-widget-content { overflow: hidden !important; }
 html body .alfred-widget-chat { overflow-y: auto !important; }
 /* Ensure back-to-top sits above the widget's toggle/fab while avoiding overlap */
-html body .alfred-widget-toggle { z-index: 60 !important; }
-html body .alfred-widget { z-index: 60 !important; }
+html body .alfred-widget-toggle { z-index: 100 !important; }
+html body .alfred-widget { z-index: 100 !important; }
 /* Our back-to-top uses z-50. Keep widget above; we offset button position on both breakpoints. */
 
 /* Fallback icons when Font Awesome isn't available */
@@ -281,7 +281,8 @@ html body .alfred-show-toggle {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  html body .alfred-widget-panel { width: 100% !important; right: -100%; }
+  /* Allow widget's own open/close transitions; only ensure full width */
+  html body .alfred-widget-panel { width: 100% !important; }
   html body .alfred-widget-toggle { width: 54px !important; height: 54px !important; }
 }
 
