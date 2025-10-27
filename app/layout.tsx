@@ -151,21 +151,6 @@ export default function RootLayout({
             strategy="afterInteractive"
           />
 
-          {/* Thinkstack AI Chatbot loader */}
-          <Script id="thinkstackai-loader" strategy="afterInteractive">
-            {`
-              (function () {
-                try {
-                  var s = document.createElement('script');
-                  s.src = 'https://app.thinkstack.ai/bot/thinkstackai-loader.min.js';
-                  s.async = true;
-                  s.setAttribute('chatbot_id', '68fe3752d67f85f2ad5afeec');
-                  s.setAttribute('data-type', 'default');
-                  document.body.appendChild(s);
-                } catch (_) {}
-              })();
-            `}
-          </Script>
 
           {/* Alfred host-side enhancements: shorten greeting, clamp long replies, add icons, ensure scroll behavior */}
           <Script id="alfred-host-enhancements" strategy="afterInteractive">
