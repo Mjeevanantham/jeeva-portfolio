@@ -147,7 +147,7 @@ export default function RootLayout({
           {/* JIA Bot Widget (hosted by Alfred service) */}
           <Script
             data-tenant-id="68e68ff44d3939b192d9e216"
-            src="https://alfred-portfolio-bot.vercel.app/alfred-widget.js"
+            src="https://jia-bot.vercel.app/alfred-widget.js"
             strategy="afterInteractive"
           />
 
