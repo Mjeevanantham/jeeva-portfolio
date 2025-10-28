@@ -157,7 +157,7 @@ export default function RootLayout({
           {/* Alfred host-side enhancements — disabled with the bot */}
           {/**
            * <Script id="alfred-host-enhancements" strategy="afterInteractive">
-           *   {`/* host enhancement code */`}
+           *   {`// host enhancement code`}
            * </Script>
            */}
           <BackToTop />
