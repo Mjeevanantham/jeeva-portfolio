@@ -163,7 +163,7 @@ export default function Home() {
               <div className="text-sm text-slate-600 dark:text-slate-300">Years Experience</div>
             </div>
           </div>
-          <a href="#about" aria-label="Scroll to About" className="mt-8 inline-flex flex-col items-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+          <a href="#about" aria-label="Scroll to About" className="absolute bottom-6 left-1/2 -translate-x-1/2 transform inline-flex flex-col items-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
             <svg className="h-6 w-6 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="6 9 12 15 18 9" />
             </svg>
