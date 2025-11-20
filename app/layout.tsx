@@ -165,7 +165,7 @@ export default function RootLayout({
             id="convosphereai-loader"
             chatbot-id="ede8fc06-6a01-4e1b-b739-abc768e540af"
             data-type="default"
-            src="http://localhost:3000/bot/convosphereai-loader.min.js"
+            src="https://www.app.convosphere.site/bot/convosphereai-loader.min.js"
             defer
           />
           <BackToTop />
