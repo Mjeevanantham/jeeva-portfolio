@@ -120,7 +120,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${sora.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider>
+          <ThemeProvider>
           {/* Google Tag Manager (noscript) */}
           <noscript>
             <iframe
@@ -160,7 +160,13 @@ export default function RootLayout({
            *   {`// host enhancement code`}
            * </Script>
            */}
-          <BackToTop />
+            <script
+              chatbot_id="ede8fc06-6a01-4e1b-b739-abc768e540af"
+              data-type="default"
+              src="http://localhost:3000/bot/convosphereai-loader.min.js"
+              defer
+            />
+            <BackToTop />
         </ThemeProvider>
       </body>
     </html>
