@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Geist, Geist_Mono, Inter, Sora } from "next/font/google";
 import Script from "next/script";
 import SiteNav from "@/components/site-nav";
@@ -114,13 +115,13 @@ export default function RootLayout({
   children,
   modal,
 }: Readonly<{
-  children: React.ReactNode;
-  modal: React.ReactNode;
+  children: ReactNode;
+  modal: ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${sora.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <ThemeProvider>
+        <ThemeProvider>
           {/* Google Tag Manager (noscript) */}
           <noscript>
             <iframe
@@ -160,13 +161,14 @@ export default function RootLayout({
            *   {`// host enhancement code`}
            * </Script>
            */}
-            <script
-              chatbot_id="ede8fc06-6a01-4e1b-b739-abc768e540af"
-              data-type="default"
-              src="http://localhost:3000/bot/convosphereai-loader.min.js"
-              defer
-            />
-            <BackToTop />
+          <script
+            id="convosphereai-loader"
+            chatbot-id="ede8fc06-6a01-4e1b-b739-abc768e540af"
+            data-type="default"
+            src="http://localhost:3000/bot/convosphereai-loader.min.js"
+            defer
+          />
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>
