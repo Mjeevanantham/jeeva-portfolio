@@ -1,10 +1,23 @@
 import type { NextConfig } from "next";
 
 // CSP tuned for this portfolio and the embedded Alfred widget
+const isDevelopment = process.env.NODE_ENV === 'development';
+const scriptSrc = [
+  "'self'",
+  "'unsafe-inline'",
+  "'unsafe-eval'",
+  "blob:",
+  "https://www.googletagmanager.com",
+  "https://alfred-portfolio-bot.vercel.app",
+  "https://cdn.socket.io",
+  // Allow localhost scripts in development
+  ...(isDevelopment ? ["http://localhost:3000"] : []),
+].join(' ');
+
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   // Allow GTM, Alfred widget, and socket.io CDN
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://www.googletagmanager.com https://alfred-portfolio-bot.vercel.app https://cdn.socket.io",
+  `script-src ${scriptSrc}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   // Allow HTTPS and WSS connections (widget/socket, analytics)
