@@ -120,7 +120,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${sora.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider>
+          <ThemeProvider>
           {/* Google Tag Manager (noscript) */}
           <noscript>
             <iframe
@@ -144,139 +144,29 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-NNP3L8JS');`}
           </Script>
 
-          {/* JIA Bot Widget (hosted by Alfred service) */}
-          <Script
-            data-tenant-id="68e68ff44d3939b192d9e216"
-            src="https://jia-bot.vercel.app/alfred-widget.js"
-            strategy="afterInteractive"
-          />
+          {/* JIA Bot Widget (hosted by Alfred service) — disabled per request */}
+          {/**
+           * <Script
+           *   data-tenant-id="68e68ff44d3939b192d9e216"
+           *   src="https://jia-bot.vercel.app/alfred-widget.js"
+           *   strategy="afterInteractive"
+           * />
+           */}
 
 
-          {/* Alfred host-side enhancements: shorten greeting, clamp long replies, add icons, ensure scroll behavior */}
-          <Script id="alfred-host-enhancements" strategy="afterInteractive">
-            {`
-            (function () {
-              function onceReady(fn) {
-                if (document.readyState === 'complete' || document.readyState === 'interactive') {
-                  setTimeout(fn, 0);
-                } else {
-                  document.addEventListener('DOMContentLoaded', fn);
-                }
-              }
-
-              onceReady(function () {
-                try {
-                // Poll for widget root since it loads async
-                const start = Date.now();
-                const timer = setInterval(function () {
-                  const widget = document.querySelector('.alfred-widget');
-                  const chat = document.querySelector('.alfred-widget-chat');
-                  const greeting = document.querySelector('.alfred-widget-greeting');
-                  const suggestions = document.querySelectorAll('.alfred-widget-suggestion');
-                  const input = document.getElementById('alfredInput');
-                  if (widget && chat) {
-                    clearInterval(timer);
-
-                    // Replace long greeting with concise version and JIA branding
-                    if (greeting) {
-                      const title = greeting.querySelector('h3');
-                      const p = greeting.querySelector('p');
-                      if (title) title.textContent = "👋 Hey! I’m JIA";
-                      if (p) p.textContent = "Ask me about Jeeva’s projects, skills, or experience.";
-                    }
-
-                    // Center input placeholder (in addition to CSS) and rebrand to JIA
-                    if (input) input.setAttribute('placeholder', "💬 Ask JIA about Jeeva’s work…");
-                    
-                    // Add prompt suggestions under the input if missing
-                    (function () {
-                      if (!input) return;
-                      var parent = input.parentElement;
-                      if (!parent) return;
-                      var tray = document.querySelector('.alfred-widget-suggestions');
-                      if (!tray) {
-                        tray = document.createElement('div');
-                        tray.className = 'alfred-widget-suggestions';
-                        tray.style.marginTop = '8px';
-                        tray.style.display = 'flex';
-                        tray.style.flexWrap = 'wrap';
-                        tray.style.gap = '8px';
-                        parent.appendChild(tray);
-                      }
-                      if (tray && tray.children.length < 1) {
-                        ['Show me Jeeva\'s HRMS app','What skills does he use most?','Tell me about his latest project.'].forEach(function (t) {
-                          var b = document.createElement('button');
-                          b.type = 'button';
-                          b.className = 'alfred-widget-suggestion';
-                          b.textContent = t;
-                          b.style.padding = '6px 10px';
-                          b.style.borderRadius = '9999px';
-                          b.style.border = '1px solid rgba(148,163,184,0.3)';
-                          b.style.fontSize = '12px';
-                          b.style.background = 'rgba(255,255,255,0.6)';
-                          b.addEventListener('click', function () {
-                            try { input.value = t; input.focus(); } catch(_) {}
-                          });
-                          tray.appendChild(b);
-                        });
-                      }
-                    })();
-
-                    // Iconize suggestion chips
-                    suggestions.forEach((el) => {
-                      const text = el.textContent?.trim() || '';
-                      const icon = text.startsWith(&apos;Skills&apos;) ? &apos;🛠️&apos; : text.startsWith(&apos;Projects&apos;) ? &apos;📁&apos; : text.startsWith(&apos;Experience&apos;) ? &apos;📜&apos; : text.startsWith(&apos;Contact&apos;) ? &apos;✉️&apos; : &apos;🔹&apos;;
-                      if (!el.dataset.iconized) {
-                        el.dataset.iconized = &apos;1&apos;;
-                        el.innerHTML = &apos;<span style="margin-right:6px">&apos; + icon + &apos;</span>&apos; + text;
-                      }
-                    });
-
-                    // Observe new messages to clamp long Alfred replies
-                    const chatObserver = new MutationObserver(function (mutations) {
-                      mutations.forEach(function (m) {
-                        m.addedNodes.forEach(function (n) {
-                          if (!(n instanceof HTMLElement)) return;
-                          if (n.classList.contains(&apos;alfred-widget-message&apos;) && n.classList.contains(&apos;alfred&apos;)) {
-                            const bubble = n.querySelector(&apos;.alfred-widget-message-bubble&apos;);
-                            if (bubble && !bubble.dataset.clamped) {
-                              bubble.dataset.clamped = &apos;1&apos;;
-                              const originalHTML = bubble.innerHTML;
-                              const textLength = bubble.textContent ? bubble.textContent.trim().length : 0;
-                              if (textLength > 320) {
-                                bubble.classList.add(&apos;alfred-message-clamped&apos;);
-                                const toggle = document.createElement(&apos;button&apos;);
-                                toggle.type = &apos;button&apos;;
-                                toggle.className = &apos;alfred-show-toggle&apos;;
-                                toggle.textContent = &apos;Show more&apos;;
-                                toggle.addEventListener(&apos;click&apos;, function () {
-                                  const isClamped = bubble.classList.toggle(&apos;alfred-message-clamped&apos;);
-                                  toggle.textContent = isClamped ? &apos;Show more&apos; : &apos;Show less&apos;;
-                                  bubble.innerHTML = originalHTML; // restore links formatting
-                                });
-                                bubble.after(toggle);
-                              }
-                            }
-                          }
-                        });
-                      });
-                    });
-                    chatObserver.observe(chat, { childList: true, subtree: true });
-                  }
-
-                  // Stop polling after 10 seconds as a safety
-                  if (Date.now() - start > 10000) clearInterval(timer);
-                }, 200);
-                } catch (e) {
-                  // Swallow errors to avoid interfering with widget initialization
-                  // eslint-disable-next-line no-console
-                  console.warn('Alfred host enhancements disabled due to error:', e);
-                }
-              });
-            })();
-          `}
-          </Script>
-          <BackToTop />
+          {/* Alfred host-side enhancements — disabled with the bot */}
+          {/**
+           * <Script id="alfred-host-enhancements" strategy="afterInteractive">
+           *   {`// host enhancement code`}
+           * </Script>
+           */}
+            <script
+              chatbot_id="ede8fc06-6a01-4e1b-b739-abc768e540af"
+              data-type="default"
+              src="http://localhost:3000/bot/convosphereai-loader.min.js"
+              defer
+            />
+            <BackToTop />
         </ThemeProvider>
       </body>
     </html>
