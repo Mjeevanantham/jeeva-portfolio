@@ -9,7 +9,6 @@ import Script from "next/script";
 import RotatingSpecialties from "@/components/rotating-specialties";
 import ExperienceTimeline from "@/components/experience-timeline";
 import SkillsBars from "@/components/skills-bars";
-import HeroSectionDemo from "@/components/hero-section-demo";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -278,38 +277,6 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Technical Skills</h2>
           <SkillsBars />
-        </div>
-      </section>
-
-      {/* Now + Roadmap Section */}
-      <section id="now" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto grid gap-8 lg:grid-cols-[minmax(0,0.6fr)_minmax(0,1fr)]">
-          <div className="rounded-xl border bg-white/60 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-            <h3 className="text-lg font-semibold">Now</h3>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-              Where I&apos;m investing my focus this month.
-            </p>
-            <ul className="mt-5 space-y-2 text-sm text-slate-700 dark:text-slate-300">
-              <li>• Exploring AI tooling and agents to speed up delivery</li>
-              <li>• Learning advanced NestJS patterns and clean architecture</li>
-              <li>• Building small utilities and polishing portfolio UX</li>
-            </ul>
-          </div>
-          <div className="rounded-2xl border bg-white/80 shadow-md backdrop-blur dark:border-white/10 dark:bg-white/5">
-            <div className="border-b border-slate-200/60 px-6 py-5 dark:border-white/10">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300">
-                Launch radar
-              </p>
-              <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
-                Animated product roadmap in action
-              </h3>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                This interactive view mirrors how I keep stakeholders aligned on progress,
-                dependencies, and launch readiness.
-              </p>
-            </div>
-            <HeroSectionDemo className="bg-transparent" />
-          </div>
         </div>
       </section>
 
