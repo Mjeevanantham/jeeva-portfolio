@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
+
 import { AnimatedRoadmap } from "@/components/ui/hero-section-5";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const milestonesData = [
+type Milestone = ComponentProps<typeof AnimatedRoadmap>["milestones"][number];
+
+const milestonesData: Milestone[] = [
   {
     id: 1,
     name: "Kick-off",
@@ -27,7 +31,7 @@ const milestonesData = [
     status: "pending",
     position: { top: "10%", right: "10%" },
   },
-] as const;
+];
 
 const mapImageSrc =
   "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80";
