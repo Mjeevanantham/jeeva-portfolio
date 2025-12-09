@@ -10,6 +10,9 @@ const scriptSrc = [
   "https://www.googletagmanager.com",
   "https://alfred-portfolio-bot.vercel.app",
   "https://cdn.socket.io",
+  "https://unpkg.com",
+  "https://www.app.convosphere.site",
+  "https://elevenlabs.io",
   // Allow localhost scripts in development
   ...(isDevelopment ? ["http://localhost:3000"] : []),
 ].join(' ');
@@ -21,7 +24,7 @@ const CONTENT_SECURITY_POLICY = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   // Allow HTTPS and WSS connections (widget/socket, analytics)
-  "connect-src 'self' https: http: wss: ws:",
+  "connect-src 'self' https: http: wss: ws: https://api.elevenlabs.io https://elevenlabs.io",
   // Allow web fonts over HTTPS (e.g., r2cdn.perplexity.ai)
   "font-src 'self' data: https:",
   // Allow Alfred widget if it uses iframes
