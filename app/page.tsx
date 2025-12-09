@@ -287,7 +287,7 @@ export default function Home() {
           <div className="rounded-xl border bg-white/60 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
             <h3 className="text-lg font-semibold">Now</h3>
             <ul className="mt-3 space-y-2 text-slate-700 dark:text-slate-300 text-sm">
-              <li>• Exploring AI tooling and agents to speed up delivery</li>
+              <li>• Diving into AI and creating Scriptly VS Code extension for AI agent hands-on work</li>
               <li>• Learning advanced NestJS patterns and clean architecture</li>
               <li>• Building small utilities and polishing portfolio UX</li>
             </ul>

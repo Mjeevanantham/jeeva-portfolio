@@ -168,6 +168,8 @@ export default function RootLayout({
             src="https://www.app.convosphere.site/bot/convosphereai-loader.min.js"
             defer
           />
+          <elevenlabs-convai agent-id="agent_6001kc24ea7re57s8py21m1cgp3c"></elevenlabs-convai>
+          <Script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async />
           <BackToTop />
         </ThemeProvider>
       </body>

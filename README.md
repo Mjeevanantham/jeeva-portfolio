@@ -2,6 +2,10 @@
 
 A modern Next.js portfolio with smooth in-page navigation, a project details modal, and a subtle cursor-follow color glow. Includes a contact form with email delivery and a dedicated Resume page.
 
+### Recent Work
+- Currently developing a high-level ERP system for a US-based enterprise client (NDA protected)
+- Diving into AI and creating Scriptly VS Code extension for AI agent hands-on work
+
 ### Features
 - Anchor navigation with sticky header and smooth scrolling
 - Mobile-friendly menu (hamburger) and responsive sections

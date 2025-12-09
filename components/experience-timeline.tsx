@@ -20,6 +20,7 @@ const EXPERIENCES: ExperienceItem[] = [
     period: "Aug 2024 – Present",
     current: true,
     achievements: [
+      "Currently developing a high-level ERP system for a US-based enterprise client (NDA)",
       "Engineered and optimized 50+ APIs supporting CRM operations for 500+ users",
       "Delivered 6 production modules with high availability",
       "Improved API response times by ~30% through query and index optimization",
