@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -76,8 +77,8 @@ export default function Home() {
                 My Journey
               </h3>
               <p className="text-slate-600 dark:text-slate-300 mb-6">
-                I&apos;m a dedicated full-stack developer with a passion for creating innovative solutions 
-                that bridge the gap between technology and user experience. With expertise in modern 
+                I&apos;m a dedicated full-stack developer with a passion for creating innovative solutions
+                that bridge the gap between technology and user experience. With expertise in modern
                 web frameworks and AI technologies, I love building applications that make a difference.
               </p>
               <div className="flex flex-wrap gap-2">
@@ -133,61 +134,83 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="group hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mb-4"></div>
-                <CardTitle>E-Commerce Platform</CardTitle>
+                <div className="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mb-4 flex items-center justify-center">
+                  <div className="text-white text-center">
+                    <div className="text-6xl font-bold mb-2">CRM</div>
+                    <div className="text-sm opacity-90">Backend System</div>
+                  </div>
+                </div>
+                <CardTitle>CRM System - Backend & System Design</CardTitle>
                 <CardDescription>
-                  Full-stack e-commerce solution with modern UI and payment integration
+                  Production-grade CRM with GraphQL, NestJS, PostgreSQL. 50+ APIs, RBAC, 500+ users
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">Next.js</Badge>
-                  <Badge variant="outline">Stripe</Badge>
+                  <Badge variant="outline">NestJS</Badge>
+                  <Badge variant="outline">GraphQL</Badge>
                   <Badge variant="outline">PostgreSQL</Badge>
+                  <Badge variant="outline">Docker</Badge>
                 </div>
-                <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
-                  View Project
-                </Button>
+                <Link href="/case-studies/crm-system">
+                  <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
+                    View Case Study
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
             <Card className="group hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="w-full h-48 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg mb-4"></div>
-                <CardTitle>AI Chat Application</CardTitle>
-                <CardDescription>
-                  Intelligent chat application powered by modern AI technologies
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">React</Badge>
-                  <Badge variant="outline">OpenAI</Badge>
-                  <Badge variant="outline">Socket.io</Badge>
+                <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg mb-4 flex items-center justify-center">
+                  <div className="text-white text-center">
+                    <div className="text-6xl font-bold mb-2">ERP</div>
+                    <div className="text-sm opacity-90">Frontend Platform</div>
+                  </div>
                 </div>
-                <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
-                  View Project
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg mb-4"></div>
-                <CardTitle>Portfolio Website</CardTitle>
+                <CardTitle>ERP SaaS Platform - Frontend Lead</CardTitle>
                 <CardDescription>
-                  Modern, responsive portfolio built with Next.js and Tailwind CSS
+                  Multi-module ERP for US client. Next.js, TypeScript, GraphQL. 10+ production screens
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
                   <Badge variant="outline">Next.js</Badge>
-                  <Badge variant="outline">Tailwind</Badge>
-                  <Badge variant="outline">Framer Motion</Badge>
+                  <Badge variant="outline">TypeScript</Badge>
+                  <Badge variant="outline">GraphQL</Badge>
                 </div>
-                <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
-                  View Project
-                </Button>
+                <Link href="/case-studies/erp-platform">
+                  <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
+                    View Case Study
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="w-full h-48 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg mb-4 flex items-center justify-center">
+                  <div className="text-white text-center">
+                    <div className="text-6xl font-bold mb-2">AI</div>
+                    <div className="text-sm opacity-90">LLM Integration</div>
+                  </div>
+                </div>
+                <CardTitle>AI & LLM Integration</CardTitle>
+                <CardDescription>
+                  RAG systems, AI agents, knowledge base ingestion, and production AI workflows
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <Badge variant="outline">OpenAI</Badge>
+                  <Badge variant="outline">RAG</Badge>
+                  <Badge variant="outline">Vector DB</Badge>
+                </div>
+                <a href="/llms.txt" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
+                    View AI Capabilities
+                  </Button>
+                </a>
               </CardContent>
             </Card>
           </div>

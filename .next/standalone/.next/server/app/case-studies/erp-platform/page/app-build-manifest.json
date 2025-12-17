@@ -1,0 +1,16 @@
+{
+  "pages": {
+    "/case-studies/erp-platform/page": [
+      "static/chunks/add00946a1f61ab3.js",
+      "static/chunks/a8d9018ddf980686.js",
+      "static/chunks/7aa274b0ba91d0c8.css",
+      "static/chunks/9ab4144c6da1f219.js",
+      "static/chunks/7be715a0e6a50087.js",
+      "static/chunks/9073c36d50d23276.js",
+      "static/chunks/d7691018c69d169f.js",
+      "static/chunks/a3aaa3501ee314ba.js",
+      "static/chunks/0bb78dd4bc0c00fb.js",
+      "static/chunks/turbopack-e440855ba3452270.js"
+    ]
+  }
+}

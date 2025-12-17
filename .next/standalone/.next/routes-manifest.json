@@ -60,6 +60,18 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/case-studies/crm-system",
+      "regex": "^/case\\-studies/crm\\-system(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/case\\-studies/crm\\-system(?:/)?$"
+    },
+    {
+      "page": "/case-studies/erp-platform",
+      "regex": "^/case\\-studies/erp\\-platform(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/case\\-studies/erp\\-platform(?:/)?$"
+    },
+    {
       "page": "/favicon.ico",
       "regex": "^/favicon\\.ico(?:/)?$",
       "routeKeys": {},

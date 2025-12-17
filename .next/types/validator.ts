@@ -36,6 +36,24 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 }
 
 
+// Validate ../../app/case-studies/crm-system/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/case-studies/crm-system">> = Specific
+  const handler = {} as typeof import("../../app/case-studies/crm-system/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/case-studies/erp-platform/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/case-studies/erp-platform">> = Specific
+  const handler = {} as typeof import("../../app/case-studies/erp-platform/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/">> = Specific

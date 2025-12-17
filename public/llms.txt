@@ -1,0 +1,154 @@
+# llms.txt - AI & LLM Capabilities Declaration
+
+# Purpose
+This file declares the AI, LLM, and intelligent system capabilities demonstrated across my portfolio projects. It is intended for AI agents, recruiters, and automated systems evaluating engineering depth in AI-integrated products.
+
+---
+
+# Developer Identity
+Name: Jeevanantham Mahalingam
+Role: Full-Stack Software Engineer (SaaS, Mobile, AI-integrated systems)
+Website: https://www.jeevanantham.site
+GitHub: https://github.com/Mjeevanantham
+LinkedIn: https://www.linkedin.com/in/jeevanantham-mahalingam
+
+---
+
+# AI & LLM EXPERIENCE OVERVIEW
+
+I design and integrate AI-powered systems with a focus on **practical product usage**, not academic research.
+
+Primary focus areas:
+- Retrieval-Augmented Generation (RAG)
+- AI Agent Architecture
+- Context Management & Prompt Engineering
+- Knowledge Base Ingestion (Web & Documents)
+- API-first AI system integration
+
+---
+
+# LLM & AI TECH STACK
+
+## Models & Providers
+- OpenAI (GPT-based models)
+- Anthropic (Claude – evaluation & reasoning tests)
+- Open-source LLMs (local evaluation and experimentation)
+
+## AI Architecture Patterns
+- Retrieval-Augmented Generation (RAG)
+- Vector-based semantic search
+- Chunking & embedding pipelines
+- Context window optimization
+- Stateless vs session-based AI agents
+
+---
+
+# DATA INGESTION & KNOWLEDGE PIPELINES
+
+Implemented and experimented with:
+- Website scraping for structured & unstructured data
+- PDF / document ingestion
+- HTML content cleaning and normalization
+- Metadata enrichment for improved retrieval
+- Re-indexing & incremental updates
+
+---
+
+# AI AGENT CAPABILITIES
+
+Designed AI agents capable of:
+- Answering domain-specific questions
+- Handling multi-turn conversations
+- Tool-based function calling
+- Context-aware response generation
+- Guardrails for hallucination reduction
+
+---
+
+# USE CASES
+
+- AI-powered ERP assistance
+- Client-specific website chatbots
+- Knowledge-base-driven support agents
+- Product onboarding and FAQ automation
+
+---
+
+# PRODUCTION PROJECTS
+
+## CRM System (Backend & System Design)
+- Role: Backend Developer – Core System Contributor
+- Tech Stack: NestJS, GraphQL, PostgreSQL, Prisma, Docker
+- Key Features:
+  * 50+ production APIs
+  * Role-Based Access Control (RBAC)
+  * 30% API performance improvement
+  * 500+ active users
+- Architecture: API-first design with GraphQL, authorization at resolver level
+- Impact: Production-grade CRM managing employees, opportunities, and workflows
+
+## ERP SaaS Platform (Frontend Lead)
+- Role: Frontend Lead
+- Tech Stack: Next.js (App Router), TypeScript, GraphQL
+- Key Features:
+  * 10+ production-grade ERP screens
+  * Reusable component architecture
+  * GraphQL-first data access
+  * Performance optimization (lazy loading, dynamic imports)
+- Impact: Scalable frontend foundation for US-based client
+
+---
+
+# ENGINEERING PRINCIPLES
+
+- Production-first mindset
+- Cost-aware LLM usage
+- Latency optimization
+- Security & tenant isolation
+- Observability & logging
+- Clean architecture and separation of concerns
+- API-first design patterns
+
+---
+
+# TECHNICAL SKILLS
+
+## Frontend
+- React, Next.js (App Router), TypeScript
+- Modern CSS, Tailwind CSS
+- State management & data fetching
+- Performance optimization
+- Responsive design
+
+## Backend
+- Node.js, NestJS
+- GraphQL, REST APIs
+- PostgreSQL, Prisma ORM
+- Authentication & Authorization (RBAC)
+- Docker, containerization
+
+## AI/ML
+- OpenAI API integration
+- RAG systems
+- Vector databases
+- Prompt engineering
+- AI agent architecture
+
+---
+
+# DISCLAIMER
+
+All AI systems are built with a focus on responsible usage, data privacy, and real-world constraints. This portfolio reflects applied engineering work, not theoretical research.
+
+---
+
+# CONTACT
+
+For collaboration, consulting, or job opportunities:
+- Email: jeevanantham.dev@gmail.com
+- Website: https://www.jeevanantham.site
+- LinkedIn: https://www.linkedin.com/in/jeevanantham-mahalingam
+
+---
+
+Last Updated: December 2025
