@@ -23,26 +23,6 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    id: "hrms",
-    title: "HRMS Mobile App",
-    short: "Flutter + NestJS platform streamlining attendance and leave management",
-    details:
-      "Leading the development of a comprehensive HRMS mobile application currently serving 60+ employees in my company. As the app project lead, I oversee end-to-end development from architecture to deployment, continuously rolling out new modules and features. The app includes attendance tracking, leave management, payroll integration, and employee self-service portals. I&apos;ve optimized performance, implemented robust security measures, and established CI/CD pipelines for seamless version releases.",
-    icon: "/globe.svg",
-    stack: ["Flutter", "NestJS", "PostgreSQL", "Firebase"],
-    role: "App Project Lead",
-    status: "ongoing",
-    priority: 1,
-    achievements: [
-      "Leading app development for 60+ active employees",
-      "Architected and deployed 8+ core HR modules",
-      "Optimized app performance and reduced load times by 40%",
-      "Established automated CI/CD pipeline for version releases",
-      "Implemented real-time notifications and offline capabilities",
-    ],
-    links: { demo: "#" },
-  },
-  {
     id: "landing-fine-tuned",
     title: "Landing Website",
     short: "SEO‑optimized marketing page achieving high conversion rate",
@@ -123,22 +103,6 @@ const PROJECTS: Project[] = [
       "Cut API response times by ~30%",
       "Added package recommendations and tenant‑aware time formatting",
       "Implemented tenant‑specific transactional email",
-    ],
-    links: { demo: "#" },
-  },
-  {
-    id: "crm",
-    title: "CRM System",
-    short: "GraphQL‑powered NestJS backend for customer data management",
-    details:
-      "Real‑time employee and opportunity management via GraphQL API. Dockerized and deployed with production‑grade workflows.",
-    icon: "/window.svg",
-    stack: ["NestJS", "GraphQL", "Docker"],
-    role: "Backend Engineer",
-    priority: 2,
-    achievements: [
-      "Designed and implemented RBAC across the application",
-      "Owned Dockerization and server management",
     ],
     links: { demo: "#" },
   },

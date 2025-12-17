@@ -331,26 +331,26 @@ export default function Home() {
 
             <Card className="group hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="w-full h-48 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg mb-4 flex items-center justify-center">
+                <div className="w-full h-48 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg mb-4 flex items-center justify-center">
                   <div className="text-white text-center">
-                    <div className="text-6xl font-bold mb-2">AI</div>
-                    <div className="text-sm opacity-90">LLM Integration</div>
+                    <div className="text-6xl font-bold mb-2">EXT</div>
+                    <div className="text-sm opacity-90">VS Code Extension</div>
                   </div>
                 </div>
-                <CardTitle>AI & LLM Integration</CardTitle>
+                <CardTitle>Scriptly - AI Agentic Workflows</CardTitle>
                 <CardDescription>
-                  RAG systems, AI agents, knowledge base ingestion, and production AI workflows
+                  VS Code extension for AI agentic works. Streamline your development with intelligent automation.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">OpenAI</Badge>
-                  <Badge variant="outline">RAG</Badge>
-                  <Badge variant="outline">Vector DB</Badge>
+                  <Badge variant="outline">VS Code API</Badge>
+                  <Badge variant="outline">TypeScript</Badge>
+                  <Badge variant="outline">AI Agents</Badge>
                 </div>
-                <a href="/llms.txt" target="_blank" rel="noopener noreferrer">
+                <a href="https://marketplace.visualstudio.com/items?itemName=jeeva-dev.scriptly" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="w-full group-hover:bg-slate-900 group-hover:text-white transition-colors">
-                    View AI Capabilities
+                    View on Marketplace
                   </Button>
                 </a>
               </CardContent>
@@ -359,6 +359,7 @@ export default function Home() {
 
           {/* Additional Projects Grid */}
           <ProjectsGrid />
+
         </div>
       </section>
 
