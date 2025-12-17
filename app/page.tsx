@@ -131,7 +131,7 @@ export default function Home() {
             Full‑Stack Developer (Next.js / NestJS / Flutter) — 2+ years building enterprise apps.
           </p>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto">
-            I'm Jeevanantham Mahalingam, a Full‑Stack and Flutter Developer leading mobile development at Aaludra Technology Solutions. I build production‑grade systems end‑to‑end — from scalable APIs in NestJS to smooth Flutter UIs. Currently delivering an HRMS app that supports 60+ employees daily.
+            I&apos;m Jeevanantham Mahalingam, a Full‑Stack and Flutter Developer leading mobile development at Aaludra Technology Solutions. I build production‑grade systems end‑to‑end — from scalable APIs in NestJS to smooth Flutter UIs. Currently delivering an HRMS app that supports 60+ employees daily.
           </p>
           <RotatingSpecialties />
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -200,7 +200,7 @@ export default function Home() {
             {/* Intro */}
             <div className="space-y-5">
               <p className="text-lg text-slate-700 dark:text-slate-300">
-                I'm a developer who enjoys translating complex business workflows into clean, scalable code. At Aaludra Technology Solutions, I lead the HRMS mobile track, designing and delivering complete modules — from structured NestJS backends to performant Flutter interfaces.
+                I&apos;m a developer who enjoys translating complex business workflows into clean, scalable code. At Aaludra Technology Solutions, I lead the HRMS mobile track, designing and delivering complete modules — from structured NestJS backends to performant Flutter interfaces.
               </p>
               <p className="text-lg text-slate-700 dark:text-slate-300">
                 I collaborate closely with our <span className="font-semibold">CEO</span>, <span className="font-semibold">solution architect</span>, and <span className="font-semibold">clients</span> to align on goals, de‑risk key decisions, and deliver measurable outcomes.
