@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Jeevanantham Mahalingam – Portfolio
 
-## Getting Started
+A modern Next.js portfolio with smooth in-page navigation, a project details modal, and a subtle cursor-follow color glow. Includes a contact form with email delivery and a dedicated Resume page.
 
-First, run the development server:
+### Recent Work
+- Currently developing a high-level ERP system for a US-based enterprise client (NDA protected)
+- Diving into AI and creating Scriptly VS Code extension for AI agent hands-on work
 
+### Features
+- Anchor navigation with sticky header and smooth scrolling
+- Mobile-friendly menu (hamburger) and responsive sections
+- Projects modal: click a project to see lightweight details
+- Subtle cursor-follow glow in the Projects grid
+- Contact form posting to `/api/contact` (Nodemailer)
+- Resume page at `/resume`
+
+### Tech Stack
+- Next.js 15 (App Router) + React 19
+- Tailwind CSS 4
+- Framer Motion for animations
+- GSAP ScrollTrigger for scroll-based effects
+- Zod for input validation
+- Nodemailer for email delivery
+
+### Getting Started
+1. Install dependencies:
+```bash
+npm ci
+```
+2. Create `.env.local` with the following (Gmail app password recommended):
+```bash
+GMAIL_USER="youraddress@gmail.com"
+GMAIL_APP_PASSWORD="your_app_password"
+```
+3. Run the dev server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Open http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Scripts
+- `npm run dev`: Start dev server
+- `npm run build`: Production build
+- `npm run start`: Start production server
+- `npm run lint`: Lint the project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Project Structure (key paths)
+- `app/page.tsx`: Landing page and sections
+- `components/projects-grid.tsx`: Project grid, modal, and glow
+- `components/contact-form.tsx`: Contact form with validation and states
+- `app/api/contact/route.ts`: Email sending endpoint
+- `app/resume/page.tsx`: Resume page
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Accessibility & UX
+- Focus-visible styles on interactive elements
+- `scroll-mt` offsets to avoid sticky header overlap
+- External links open in a new tab with `rel="noopener noreferrer"`
 
-## Learn More
+### Notes
+- To provide a downloadable resume, add `public/resume.pdf`. A Download button can be enabled on the Resume page.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### License
+MIT

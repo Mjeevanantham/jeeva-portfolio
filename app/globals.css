@@ -6,7 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-sora);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -43,6 +44,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Brand palette: Deep Space Blue + Electric Purple + Emerald accents */
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -51,7 +53,12 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  /* Primary gradient endpoints */
+  --brand-start: oklch(0.45 0.12 262); /* deep indigo-blue */
+  --brand-end: oklch(0.6 0.2 300);     /* electric purple */
+  --brand-accent: oklch(0.73 0.17 152); /* emerald */
+
+  --primary: var(--brand-start);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -63,11 +70,11 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: oklch(0.6 0.12 262);
+  --chart-2: oklch(0.73 0.17 152);
+  --chart-3: oklch(0.6 0.2 300);
+  --chart-4: oklch(0.85 0.2 95);
+  --chart-5: oklch(0.78 0.18 25);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -85,7 +92,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
+  --primary: var(--brand-end);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -113,10 +120,171 @@
 }
 
 @layer base {
+  html { scroll-behavior: smooth; }
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), var(--font-sans), ui-sans-serif, system-ui;
+    letter-spacing: -0.02em;
   }
 }
+
+@layer utilities {
+  @keyframes shine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  /* smooth spin with subtle 3D wobble using rotate3d */
+  @keyframes spin {
+    0% { transform: rotate(0deg) rotate3d(1, 1, 0, 0deg); }
+    25% { transform: rotate(90deg) rotate3d(1, 1, 0, 6deg); }
+    50% { transform: rotate(180deg) rotate3d(1, 1, 0, 0deg); }
+    75% { transform: rotate(270deg) rotate3d(1, 1, 0, -6deg); }
+    100% { transform: rotate(360deg) rotate3d(1, 1, 0, 0deg); }
+  }
+
+  .bg-brand-gradient {
+    background-image: linear-gradient(90deg, var(--brand-start), var(--brand-end));
+  }
+
+  .text-brand-gradient {
+    background-image: linear-gradient(90deg, var(--brand-start), var(--brand-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* === Alfred widget overrides (host-side) === */
+/* Ensure our rules outrank the widget's injected styles */
+html body .alfred-widget-panel { overflow: hidden !important; }
+html body .alfred-widget-content { overflow: hidden !important; }
+html body .alfred-widget-chat { overflow-y: auto !important; }
+/* Ensure back-to-top sits above the widget's toggle/fab while avoiding overlap */
+html body .alfred-widget-toggle { z-index: 100 !important; }
+html body .alfred-widget { z-index: 100 !important; }
+/* Our back-to-top uses z-50. Keep widget above; we offset button position on both breakpoints. */
+
+/* Fallback icons when Font Awesome isn't available */
+html body .alfred-widget .fas { display: none !important; }
+html body .alfred-widget-toggle { position: relative; }
+/* JIA monogram badge on the chat toggle */
+html body .alfred-widget-toggle::before {
+  content: "JIA";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  background-image: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  color: white;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+/* JIA monogram for assistant avatar */
+html body .alfred-widget-avatar { position: relative; }
+html body .alfred-widget-avatar::before {
+  content: "JIA";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background-image: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  color: white;
+  font-weight: 800;
+  font-size: 10px;
+}
+html body .alfred-widget-message-avatar { position: relative; }
+html body .alfred-widget-message.alfred .alfred-widget-message-avatar::before {
+  content: "JIA";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background-image: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  color: white;
+  font-weight: 800;
+  font-size: 10px;
+}
+html body .alfred-widget-message.user .alfred-widget-message-avatar::before {
+  content: "You";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: oklch(0.6 0 0 / 0.15);
+  color: inherit;
+  font-weight: 700;
+  font-size: 10px;
+}
+
+/* Close button visible */
+html body .alfred-widget-close {
+  color: #fff !important;
+}
+html body .alfred-widget-close::before {
+  content: "✕";
+  font-size: 18px;
+}
+
+/* Send button icon */
+html body .alfred-widget-send::before {
+  content: "➤";
+  font-size: 14px;
+}
+
+/* Quick suggestion chips with icons */
+html body .alfred-widget-suggestion { display: inline-flex; align-items: center; gap: 6px; }
+html body .alfred-widget-suggestion::before { content: "🔹"; font-size: 0.95em; }
+
+/* Center the placeholder text horizontally */
+html body .alfred-widget-input::placeholder { text-align: center; }
+
+/* Clamp styling for long bot messages */
+html body .alfred-message-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+html body .alfred-show-toggle {
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.85;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  /* Allow widget's own open/close transitions; only ensure full width */
+  html body .alfred-widget-panel { width: 100% !important; }
+  html body .alfred-widget-toggle { width: 54px !important; height: 54px !important; }
+}
+
+/* Fullscreen success portal stacking over any widget */
+.contact-success-portal { z-index: 120; }
