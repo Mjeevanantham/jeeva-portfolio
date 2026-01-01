@@ -12,6 +12,7 @@ import RotatingSpecialties from "@/components/rotating-specialties";
 import ExperienceTimeline from "@/components/experience-timeline";
 import SkillsBars from "@/components/skills-bars";
 import GithubActivity from "@/components/github-activity";
+import { getCurrentYear } from "@/lib/utils";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -402,7 +403,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-slate-400">© 2025 Jeevanantham Mahalingam.</p>
+          <p className="text-slate-400">© {getCurrentYear()} Jeevanantham Mahalingam.</p>
           <div className="flex justify-center gap-4 mt-4">
             <a href="https://github.com/Mjeevanantham" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">GitHub</a>
             <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">LinkedIn</a>
