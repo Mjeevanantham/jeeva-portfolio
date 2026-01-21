@@ -28,7 +28,9 @@ import { gsap } from "gsap";
 
 interface HeroSectionProps {
   className?: string;
-  videoId?: string;
+  /**
+   * YouTube embed URL (e.g. https://www.youtube.com/embed/<id>)
+   */
   videoUrl?: string;
 }
 
@@ -68,7 +70,6 @@ const gradientVariants = {
 
 export default function HeroSection({
   className,
-  videoId,
   videoUrl,
 }: HeroSectionProps) {
   const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false);
@@ -126,6 +127,7 @@ export default function HeroSection({
   };
 
   const handleOpenVideo = () => {
+    if (!videoUrl) return;
     setIsVideoModalOpen(true);
   };
 
@@ -260,6 +262,7 @@ export default function HeroSection({
                   variant="outline"
                   className="border-2 border-slate-300 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-500 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-900 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   aria-label="Watch introduction video"
+                  disabled={!videoUrl}
                 >
                   <span className="flex items-center gap-2">
                     <Play className="w-4 h-4" />
@@ -291,13 +294,14 @@ export default function HeroSection({
       </section>
 
       {/* Video Modal */}
-      <VideoModal
-        isOpen={isVideoModalOpen}
-        onClose={handleCloseVideo}
-        videoId={videoId}
-        videoUrl={videoUrl}
-        title="Introduction Video"
-      />
+      {videoUrl && (
+        <VideoModal
+          isOpen={isVideoModalOpen}
+          onClose={handleCloseVideo}
+          videoUrl={videoUrl}
+          title="Introduction Video"
+        />
+      )}
     </>
   );
 }

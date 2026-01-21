@@ -18,17 +18,13 @@ export interface VideoModalProps {
    */
   onClose: () => void;
   /**
-   * YouTube video ID or video URL
+   * YouTube embed URL (e.g. https://www.youtube.com/embed/<id>)
    */
-  videoId?: string;
+  videoUrl: string;
   /**
-   * Video URL (alternative to videoId)
+   * Modal title (used for accessibility)
    */
-  videoUrl?: string;
-  /**
-   * Modal title
-   */
-  title?: string;
+  title: string;
 }
 
 /**
@@ -57,13 +53,15 @@ export interface VideoModalProps {
 export function VideoModal({
   isOpen,
   onClose,
-  videoId,
   videoUrl,
-  title = "Introduction Video",
+  title,
 }: VideoModalProps) {
   const modalRef = React.useRef<HTMLDivElement>(null);
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
   const [mounted, setMounted] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [hasError, setHasError] = React.useState(false);
+  const returnFocusRef = React.useRef<HTMLElement | null>(null);
 
   // Handle mount for portal
   React.useEffect(() => {
@@ -73,6 +71,13 @@ export function VideoModal({
   // Focus trap and escape key handling
   React.useEffect(() => {
     if (!isOpen) return;
+
+    // Capture current focus so we can restore it on close
+    returnFocusRef.current = document.activeElement as HTMLElement | null;
+
+    // Reset loading/error state each time we open
+    setIsLoading(true);
+    setHasError(false);
 
     // Focus close button on open
     const timer = setTimeout(() => {
@@ -95,6 +100,13 @@ export function VideoModal({
       clearTimeout(timer);
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "";
+
+      // Restore focus to the element that triggered the modal (if still in DOM)
+      const el = returnFocusRef.current;
+      if (el && document.contains(el)) {
+        el.focus();
+      }
+      returnFocusRef.current = null;
     };
   }, [isOpen, onClose]);
 
@@ -111,6 +123,13 @@ export function VideoModal({
 
     const handleTab = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return;
+
+      // If nothing focusable, keep focus on close button
+      if (!firstElement || !lastElement) {
+        e.preventDefault();
+        closeButtonRef.current?.focus();
+        return;
+      }
 
       if (e.shiftKey) {
         if (document.activeElement === firstElement) {
@@ -129,21 +148,23 @@ export function VideoModal({
     return () => document.removeEventListener("keydown", handleTab);
   }, [isOpen]);
 
-  // Get YouTube embed URL
-  const getYouTubeEmbedUrl = (id: string) => {
-    return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
-  };
-
-  // Get video source
+  // Validate / normalize embed URL
   const videoSrc = React.useMemo(() => {
-    if (videoId) {
-      return getYouTubeEmbedUrl(videoId);
+    try {
+      const url = new URL(videoUrl);
+      // Basic allowlist: YouTube embed or nocookie embed
+      const allowedHosts = new Set(["www.youtube.com", "youtube.com", "www.youtube-nocookie.com", "youtube-nocookie.com"]);
+      if (!allowedHosts.has(url.hostname)) return "";
+      if (!url.pathname.startsWith("/embed/")) return "";
+      // Ensure autoplay and modest branding; preserve existing params
+      url.searchParams.set("autoplay", "1");
+      url.searchParams.set("rel", "0");
+      url.searchParams.set("modestbranding", "1");
+      return url.toString();
+    } catch {
+      return "";
     }
-    if (videoUrl) {
-      return videoUrl;
-    }
-    return "";
-  }, [videoId, videoUrl]);
+  }, [videoUrl]);
 
   if (!mounted) return null;
 
@@ -172,9 +193,9 @@ export function VideoModal({
           {/* Modal Content */}
           <motion.div
             ref={modalRef}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{
               type: "spring",
               stiffness: 300,
@@ -203,19 +224,53 @@ export function VideoModal({
 
             {/* Video Player */}
             <div className="relative w-full aspect-video bg-black">
-              {videoSrc ? (
+              {/* Loading overlay */}
+              {isLoading && !hasError && videoSrc && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/40">
+                  <div className="flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-sm text-white backdrop-blur">
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" aria-hidden="true" />
+                    <span>Loading video…</span>
+                  </div>
+                </div>
+              )}
+
+              {hasError && (
+                <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
+                  <div className="max-w-md text-slate-200">
+                    <p className="text-base font-semibold text-white">Couldn&apos;t load the video.</p>
+                    <p className="mt-2 text-sm text-slate-300">
+                      Please check the embed URL and try again.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {!videoSrc && (
+                <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
+                  <div className="max-w-md text-slate-200">
+                    <p className="text-base font-semibold text-white">Invalid video URL.</p>
+                    <p className="mt-2 text-sm text-slate-300">
+                      Provide a YouTube <span className="font-mono">/embed/</span> URL (or nocookie embed URL).
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {videoSrc && !hasError && (
                 <iframe
                   src={videoSrc}
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute inset-0 h-full w-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   title={title}
                   loading="lazy"
+                  onLoad={() => setIsLoading(false)}
+                  // Browsers may not fire onError reliably for iframes, but keep it for best effort.
+                  onError={() => {
+                    setHasError(true);
+                    setIsLoading(false);
+                  }}
                 />
-              ) : (
-                <div className="flex items-center justify-center h-full text-slate-400">
-                  <p>No video source provided</p>
-                </div>
               )}
             </div>
           </motion.div>

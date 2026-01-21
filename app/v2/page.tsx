@@ -45,8 +45,9 @@ export default function V2Home() {
 
       {/* Premium Hero Section */}
       <HeroSection 
-        videoId="YOUR_VIDEO_ID" // Replace with your YouTube video ID
-        // Or use videoUrl="https://example.com/video.mp4"
+        // Replace with your YouTube embed URL
+        // Example: https://www.youtube.com/embed/dQw4w9WgXcQ
+        videoUrl="https://www.youtube.com/embed/YOUR_VIDEO_ID"
       />
 
       {/* Placeholder sections for future development - Using new layout system */}
