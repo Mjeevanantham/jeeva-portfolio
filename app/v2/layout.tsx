@@ -17,11 +17,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Brand typography: Inter for body, Sora for display
+// V2 Typography: Inter as primary font with optimal loading
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "swap",
+  display: "swap", // font-display: swap for performance
+  preload: true,
+  adjustFontFallback: true,
+  fallback: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
 });
 
 const sora = Sora({

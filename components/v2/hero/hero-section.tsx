@@ -5,6 +5,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download } from "lucide-react";
 import Link from "next/link";
+import { H1 } from "@/components/v2/typography/heading";
+import { BRAND_COLORS } from "@/lib/v2/design-system";
 
 /**
  * Premium Hero Section for V2 Portfolio
@@ -108,10 +110,10 @@ export default function HeroSection({ className }: HeroSectionProps) {
           background: `
             linear-gradient(
               -45deg,
-              ${COLORS.primary.blue}15,
-              ${COLORS.primary.purple}15,
-              ${COLORS.primary.emerald}15,
-              ${COLORS.primary.blue}15
+              ${BRAND_COLORS.primary.DEFAULT}15,
+              ${BRAND_COLORS.secondary.DEFAULT}15,
+              ${BRAND_COLORS.accent.DEFAULT}15,
+              ${BRAND_COLORS.primary.DEFAULT}15
             )
           `,
           backgroundSize: "400% 400%",
@@ -155,14 +157,14 @@ export default function HeroSection({ className }: HeroSectionProps) {
 
           {/* Main Heading with Gradient */}
           <motion.div variants={itemVariants}>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+            <H1 
+              responsive 
+              gradient 
+              className="mb-6"
+            >
               <span className="block mb-2">Jeevanantham</span>
-              <span className="block">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
-                  Mahalingam
-                </span>
-              </span>
-            </h1>
+              <span className="block">Mahalingam</span>
+            </H1>
           </motion.div>
 
           {/* Rotating Specialties */}
