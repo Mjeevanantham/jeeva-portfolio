@@ -1,5 +1,5 @@
 import Script from "next/script";
-import Link from "next/link";
+import HeroSection from "@/components/v2/hero/hero-section";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site";
 
@@ -42,28 +42,8 @@ export default function V2Home() {
         ])}
       </Script>
 
-      {/* Hero Section - Coming Soon */}
-      <section id="hero" className="min-h-screen flex items-center justify-center">
-        <div className="text-center space-y-6 px-4">
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
-            Portfolio V2
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300">
-            Coming Soon - Premium Experience
-          </p>
-          <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
-            Building an enhanced portfolio with modern animations, improved UX, and premium design.
-          </p>
-          <div className="pt-8">
-            <Link
-              href="/"
-              className="inline-block px-6 py-3 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors"
-            >
-              View V1 Portfolio
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Premium Hero Section */}
+      <HeroSection />
 
       {/* Placeholder sections for future development */}
       <section id="about" className="py-20 px-4">
