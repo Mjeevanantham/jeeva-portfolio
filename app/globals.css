@@ -42,23 +42,136 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Brand Colors */
+  --color-brand-primary: #2563eb;
+  --color-brand-primary-50: #eff6ff;
+  --color-brand-primary-100: #dbeafe;
+  --color-brand-primary-200: #bfdbfe;
+  --color-brand-primary-300: #93c5fd;
+  --color-brand-primary-400: #60a5fa;
+  --color-brand-primary-500: #2563eb;
+  --color-brand-primary-600: #1d4ed8;
+  --color-brand-primary-700: #1e40af;
+  --color-brand-primary-800: #1e3a8a;
+  --color-brand-primary-900: #1e3a8a;
+  --color-brand-primary-950: #172554;
+  
+  --color-brand-secondary: #7c3aed;
+  --color-brand-secondary-50: #faf5ff;
+  --color-brand-secondary-100: #f3e8ff;
+  --color-brand-secondary-200: #e9d5ff;
+  --color-brand-secondary-300: #d8b4fe;
+  --color-brand-secondary-400: #c084fc;
+  --color-brand-secondary-500: #7c3aed;
+  --color-brand-secondary-600: #9333ea;
+  --color-brand-secondary-700: #7e22ce;
+  --color-brand-secondary-800: #6b21a8;
+  --color-brand-secondary-900: #581c87;
+  --color-brand-secondary-950: #3b0764;
+  
+  --color-brand-accent: #10b981;
+  --color-brand-accent-50: #ecfdf5;
+  --color-brand-accent-100: #d1fae5;
+  --color-brand-accent-200: #a7f3d0;
+  --color-brand-accent-300: #6ee7b7;
+  --color-brand-accent-400: #34d399;
+  --color-brand-accent-500: #10b981;
+  --color-brand-accent-600: #059669;
+  --color-brand-accent-700: #047857;
+  --color-brand-accent-800: #065f46;
+  --color-brand-accent-900: #064e3b;
+  --color-brand-accent-950: #022c22;
+  
+  /* Neutral Colors (Slate Scale) */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
 }
 
-/* Brand palette: Deep Space Blue + Electric Purple + Emerald accents */
+/* V2 Design System - Brand Colors & Theme Variables */
 :root {
   --radius: 0.625rem;
+  
+  /* Brand Colors - Primary (Blue) */
+  --brand-primary: #2563eb;
+  --brand-primary-50: #eff6ff;
+  --brand-primary-100: #dbeafe;
+  --brand-primary-200: #bfdbfe;
+  --brand-primary-300: #93c5fd;
+  --brand-primary-400: #60a5fa;
+  --brand-primary-500: #2563eb;
+  --brand-primary-600: #1d4ed8;
+  --brand-primary-700: #1e40af;
+  --brand-primary-800: #1e3a8a;
+  --brand-primary-900: #1e3a8a;
+  --brand-primary-950: #172554;
+  
+  /* Brand Colors - Secondary (Purple) */
+  --brand-secondary: #7c3aed;
+  --brand-secondary-50: #faf5ff;
+  --brand-secondary-100: #f3e8ff;
+  --brand-secondary-200: #e9d5ff;
+  --brand-secondary-300: #d8b4fe;
+  --brand-secondary-400: #c084fc;
+  --brand-secondary-500: #7c3aed;
+  --brand-secondary-600: #9333ea;
+  --brand-secondary-700: #7e22ce;
+  --brand-secondary-800: #6b21a8;
+  --brand-secondary-900: #581c87;
+  --brand-secondary-950: #3b0764;
+  
+  /* Brand Colors - Accent (Green) */
+  --brand-accent: #10b981;
+  --brand-accent-50: #ecfdf5;
+  --brand-accent-100: #d1fae5;
+  --brand-accent-200: #a7f3d0;
+  --brand-accent-300: #6ee7b7;
+  --brand-accent-400: #34d399;
+  --brand-accent-500: #10b981;
+  --brand-accent-600: #059669;
+  --brand-accent-700: #047857;
+  --brand-accent-800: #065f46;
+  --brand-accent-900: #064e3b;
+  --brand-accent-950: #022c22;
+  
+  /* Neutral Colors (Slate Scale) */
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+  
+  /* Gradient Definitions */
+  --gradient-brand: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --gradient-brand-reverse: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+  --gradient-brand-with-accent: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #10b981 100%);
+  --gradient-brand-radial: radial-gradient(circle at center, #2563eb 0%, #7c3aed 100%);
+  
+  /* Legacy OKLCH variables for backward compatibility */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  /* Primary gradient endpoints */
-  --brand-start: oklch(0.45 0.12 262); /* deep indigo-blue */
-  --brand-end: oklch(0.6 0.2 300);     /* electric purple */
-  --brand-accent: oklch(0.73 0.17 152); /* emerald */
+  --brand-start: oklch(0.45 0.12 262);
+  --brand-end: oklch(0.6 0.2 300);
+  --brand-accent-oklch: oklch(0.73 0.17 152);
 
-  --primary: var(--brand-start);
+  --primary: var(--brand-primary);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -86,13 +199,34 @@
 }
 
 .dark {
+  /* Dark Mode - Inverted Neutral Scale for better contrast */
+  --neutral-50: #0f172a;  /* Darkest */
+  --neutral-100: #1e293b;  /* Dark */
+  --neutral-200: #334155;  /* Dark medium */
+  --neutral-300: #475569;  /* Medium dark */
+  --neutral-400: #64748b;  /* Medium */
+  --neutral-500: #94a3b8;  /* Medium light */
+  --neutral-600: #cbd5e1;  /* Light medium */
+  --neutral-700: #e2e8f0;  /* Light */
+  --neutral-800: #f1f5f9;  /* Lighter */
+  --neutral-900: #f8fafc;  /* Lightest */
+  
+  /* Dark Mode - Adjusted Brand Colors for better visibility */
+  --brand-primary: #60a5fa;      /* Lighter blue for dark mode */
+  --brand-primary-600: #93c5fd;   /* Even lighter for contrast */
+  --brand-secondary: #c084fc;    /* Lighter purple for dark mode */
+  --brand-secondary-600: #d8b4fe; /* Even lighter for contrast */
+  --brand-accent: #34d399;        /* Lighter green for dark mode */
+  --brand-accent-600: #6ee7b7;   /* Even lighter for contrast */
+  
+  /* Legacy OKLCH variables */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: var(--brand-end);
+  --primary: var(--brand-secondary-600);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -150,16 +284,114 @@
     100% { transform: rotate(360deg) rotate3d(1, 1, 0, 0deg); }
   }
 
+  /* Brand Gradient Utilities */
   .bg-brand-gradient {
-    background-image: linear-gradient(90deg, var(--brand-start), var(--brand-end));
+    background-image: var(--gradient-brand);
+  }
+  
+  .bg-brand-gradient-reverse {
+    background-image: var(--gradient-brand-reverse);
+  }
+  
+  .bg-brand-gradient-with-accent {
+    background-image: var(--gradient-brand-with-accent);
+  }
+  
+  .bg-brand-gradient-radial {
+    background-image: var(--gradient-brand-radial);
   }
 
   .text-brand-gradient {
-    background-image: linear-gradient(90deg, var(--brand-start), var(--brand-end));
+    background-image: var(--gradient-brand);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
+  
+  .text-brand-gradient-reverse {
+    background-image: var(--gradient-brand-reverse);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .text-brand-gradient-with-accent {
+    background-image: var(--gradient-brand-with-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* Brand Color Utilities */
+  .text-brand-primary {
+    color: var(--brand-primary);
+  }
+  
+  .text-brand-secondary {
+    color: var(--brand-secondary);
+  }
+  
+  .text-brand-accent {
+    color: var(--brand-accent);
+  }
+  
+  .bg-brand-primary {
+    background-color: var(--brand-primary);
+  }
+  
+  .bg-brand-secondary {
+    background-color: var(--brand-secondary);
+  }
+  
+  .bg-brand-accent {
+    background-color: var(--brand-accent);
+  }
+  
+  .border-brand-primary {
+    border-color: var(--brand-primary);
+  }
+  
+  .border-brand-secondary {
+    border-color: var(--brand-secondary);
+  }
+  
+  .border-brand-accent {
+    border-color: var(--brand-accent);
+  }
+  
+  /* Neutral Color Utilities */
+  .bg-neutral-50 { background-color: var(--neutral-50); }
+  .bg-neutral-100 { background-color: var(--neutral-100); }
+  .bg-neutral-200 { background-color: var(--neutral-200); }
+  .bg-neutral-300 { background-color: var(--neutral-300); }
+  .bg-neutral-400 { background-color: var(--neutral-400); }
+  .bg-neutral-500 { background-color: var(--neutral-500); }
+  .bg-neutral-600 { background-color: var(--neutral-600); }
+  .bg-neutral-700 { background-color: var(--neutral-700); }
+  .bg-neutral-800 { background-color: var(--neutral-800); }
+  .bg-neutral-900 { background-color: var(--neutral-900); }
+  
+  .text-neutral-50 { color: var(--neutral-50); }
+  .text-neutral-100 { color: var(--neutral-100); }
+  .text-neutral-200 { color: var(--neutral-200); }
+  .text-neutral-300 { color: var(--neutral-300); }
+  .text-neutral-400 { color: var(--neutral-400); }
+  .text-neutral-500 { color: var(--neutral-500); }
+  .text-neutral-600 { color: var(--neutral-600); }
+  .text-neutral-700 { color: var(--neutral-700); }
+  .text-neutral-800 { color: var(--neutral-800); }
+  .text-neutral-900 { color: var(--neutral-900); }
+  
+  .border-neutral-50 { border-color: var(--neutral-50); }
+  .border-neutral-100 { border-color: var(--neutral-100); }
+  .border-neutral-200 { border-color: var(--neutral-200); }
+  .border-neutral-300 { border-color: var(--neutral-300); }
+  .border-neutral-400 { border-color: var(--neutral-400); }
+  .border-neutral-500 { border-color: var(--neutral-500); }
+  .border-neutral-600 { border-color: var(--neutral-600); }
+  .border-neutral-700 { border-color: var(--neutral-700); }
+  .border-neutral-800 { border-color: var(--neutral-800); }
+  .border-neutral-900 { border-color: var(--neutral-900); }
 }
 
 /* === Alfred widget overrides (host-side) === */

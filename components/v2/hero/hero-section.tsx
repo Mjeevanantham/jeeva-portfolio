@@ -3,9 +3,8 @@
 import * as React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Play, Download } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import Link from "next/link";
-import { COLORS, ANIMATION } from "@/lib/v2/constants";
 
 /**
  * Premium Hero Section for V2 Portfolio
@@ -68,7 +67,6 @@ const gradientVariants = {
 
 export default function HeroSection({ className }: HeroSectionProps) {
   const [specialtyIndex, setSpecialtyIndex] = React.useState(0);
-  const [isTyping, setIsTyping] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -86,13 +84,6 @@ export default function HeroSection({ className }: HeroSectionProps) {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
-
-  // Typing effect trigger
-  React.useEffect(() => {
-    setIsTyping(true);
-    const timer = setTimeout(() => setIsTyping(false), 2000);
-    return () => clearTimeout(timer);
-  }, [specialtyIndex]);
 
   const handleScrollToAbout = () => {
     const aboutSection = document.getElementById("about");

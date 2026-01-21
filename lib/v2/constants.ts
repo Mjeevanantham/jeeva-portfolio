@@ -1,6 +1,8 @@
 /**
  * V2-specific constants
  * Keep V2 configuration separate from V1
+ * 
+ * Note: For comprehensive design system colors, see lib/v2/design-system.ts
  */
 
 export const V2_CONFIG = {
@@ -9,6 +11,10 @@ export const V2_CONFIG = {
   version: "2.0.0",
 } as const;
 
+/**
+ * @deprecated Use DESIGN_SYSTEM from lib/v2/design-system.ts instead
+ * Kept for backward compatibility
+ */
 export const COLORS = {
   primary: {
     blue: "#2563eb",
