@@ -1,5 +1,6 @@
 import Script from "next/script";
 import HeroSection from "@/components/v2/hero/hero-section";
+import { Section } from "@/components/v2/layout";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site";
 
@@ -45,41 +46,31 @@ export default function V2Home() {
       {/* Premium Hero Section */}
       <HeroSection />
 
-      {/* Placeholder sections for future development */}
-      <section id="about" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">About</h2>
-          <p className="text-slate-600 dark:text-slate-300">Section coming soon...</p>
-        </div>
-      </section>
+      {/* Placeholder sections for future development - Using new layout system */}
+      <Section id="about">
+        <h2 className="text-3xl font-bold mb-4 text-center">About</h2>
+        <p className="text-slate-600 dark:text-slate-300 text-center">Section coming soon...</p>
+      </Section>
 
-      <section id="projects" className="py-20 px-4 bg-slate-100 dark:bg-slate-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Projects</h2>
-          <p className="text-slate-600 dark:text-slate-300">Section coming soon...</p>
-        </div>
-      </section>
+      <Section id="projects" variant="muted">
+        <h2 className="text-3xl font-bold mb-4 text-center">Projects</h2>
+        <p className="text-slate-600 dark:text-slate-300 text-center">Section coming soon...</p>
+      </Section>
 
-      <section id="experience" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Experience</h2>
-          <p className="text-slate-600 dark:text-slate-300">Section coming soon...</p>
-        </div>
-      </section>
+      <Section id="experience">
+        <h2 className="text-3xl font-bold mb-4 text-center">Experience</h2>
+        <p className="text-slate-600 dark:text-slate-300 text-center">Section coming soon...</p>
+      </Section>
 
-      <section id="skills" className="py-20 px-4 bg-slate-100 dark:bg-slate-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Skills</h2>
-          <p className="text-slate-600 dark:text-slate-300">Section coming soon...</p>
-        </div>
-      </section>
+      <Section id="skills" variant="muted">
+        <h2 className="text-3xl font-bold mb-4 text-center">Skills</h2>
+        <p className="text-slate-600 dark:text-slate-300 text-center">Section coming soon...</p>
+      </Section>
 
-      <section id="contact" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Contact</h2>
-          <p className="text-slate-600 dark:text-slate-300">Section coming soon...</p>
-        </div>
-      </section>
+      <Section id="contact">
+        <h2 className="text-3xl font-bold mb-4 text-center">Contact</h2>
+        <p className="text-slate-600 dark:text-slate-300 text-center">Section coming soon...</p>
+      </Section>
     </div>
   );
 }
