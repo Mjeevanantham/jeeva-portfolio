@@ -44,7 +44,10 @@ export default function V2Home() {
       </Script>
 
       {/* Premium Hero Section */}
-      <HeroSection />
+      <HeroSection 
+        videoId="YOUR_VIDEO_ID" // Replace with your YouTube video ID
+        // Or use videoUrl="https://example.com/video.mp4"
+      />
 
       {/* Placeholder sections for future development - Using new layout system */}
       <Section id="about">
