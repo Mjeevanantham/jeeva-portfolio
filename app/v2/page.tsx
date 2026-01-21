@@ -1,6 +1,7 @@
 import Script from "next/script";
 import HeroSection from "@/components/v2/hero/hero-section";
 import { Section } from "@/components/v2/layout";
+import AboutSection from "@/components/v2/about/about-section";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site";
 
@@ -51,10 +52,7 @@ export default function V2Home() {
       />
 
       {/* Placeholder sections for future development - Using new layout system */}
-      <Section id="about">
-        <h2 className="text-3xl font-bold mb-4 text-center">About</h2>
-        <p className="text-slate-600 dark:text-slate-300 text-center">Section coming soon...</p>
-      </Section>
+      <AboutSection />
 
       <Section id="projects" variant="muted">
         <h2 className="text-3xl font-bold mb-4 text-center">Projects</h2>
