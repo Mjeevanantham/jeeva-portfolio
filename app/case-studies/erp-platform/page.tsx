@@ -79,13 +79,17 @@ export default function ERPCaseStudy() {
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">System Architecture</h2>
                     <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-8 border border-slate-200 dark:border-slate-700">
-                        <Image
-                            src="/erp-architecture.png"
-                            alt="ERP Platform Architecture"
-                            width={800}
-                            height={600}
-                            className="w-full h-auto rounded-lg"
-                        />
+                        <div className="relative mx-auto" style={{ maxWidth: '512px', width: '100%' }}>
+                            <Image
+                                src="/erp-architecture.png"
+                                alt="ERP Platform Architecture"
+                                width={512}
+                                height={512}
+                                className="w-full h-auto rounded-lg"
+                                priority
+                                sizes="(max-width: 768px) 100vw, 512px"
+                            />
+                        </div>
                     </div>
                 </div>
             </section>

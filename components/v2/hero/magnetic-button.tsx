@@ -89,7 +89,8 @@ export function MagneticButton({
         transformStyle: "preserve-3d",
       }}
       whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.92 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       <motion.div
         style={{

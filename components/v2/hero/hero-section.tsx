@@ -7,11 +7,18 @@ import { ArrowDown, Play } from "lucide-react";
 import Link from "next/link";
 import { H1 } from "@/components/v2/typography/heading";
 import { BRAND_COLORS } from "@/lib/v2/design-system";
-import { VideoModal } from "@/components/v2/modal/video-modal";
 import RotatingSpecialtiesV2 from "./rotating-specialties-v2";
 import { MagneticButton } from "./magnetic-button";
 import { useEffect } from "react";
 import { gsap } from "gsap";
+import dynamic from "next/dynamic";
+import { ModalSkeleton } from "@/components/v2/loading/modal-skeleton";
+
+// Dynamic import for VideoModal - only loads when modal is opened
+const VideoModal = dynamic(() => import("@/components/v2/modal/video-modal").then((mod) => ({ default: mod.VideoModal })), {
+  loading: () => <ModalSkeleton />,
+  ssr: false,
+});
 
 /**
  * Premium Hero Section for V2 Portfolio
@@ -82,7 +89,7 @@ export default function HeroSection({
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, -30]);
 
   // GSAP parallax for background gradient
   useEffect(() => {
@@ -140,23 +147,23 @@ export default function HeroSection({
       <section
         ref={containerRef}
         id="hero"
-        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${className || ""}`}
+        className={`relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/20 ${className || ""}`}
         aria-label="Hero section"
       >
         {/* Animated Gradient Background with Parallax */}
         <motion.div
           ref={backgroundRef}
-          className="absolute inset-0 -z-10"
+          className="absolute inset-0 -z-10 opacity-60 dark:opacity-40"
           variants={gradientVariants}
           animate="animate"
           style={{
             background: `
               linear-gradient(
                 -45deg,
-                ${BRAND_COLORS.primary.DEFAULT}15,
-                ${BRAND_COLORS.secondary.DEFAULT}15,
-                ${BRAND_COLORS.accent.DEFAULT}15,
-                ${BRAND_COLORS.primary.DEFAULT}15
+                ${BRAND_COLORS.primary.DEFAULT}08,
+                ${BRAND_COLORS.secondary.DEFAULT}08,
+                ${BRAND_COLORS.accent.DEFAULT}08,
+                ${BRAND_COLORS.primary.DEFAULT}08
               )
             `,
             backgroundSize: "400% 400%",
@@ -165,26 +172,26 @@ export default function HeroSection({
 
         {/* Animated Grid Pattern */}
         <div
-          className="absolute inset-0 -z-10 opacity-30 dark:opacity-10"
+          className="absolute inset-0 -z-10 opacity-20 dark:opacity-5"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px)
             `,
-            backgroundSize: "50px 50px",
+            backgroundSize: "60px 60px",
           }}
         />
 
         {/* Content Container */}
         <motion.div
           style={{ opacity, scale, y }}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center"
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 text-center"
         >
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="space-y-6 md:space-y-8"
+            className="w-full space-y-6 md:space-y-8"
           >
             {/* Greeting */}
             <motion.div variants={itemVariants} data-animate>
@@ -192,7 +199,7 @@ export default function HeroSection({
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg md:text-xl font-medium text-slate-600 dark:text-slate-400"
+                className="text-lg md:text-xl font-semibold text-brand-primary-600 dark:text-brand-primary-400"
               >
                 Hey, I&apos;m Jeeva
               </motion.p>
@@ -216,8 +223,9 @@ export default function HeroSection({
 
             {/* Description */}
             <motion.div variants={itemVariants} data-animate>
-              <p className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-slate-600 dark:text-slate-400 leading-relaxed px-4">
+              <p className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-slate-700 dark:text-slate-300 leading-relaxed px-4 font-light">
                 I build scalable, performant applications with modern tech stacks.
+                <br className="hidden sm:block" />
                 Specializing in AI integration, clean architecture, and delivering
                 exceptional user experiences.
               </p>
@@ -265,7 +273,7 @@ export default function HeroSection({
                   disabled={!videoUrl}
                 >
                   <span className="flex items-center gap-2">
-                    <Play className="w-4 h-4" />
+                    <Play className="w-4 h-4" aria-hidden="true" />
                     Watch Introduction
                   </span>
                 </Button>
@@ -287,7 +295,7 @@ export default function HeroSection({
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <ArrowDown className="w-5 h-5" />
+              <ArrowDown className="w-5 h-5" aria-hidden="true" />
             </motion.div>
           </motion.button>
         </motion.div>

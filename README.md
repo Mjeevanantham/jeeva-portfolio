@@ -1,63 +1,75 @@
-## Jeevanantham Mahalingam – Portfolio
+# Jeevanantham Mahalingam – Portfolio
 
-A modern Next.js portfolio with smooth in-page navigation, a project details modal, and a subtle cursor-follow color glow. Includes a contact form with email delivery and a dedicated Resume page.
+> A modern Next.js portfolio showcasing full-stack engineering work, AI-integrated systems, and production-grade applications.
 
-### Recent Work
-- Currently developing a high-level ERP system for a US-based enterprise client (NDA protected)
-- Diving into AI and creating Scriptly VS Code extension for AI agent hands-on work
+## 📖 Documentation
 
-### Features
-- Anchor navigation with sticky header and smooth scrolling
-- Mobile-friendly menu (hamburger) and responsive sections
-- Projects modal: click a project to see lightweight details
-- Subtle cursor-follow glow in the Projects grid
-- Contact form posting to `/api/contact` (Nodemailer)
-- Resume page at `/resume`
+**👉 [View Full Documentation](./docs/README.md)**
 
-### Tech Stack
-- Next.js 15 (App Router) + React 19
-- Tailwind CSS 4
-- Framer Motion for animations
-- GSAP ScrollTrigger for scroll-based effects
-- Zod for input validation
-- Nodemailer for email delivery
+## 🚀 Quick Start
 
-### Getting Started
-1. Install dependencies:
 ```bash
-npm ci
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm run dev
+
+# Build for production
+pnpm run build
 ```
-2. Create `.env.local` with the following (Gmail app password recommended):
-```bash
-GMAIL_USER="youraddress@gmail.com"
-GMAIL_APP_PASSWORD="your_app_password"
+
+Visit:
+- **V1 (Production)**: http://localhost:3000
+- **V2 (Development)**: http://localhost:3000/v2
+
+## 📚 Documentation Index
+
+- **[Main Documentation](./docs/README.md)** - Complete project overview
+- **[Architecture](./docs/ARCHITECTURE.md)** - System architecture and design decisions
+- **[Development Guide](./docs/development/GUIDE.md)** - Development workflow and standards
+- **[V2 Setup](./docs/v2/setup.md)** - V2 development setup
+- **[V2 Design System](./docs/v2/design-system.md)** - Colors, typography, utilities
+- **[V2 Typography](./docs/v2/typography.md)** - Font system and components
+- **[V2 Layout](./docs/v2/layout.md)** - Layout components and patterns
+- **[Case Studies](./docs/case-studies/)** - Detailed project case studies
+- **[AI Capabilities](./docs/ai-capabilities.md)** - AI/LLM integration experience
+- **[Changelog](./docs/CHANGELOG.md)** - Version history
+
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **React**: 19.2.3
+- **TypeScript**: 5.x
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion, GSAP
+- **UI**: Radix UI, Lucide Icons
+
+## 📁 Project Structure
+
 ```
-3. Run the dev server:
-```bash
-npm run dev
+├── app/              # Next.js App Router
+│   ├── page.tsx     # V1 Homepage
+│   └── v2/          # V2 Routes
+├── components/       # React Components
+│   └── v2/          # V2 Components
+├── lib/             # Utilities
+│   └── v2/          # V2 Utilities
+├── content/         # Content Data
+├── public/          # Static Assets
+└── docs/            # Documentation
 ```
-Open http://localhost:3000
 
-### Scripts
-- `npm run dev`: Start dev server
-- `npm run build`: Production build
-- `npm run start`: Start production server
-- `npm run lint`: Lint the project
+## 🔗 Links
 
-### Project Structure (key paths)
-- `app/page.tsx`: Landing page and sections
-- `components/projects-grid.tsx`: Project grid, modal, and glow
-- `components/contact-form.tsx`: Contact form with validation and states
-- `app/api/contact/route.ts`: Email sending endpoint
-- `app/resume/page.tsx`: Resume page
+- **Website**: https://jeevanantham.site
+- **GitHub**: [@Mjeevanantham](https://github.com/Mjeevanantham)
+- **LinkedIn**: [jeevanantham-mahalingam](https://www.linkedin.com/in/jeevanantham-mahalingam)
 
-### Accessibility & UX
-- Focus-visible styles on interactive elements
-- `scroll-mt` offsets to avoid sticky header overlap
-- External links open in a new tab with `rel="noopener noreferrer"`
+## 📄 License
 
-### Notes
-- To provide a downloadable resume, add `public/resume.pdf`. A Download button can be enabled on the Resume page.
+MIT License
 
-### License
-MIT
+---
+
+**Built with ❤️ by Jeevanantham Mahalingam**

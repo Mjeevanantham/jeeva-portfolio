@@ -1,12 +1,13 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Section, Grid } from "@/components/v2/layout";
 import { H2 } from "@/components/v2/typography/heading";
 import { useCountUp } from "./use-count-up";
+import { OptimizedImage } from "@/components/v2/image/optimized-image";
+import { getBlurDataURL, getImageSizes } from "@/lib/v2/image-utils";
 
 type Stat = {
   label: string;
@@ -49,27 +50,29 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-function StatCard({ stat, inView }: { stat: Stat; inView: boolean }) {
-  const value = useCountUp({ from: 0, to: stat.value, enabled: inView, durationMs: 900 });
+// Memoized StatCard component
+const StatCard = React.memo(function StatCard({ stat, inView }: { stat: Stat; inView: boolean }) {
+  const value = useCountUp({ from: 0, to: stat.value, enabled: inView, durationMs: 1200 });
 
   return (
     <motion.div
       variants={itemVariants}
-      className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/70 p-5 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+      className="relative overflow-hidden rounded-2xl border border-slate-200/50 bg-white/80 p-6 shadow-md backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-800/50 hover:shadow-lg transition-shadow"
     >
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-brand-secondary/10 to-brand-accent/10 opacity-70" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-brand-secondary/5 to-brand-accent/5 opacity-60 dark:opacity-40" />
       <div className="relative">
-        <div className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+        <div className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-brand-primary-600 to-brand-secondary-600 bg-clip-text text-transparent dark:from-brand-primary-400 dark:to-brand-secondary-400">
           {value}
           {stat.suffix}
         </div>
-        <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{stat.description}</div>
+        <div className="mt-2 text-sm font-medium text-slate-600 dark:text-slate-400">{stat.description}</div>
       </div>
     </motion.div>
   );
-}
+});
 
-function TechBadge({ tech }: { tech: Tech }) {
+// Memoized TechBadge component
+const TechBadge = React.memo(function TechBadge({ tech }: { tech: Tech }) {
   return (
     <motion.div
       variants={itemVariants}
@@ -87,42 +90,58 @@ function TechBadge({ tech }: { tech: Tech }) {
       </Badge>
     </motion.div>
   );
-}
+});
 
-export default function AboutSection() {
+function AboutSection() {
   const ref = React.useRef<HTMLElement | null>(null);
-  const inView = useInView(ref, { margin: "-20% 0px -20% 0px", once: true });
+  const inView = useInView(ref, { margin: "-10% 0px -10% 0px", once: true, amount: 0.1 });
+  
+  // Ensure stats animate even if section is initially in view
+  const [hasAnimated, setHasAnimated] = React.useState(false);
+  React.useEffect(() => {
+    if (inView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [inView, hasAnimated]);
+  
+  const shouldAnimate = inView || hasAnimated;
+
+  // Memoize STATS and TECH arrays
+  const stats = React.useMemo(() => STATS, []);
+  const tech = React.useMemo(() => TECH, []);
 
   return (
-    <Section id="about" ref={ref} variant="muted" className="scroll-mt-24">
+    <Section id="about" ref={ref} variant="muted" className="scroll-mt-24 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
       <motion.div variants={containerVariants} initial="hidden" animate={inView ? "visible" : "hidden"}>
-        <motion.div variants={itemVariants} className="text-center">
-          <H2 responsive className="mb-4">
+        <motion.div variants={itemVariants} className="text-center mb-12">
+          <H2 responsive className="mb-4 text-slate-900 dark:text-white">
             About Me
           </H2>
         </motion.div>
 
-        <div className="mt-10 grid items-start gap-10 md:grid-cols-2">
+        <div className="mt-10 grid items-start gap-12 md:grid-cols-2">
           {/* Left: headshot */}
           <motion.div variants={itemVariants} className="flex justify-center md:justify-start">
             <div className="relative">
-              <div className="absolute -inset-3 rounded-full bg-brand-gradient opacity-40 blur-2xl" aria-hidden="true" />
-              <div className="relative h-[300px] w-[300px] overflow-hidden rounded-full border border-white/20 bg-white/60 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
-                <Image
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-brand-primary/20 via-brand-secondary/20 to-brand-accent/20 opacity-60 blur-3xl dark:opacity-40" aria-hidden="true" />
+              <div className="relative h-[280px] w-[280px] md:h-[320px] md:w-[320px] overflow-hidden rounded-full border-2 border-white/30 bg-gradient-to-br from-white/80 to-white/60 shadow-2xl backdrop-blur-xl dark:border-white/20 dark:from-slate-800/80 dark:to-slate-900/60">
+                <OptimizedImage
                   src="/v2/avatar-placeholder.svg"
                   alt="Professional headshot of Jeeva"
-                  width={300}
-                  height={300}
+                  width={320}
+                  height={320}
                   className="h-full w-full object-cover"
                   priority={false}
+                  blurDataURL={getBlurDataURL("v2/avatar-placeholder.svg")}
+                  sizes={getImageSizes("avatar")}
                 />
               </div>
             </div>
           </motion.div>
 
           {/* Right: content */}
-          <motion.div variants={containerVariants} className="space-y-6">
-            <motion.div variants={itemVariants} className="space-y-5 text-base md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          <motion.div variants={containerVariants} className="space-y-8">
+            <motion.div variants={itemVariants} className="space-y-6 text-base md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
               <p>
                 I’m a full‑stack engineer focused on building <span className="font-semibold">AI‑integrated, production‑grade systems</span>—the kind
                 that ship, scale, and stay maintainable under real business pressure.
@@ -144,8 +163,8 @@ export default function AboutSection() {
             {/* Stats grid */}
             <motion.div variants={containerVariants}>
               <Grid colsMobile={2} colsTablet={2} colsDesktop={2} colsDesktopLg={2} gap="medium" className="mt-2">
-                {STATS.map((s) => (
-                  <StatCard key={s.description} stat={s} inView={inView} />
+                {stats.map((s) => (
+                  <StatCard key={s.description} stat={s} inView={shouldAnimate} />
                 ))}
               </Grid>
             </motion.div>
@@ -156,7 +175,7 @@ export default function AboutSection() {
                 Tech I ship with
               </motion.p>
               <motion.div variants={containerVariants} className="mt-3 flex flex-wrap gap-2">
-                {TECH.map((t) => (
+                {tech.map((t) => (
                   <TechBadge key={t.name} tech={t} />
                 ))}
               </motion.div>
@@ -168,3 +187,5 @@ export default function AboutSection() {
   );
 }
 
+// Memoize component to prevent unnecessary re-renders
+export default React.memo(AboutSection);

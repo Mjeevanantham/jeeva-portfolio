@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Geist, Geist_Mono, Inter, Sora } from "next/font/google";
 import Script from "next/script";
-import SiteNav from "@/components/site-nav";
+import ConditionalNav from "@/components/conditional-nav";
 import { ThemeProvider } from "@/components/theme-provider";
 import BackToTop from "@/components/back-to-top";
 import "./globals.css";
@@ -122,6 +122,31 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${sora.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('v2-theme');
+                  var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  var resolvedTheme = theme === 'system' || !theme ? systemTheme : theme;
+                  
+                  if (resolvedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {
+                  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                  }
+                }
+              })();
+            `,
+          }}
+        />
         <ThemeProvider>
           {/* Google Tag Manager (noscript) */}
           <noscript>
@@ -132,7 +157,8 @@ export default function RootLayout({
               style={{ display: "none", visibility: "hidden" }}
             />
           </noscript>
-          <SiteNav />
+          {/* V1 Navigation - Only show on non-V2 routes */}
+          <ConditionalNav />
           {children}
           {modal}
 

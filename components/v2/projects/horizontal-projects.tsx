@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink, Lock } from "lucide-react";
@@ -11,6 +10,16 @@ import { Section, Container } from "@/components/v2/layout";
 import { H2, H3 } from "@/components/v2/typography/heading";
 import { V2_FEATURED_PROJECTS, type Project } from "@/content/projects";
 import { cn } from "@/lib/utils";
+import { OptimizedImage } from "@/components/v2/image/optimized-image";
+import { getBlurDataURL, getImageSizes } from "@/lib/v2/image-utils";
+import dynamic from "next/dynamic";
+import { ModalSkeleton } from "@/components/v2/loading/modal-skeleton";
+
+// Dynamic import for CaseStudyModal - only loads when modal is opened
+const CaseStudyModal = dynamic(() => import("@/components/v2/modal/case-study-modal").then((mod) => ({ default: mod.CaseStudyModal })), {
+  loading: () => <ModalSkeleton />,
+  ssr: false,
+});
 
 function useActiveIndex(containerRef: React.RefObject<HTMLElement | null>, itemSelector: string) {
   const [active, setActive] = React.useState(0);
@@ -48,7 +57,8 @@ function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
 
-function TiltImage({ src, alt }: { src: string; alt: string }) {
+// Memoized TiltImage component with useCallback optimizations
+const TiltImage = React.memo(function TiltImage({ src, alt }: { src: string; alt: string }) {
   const ref = React.useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -57,7 +67,7 @@ function TiltImage({ src, alt }: { src: string; alt: string }) {
   const rotateX = useTransform(sy, [-0.5, 0.5], [8, -8]);
   const rotateY = useTransform(sx, [-0.5, 0.5], [-10, 10]);
 
-  const onMove = (e: React.MouseEvent) => {
+  const onMove = React.useCallback((e: React.MouseEvent) => {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
@@ -65,11 +75,12 @@ function TiltImage({ src, alt }: { src: string; alt: string }) {
     const py = (e.clientY - r.top) / r.height - 0.5;
     mx.set(px);
     my.set(py);
-  };
-  const onLeave = () => {
+  }, [mx, my]);
+
+  const onLeave = React.useCallback(() => {
     mx.set(0);
     my.set(0);
-  };
+  }, [mx, my]);
 
   return (
     <motion.div
@@ -79,24 +90,34 @@ function TiltImage({ src, alt }: { src: string; alt: string }) {
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 240, damping: 22 }}
-      className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/60 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5"
+      className="relative overflow-hidden rounded-2xl border-2 border-slate-200/50 bg-gradient-to-br from-white/90 to-slate-50/90 shadow-2xl backdrop-blur-xl dark:border-slate-700/50 dark:from-slate-800/90 dark:to-slate-900/90"
     >
-      <div className="pointer-events-none absolute inset-0 bg-brand-gradient opacity-[0.12]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-brand-secondary/5 to-brand-accent/5 opacity-60 dark:opacity-40" aria-hidden="true" />
       <div className="relative aspect-video w-full">
-        <Image
+        <OptimizedImage
           src={src}
           alt={alt}
           fill
-          sizes="(min-width: 1024px) 45vw, 92vw"
+          sizes={getImageSizes("project")}
           className="object-cover"
-          loading="lazy"
+          priority={false}
+          quality={90}
+          blurDataURL={getBlurDataURL(src.startsWith("/") ? src.slice(1) : src)}
         />
       </div>
     </motion.div>
   );
-}
+});
 
-function ProjectPanel({ project, index }: { project: Project; index: number }) {
+function ProjectPanel({
+  project,
+  index,
+  onViewCaseStudy,
+}: {
+  project: Project;
+  index: number;
+  onViewCaseStudy: () => void;
+}) {
   const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px -10% 0px" });
 
@@ -111,46 +132,71 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
         // full-viewport snap panels
         "snap-center shrink-0 w-screen",
         // height: keep comfortable within viewport; allow internal scroll if needed
-        "py-10 lg:py-16"
+        "min-h-[85vh] flex items-center py-10 lg:py-16"
       )}
       aria-label={`${index + 1}. ${project.title}`}
     >
-      <Container className="h-full">
+      <Container className="h-full w-full">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="grid items-center gap-8 lg:grid-cols-2"
+          className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12"
         >
-          {/* Left: mockup */}
-          <div className="lg:pr-4">
+          {/* Left 50%: mockup with 3D tilt */}
+          <motion.div
+            className="lg:pr-6"
+            initial={{ opacity: 0, x: -30 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
             <TiltImage src={mockup} alt={`${project.title} mockup`} />
-          </div>
+          </motion.div>
 
-          {/* Right: details */}
-          <div className="lg:pl-4">
-            <div className="rounded-2xl border border-white/20 bg-white/70 p-6 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
-              <div className="flex flex-wrap items-center gap-2">
-                {project.role && <Badge className="bg-brand-gradient text-white">{project.role}</Badge>}
+          {/* Right 50%: project details */}
+          <motion.div
+            className="lg:pl-6"
+            initial={{ opacity: 0, x: 30 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
+            <motion.div
+              className="rounded-2xl border border-slate-200/50 bg-white/80 p-6 md:p-8 shadow-lg backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-800/50 transition-shadow duration-200 hover:shadow-xl"
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              {/* Role badge and NDA */}
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                {project.role && (
+                  <Badge className="bg-gradient-to-r from-brand-primary-600 to-brand-secondary-600 text-white border-0 shadow-sm">
+                    {project.role}
+                  </Badge>
+                )}
                 {project.nda && (
-                  <Badge variant="outline" className="border-white/25 bg-black/5 text-slate-700 dark:bg-white/5 dark:text-slate-200">
-                    <Lock className="mr-1" />
+                  <Badge variant="outline" className="border-slate-300/50 bg-slate-50/80 text-slate-700 dark:border-slate-600/50 dark:bg-slate-900/50 dark:text-slate-200">
+                    <Lock className="mr-1.5 h-3 w-3" aria-hidden="true" />
                     NDA
                   </Badge>
                 )}
               </div>
 
-              <H3 className="mt-4 text-slate-900 dark:text-white">{project.title}</H3>
+              {/* Project title */}
+              <H3 className="mb-4 text-slate-900 dark:text-white">{project.title}</H3>
 
-              <p className="mt-3 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+              {/* Description */}
+              <p className="mb-6 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
                 {project.details}
               </p>
 
+              {/* Tech stack tags */}
               {project.stack?.length ? (
-                <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tech stack">
+                <ul className="mb-6 flex flex-wrap gap-2" aria-label="Tech stack">
                   {project.stack.map((t) => (
                     <li key={t}>
-                      <Badge variant="outline" className="rounded-full bg-white/60 dark:bg-white/5">
+                      <Badge
+                        variant="outline"
+                        className="rounded-full border-slate-200/70 bg-white/70 px-3 py-1 text-xs font-medium text-slate-700 shadow-sm backdrop-blur dark:border-slate-600/50 dark:bg-slate-900/50 dark:text-slate-200"
+                      >
                         {t}
                       </Badge>
                     </li>
@@ -158,27 +204,37 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
                 </ul>
               ) : null}
 
+              {/* NDA notice */}
               {project.nda ? (
-                <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
+                <p className="mb-6 text-sm italic text-slate-600 dark:text-slate-400">
                   Some implementation details are private due to NDA.
                 </p>
               ) : null}
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              {/* CTA button */}
+              <div className="flex flex-wrap gap-3">
                 {caseStudyHref ? (
-                  <Button asChild className="bg-brand-gradient text-white">
-                    <Link href={caseStudyHref}>
-                      View Case Study <ExternalLink className="ml-2 h-4 w-4" />
-                    </Link>
+                  <Button
+                    size="lg"
+                    onClick={onViewCaseStudy}
+                    className="bg-gradient-to-r from-brand-primary-600 to-brand-secondary-600 text-white shadow-md hover:shadow-lg transition-all hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  >
+                    View Case Study <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
                   </Button>
                 ) : (
-                  <Button variant="outline" disabled aria-disabled="true">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    disabled
+                    aria-disabled="true"
+                    className="border-slate-300 dark:border-slate-600"
+                  >
                     Case Study Coming Soon
                   </Button>
                 )}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </Container>
     </div>
@@ -192,6 +248,7 @@ export default function HorizontalProjects() {
 
   const scrollerRef = React.useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useActiveIndex(scrollerRef, "[data-project-panel]");
+  const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
 
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const sectionInView = useInView(sectionRef, { amount: 0.2 });
@@ -273,7 +330,7 @@ export default function HorizontalProjects() {
                       {p.role && <Badge className="bg-brand-gradient text-white">{p.role}</Badge>}
                       {p.nda && (
                         <Badge variant="outline" className="border-white/25 bg-black/5 text-slate-700 dark:bg-white/5 dark:text-slate-200">
-                          <Lock className="mr-1" />
+                          <Lock className="mr-1" aria-hidden="true" />
                           NDA
                         </Badge>
                       )}
@@ -313,35 +370,48 @@ export default function HorizontalProjects() {
       {/* Desktop: horizontal scroll with snap */}
       <div className="relative mt-10 hidden lg:block">
         {/* Nav arrows */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-10 flex items-center justify-between">
-          <div className="pointer-events-auto pl-4">
+        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-10 flex items-center justify-between px-4">
+          <motion.div
+            className="pointer-events-auto"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: activeIndex > 0 ? 1 : 0.3, x: 0 }}
+            transition={{ duration: 0.3 }}
+          >
             <button
               type="button"
               onClick={goPrev}
               disabled={activeIndex === 0}
               aria-label="Previous project"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/70 shadow-sm backdrop-blur-xl transition disabled:opacity-40 dark:border-white/10 dark:bg-white/5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-slate-200/50 bg-white/90 shadow-lg backdrop-blur-xl transition-all hover:scale-110 hover:shadow-xl disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 dark:border-slate-700/50 dark:bg-slate-800/90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
-              <ChevronLeft />
+              <ChevronLeft className="h-5 w-5 text-slate-700 dark:text-slate-200" aria-hidden="true" />
             </button>
-          </div>
-          <div className="pointer-events-auto pr-4">
+          </motion.div>
+          <motion.div
+            className="pointer-events-auto"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: activeIndex < projects.length - 1 ? 1 : 0.3, x: 0 }}
+            transition={{ duration: 0.3 }}
+          >
             <button
               type="button"
               onClick={goNext}
               disabled={activeIndex === projects.length - 1}
               aria-label="Next project"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/70 shadow-sm backdrop-blur-xl transition disabled:opacity-40 dark:border-white/10 dark:bg-white/5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-slate-200/50 bg-white/90 shadow-lg backdrop-blur-xl transition-all hover:scale-110 hover:shadow-xl disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 dark:border-slate-700/50 dark:bg-slate-800/90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
-              <ChevronRight />
+              <ChevronRight className="h-5 w-5 text-slate-700 dark:text-slate-200" aria-hidden="true" />
             </button>
-          </div>
+          </motion.div>
         </div>
 
         <div
           ref={scrollerRef}
-          className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none]"
+          className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] overscroll-x-contain"
           aria-label="Projects horizontal carousel"
+          role="region"
+          aria-live="polite"
+          tabIndex={0}
         >
           {/* hide scrollbar (webkit) */}
           <style jsx>{`
@@ -351,13 +421,18 @@ export default function HorizontalProjects() {
           `}</style>
 
           {projects.map((p, idx) => (
-            <ProjectPanel key={p.id} project={p} index={idx} />
+            <ProjectPanel
+              key={p.id}
+              project={p}
+              index={idx}
+              onViewCaseStudy={() => setSelectedProject(p)}
+            />
           ))}
         </div>
 
         {/* Progress indicator */}
-        <Container className="mt-6">
-          <div className="flex items-center justify-center gap-2" aria-label="Project progress">
+        <Container className="mt-8">
+          <div className="flex items-center justify-center gap-2.5" aria-label="Project progress" role="tablist">
             {projects.map((p, idx) => {
               const isActive = idx === activeIndex;
               return (
@@ -366,20 +441,33 @@ export default function HorizontalProjects() {
                   type="button"
                   onClick={() => scrollToIndex(idx)}
                   className={cn(
-                    "h-2.5 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-blue-500",
-                    isActive ? "w-10 bg-brand-gradient" : "w-2.5 bg-slate-300/80 dark:bg-white/20"
+                    "h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+                    isActive
+                      ? "w-12 bg-gradient-to-r from-brand-primary-600 to-brand-secondary-600 shadow-md"
+                      : "w-3 bg-slate-300/70 hover:bg-slate-400/70 dark:bg-slate-600/50 dark:hover:bg-slate-500/70"
                   )}
-                  aria-label={`Go to ${p.title}`}
+                  aria-label={`Go to ${p.title}, project ${idx + 1} of ${projects.length}`}
                   aria-current={isActive ? "true" : undefined}
+                  role="tab"
+                  tabIndex={isActive ? 0 : -1}
+                  aria-posinset={idx + 1}
+                  aria-setsize={projects.length}
                 />
               );
             })}
           </div>
-          <p className="mt-2 text-center text-sm text-slate-600 dark:text-slate-400">
-            {activeIndex + 1} / {projects.length}
+          <p className="mt-3 text-center text-sm font-medium text-slate-600 dark:text-slate-400" aria-live="polite" aria-atomic="true">
+            Project {activeIndex + 1} of {projects.length}
           </p>
         </Container>
       </div>
+
+      {/* Case Study Modal */}
+      <CaseStudyModal
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+        project={selectedProject}
+      />
     </Section>
   );
 }

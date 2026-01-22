@@ -1,28 +1,28 @@
-import type { MetadataRoute } from "next";
-import { blogPosts } from "@/content/blog-posts";
+import { MetadataRoute } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jeevanantham.site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const host = siteUrl.replace(/\/$/, "");
-
-  const staticPaths: MetadataRoute.Sitemap = [
+  const routes = [
     {
-      url: `${host}/`,
+      url: `${SITE_URL}/v2`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "weekly" as const,
       priority: 1,
     },
-    { url: `${host}/resume`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${host}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    {
+      url: `${SITE_URL}/v2/resume`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/v2/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
   ];
 
-  const blogPaths: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${host}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
-
-  return [...staticPaths, ...blogPaths];
+  return routes;
 }
